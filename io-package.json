@@ -1,0 +1,36 @@
+{
+    "common": {
+        "name":                     "smartmeter",
+        "version":                  "0.0.1",
+		"news": {
+              "0.0.1": {
+                  "en": "Initial version",
+                  "de": "Initiale Version",
+                  "ru": "Initial version"
+              }
+        },
+        "title":                    "Smartmeter Adapter",
+        "desc":                     "Read data from Smartmeter Devices using various protocols like SML and D0",
+        "platform":                 "Javascript/Node.js",
+        "mode":                     "daemon",
+        "messagebox":               true,
+        "subscribe":                "messagebox",
+        "icon":                     "smartmeter.png",
+        "extIcon":                  "https://raw.githubusercontent.com/Apollon77/ioBroker.smartmeter/master/admin/smartmeter.png",
+        "readme":                   "https://github.com/Apollon77/ioBroker.smartmeter",
+        "license":                  "MIT",
+        "npmLibs": [],
+        "type":                     "hardware",
+        "keywords":                 ["iobroker", "smartmeter", "SML", "D0", "eHz"],
+        "loglevel":                 "info",
+        "enabled":                  false
+    },
+    "native": {
+        "deviceProtocol":         "SML",
+        "deviceSerialPort":       "/dev/ttyUSB0",
+        "deviceSerialBaudrate":   "9600",
+        "updateInterval":         300
+    },
+    "objects": [],
+    "instanceObjects": []
+}
