@@ -179,7 +179,7 @@ describe('Test ' + adapterShortName + ' adapter', function() {
                     });
                 });
             });
-        }, 15000);
+        }, 25000);
     });
 
     after('Test ' + adapterShortName + ' adapter: Stop js-controller', function (done) {
