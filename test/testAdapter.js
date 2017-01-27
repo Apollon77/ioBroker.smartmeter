@@ -85,13 +85,14 @@ describe('Test ' + adapterShortName + ' adapter', function() {
             config.common.enabled  = true;
             config.common.loglevel = 'debug';
 
-            config.native.protocol = 'SmlProtocol';
+            config.native.protocol = 'D0Protocol';
             config.native.transport = 'LocalFileTransport';
-            config.native.transportLocalFilePath = __dirname + '/test.sml';
-            config.native.requestInterval = 10;
+            config.native.transportLocalFilePath = __dirname + '/test.d0';
+            config.native.transportLocalFilePath = __dirname + '/test.d0';
+            config.native.obisFallbackMedium = 6;
 
-            var testData = new Buffer('1b1b1b1b01010101760700190b4cbead6200620072630101760101070019063f3f8f0b0901454d48000041f045010163662d00760700190b4cbeae620062007263070177010b0901454d48000041f045070100620affff72620165063f2f357777078181c78203ff0101010104454d480177070100000009ff010101010b0901454d48000041f0450177070100010800ff6400018201621e52ff560009247a550177070100010801ff0101621e52ff560009247a550177070100010802ff0101621e52ff5600000000000177070100100700ff0101621b52ff55000016030177078181c78205ff0172620165063f2f3501018302e77ef33ea97bb6bba9bfa4fbd8b9f2ede51207b15acf6b98a237c21ca4982ee3ce18efe8438f1deba9d5c40eb68ae8f201010163574a00760700190b4cbeb16200620072630201710163d658000000001b1b1b1b1a03e566', 'hex');
-            fs.writeFileSync(__dirname + '/test.sml', testData);
+            var testData = '/?Bla0!\r\n6.8(0029.055*MWh)6.26(01589.28*m3)9.21(00010213)6.26*01(01563.92*m3)6.8*01(0028.086*MWh)F(0)9.20(64030874)6.35(60*m)6.6(0017.2*kW)6.6*01(0017.2*kW)6.33(001.476*m3ph)9.4(088*C&082*C)6.31(0030710*h)6.32(0000194*h)9.22(R)9.6(000&00010213&0)9.7(20000)6.32*01(0000194*h)6.36(01-01)6.33*01(001.476*m3ph)6.8.1()6.8.2()6.8.3()6.8.4()6.8.5()6.8.1*01()6.8.2*01()6.8.3*01()\r\n6.8.4*01()6.8.5*01()9.4*01(088*C&082*C)6.36.1(2013-11-28)6.36.1*01(2013-11-28)6.36.2(2016-09-24)6.36.2*01(2016-09-24)6.36.3(2015-03-26)6.36.3*01(2015-03-26)6.36.4(2013-09-27)6.36.4*01(2013-09-27)6.36.5(2000-00-00)6.36*02(01)9.36(2017-01-18&01:36:47)9.24(0.6*m3ph)9.17(0)9.18()9.19()9.25()9.1(0&1&0&-&CV&3&2.14)9.2(&&)0.0(00010213)!\r\n';
+            fs.writeFileSync(__dirname + '/test.d0', testData);
 
 
             setup.setAdapterConfig(config.common, config.native);
@@ -125,36 +126,59 @@ describe('Test ' + adapterShortName + ' adapter', function() {
         });
     });
 
-    // We expect ERROR as last Notify necause no nut is running there
     it('Test ' + adapterShortName + ' adapter: test stored data', function (done) {
         this.timeout(25000);
 
         setTimeout(function() {
-/*            states.getState('nut.0.status.last_notify', function (err, state) {
+            states.getState('smartmeter.0.6-0:6_8.value', function (err, state) {
                 if (err) console.error(err);
                 expect(state).to.exist;
                 if (!state) {
-                    console.error('state "status.last_notify" not set');
+                    console.error('state "smartmeter.0.6-0:6_8.value" not set');
                 }
                 else {
-                    console.log('check status.last_notify ... ' + state.val);
+                    console.log('check smartmeter.0.6-0:6_8.value ... ' + state.val);
                     expect(state.val).to.exist;
-                    expect(state.val).to.be.equal('ERROR');
+                    expect(state.val).to.be.equal(29.055);
                 }
-                states.getState('nut.0.status.severity', function (err, state) {
+                states.getState('smartmeter.0.6-0:6_8.rawvalue', function (err, state) {
                     if (err) console.error(err);
                     expect(state).to.exist;
                     if (!state) {
-                        console.error('state "status.severity" not set');
+                        console.error('state "smartmeter.0.6-0:6_8.rawvalue" not set');
                     }
                     else {
-                        console.log('check status.severity ... ' + state.val);
+                        console.log('check smartmeter.0.6-0:6_8.rawvalue ... ' + state.val);
                     }
                     expect(state.val).to.exist;
-                    expect(state.val).to.be.equal(4);
-                    done();
+                    expect(state.val).to.be.equal("0029.055*MWh");
+                    states.getState('smartmeter.0.6-0:9_4.value', function (err, state) {
+                        if (err) console.error(err);
+                        expect(state).to.exist;
+                        if (!state) {
+                            console.error('state "smartmeter.0.6-0:9_4.value" not set');
+                        }
+                        else {
+                            console.log('check smartmeter.0.6-0:9_4.value ... ' + state.val);
+                        }
+                        expect(state.val).to.exist;
+                        expect(state.val).to.be.equal(88);
+                        states.getState('smartmeter.0.6-0:9_4.value2', function (err, state) {
+                            if (err) console.error(err);
+                            expect(state).to.exist;
+                            if (!state) {
+                                console.error('state "smartmeter.0.6-0:9_4.value2" not set');
+                            }
+                            else {
+                                console.log('check smartmeter.0.6-0:9_4.value2 ... ' + state.val);
+                            }
+                            expect(state.val).to.exist;
+                            expect(state.val).to.be.equal(82);
+                            done();
+                        });
+                    });
                 });
-            });*/
+            });
             done();
         }, 15000);
     });

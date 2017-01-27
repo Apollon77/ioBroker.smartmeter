@@ -140,6 +140,7 @@ function storeObisData(obisResult) {
     for (var obisId in obisResult) {
         if (!obisResult.hasOwnProperty(obisId)) continue;
 
+        adapter.log.info(obisResult[obisId].idToString() + ': ' + SmartmeterObis.ObisNames.resolveObisName(obisResult[obisId], adapter.config.obisNameLanguage).obisName + ' = ' + obisResult[obisId].valueToString());
         var i;
         var ioChannelId = obisResult[obisId].idToString().replace(/\./g, "_");
         if (!smValues[obisId]) {
@@ -153,7 +154,8 @@ function storeObisData(obisResult) {
                 native: {}
             });
 
-            if (obisResult[obisId].getRawValue() !== "") {
+            if (obisResult[obisId].getRawValue() !== undefined) {
+                adapter.log.debug('Create State ' + ioChannelId + '.rawvalue');
                 adapter.setObjectNotExists(ioChannelId + '.rawvalue', {
                     type: 'state',
                     common: {
@@ -169,6 +171,7 @@ function storeObisData(obisResult) {
                 });
             }
 
+            adapter.log.debug('Create State ' + ioChannelId + '.value');
             adapter.setObjectNotExists(ioChannelId + '.value', {
                 type: 'state',
                 common: {
@@ -186,6 +189,7 @@ function storeObisData(obisResult) {
 
             if (obisResult[obisId].getValueLength() > 1) {
                 for (i = 1; i < obisResult[obisId].getValueLength(); i++) {
+                    adapter.log.debug('Create State ' + ioChannelId + '.value' + (i + 1));
                     adapter.setObjectNotExists(ioChannelId + '.value' + (i + 1), {
                         type: 'state',
                         common: {
@@ -221,8 +225,9 @@ function storeObisData(obisResult) {
             }
             smValues[obisId] = obisResult[obisId];
         }
-
-        adapter.log.info(obisResult[obisId].idToString() + ': ' + SmartmeterObis.ObisNames.resolveObisName(obisResult[obisId], adapter.config.obisNameLanguage).obisName + ' = ' + obisResult[obisId].valueToString());
+        else {
+            adapter.log.debug('Data for '+ ioChannelId + ' unchanged');
+        }
     }
 }
 
