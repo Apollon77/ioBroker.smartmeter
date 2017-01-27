@@ -5,8 +5,7 @@ node_modules
 .gitignore
 .git
 .DS_Store
-test/lib
-test/testAdapter.js
+test
 .travis.yml
 appveyor.yml
 .codeclimate.yml

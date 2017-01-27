@@ -1,5 +1,6 @@
 /* jshint -W097 */// jshint strict:false
 /*jslint node: true */
+
 var expect = require('chai').expect;
 var setup  = require(__dirname + '/lib/setup');
 
@@ -183,6 +184,7 @@ describe('Test ' + adapterShortName + ' adapter', function() {
         }, 2000);
     });
 */
+
     after('Test ' + adapterShortName + ' adapter: Stop js-controller', function (done) {
         this.timeout(10000);
 

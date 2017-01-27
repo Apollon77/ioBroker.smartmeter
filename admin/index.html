@@ -1,0 +1,93 @@
+<html>
+
+<!-- these 4 files always have to be included -->
+<link rel="stylesheet" type="text/css" href="../../lib/css/themes/jquery-ui/redmond/jquery-ui.min.css"/>
+<script type="text/javascript" src="../../lib/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../../socket.io/socket.io.js"></script>
+<script type="text/javascript" src="../../lib/js/jquery-ui-1.10.3.full.min.js"></script>
+
+<!-- these two file always have to be included -->
+<link rel="stylesheet" type="text/css" href="../../css/adapter.css"/>
+<script type="text/javascript" src="../../js/translate.js"></script>
+<script type="text/javascript" src="../../js/adapter-settings.js"></script>
+
+
+<!-- you have to define 2 functions in the global scope: -->
+<script type="text/javascript">
+
+    // Dictionary (systemDictionary is global variable from adapter-settings.js)
+    systemDictionary = {
+            "page_title":   {"en": "NUT Adapter Settings",       "de": "NUT Adapter Einstellungen",    "ru": "NUT Adapter Settings"},
+            "host_ip":   {"en": "NUT Server IP",       "de": "IP des NUT Servers",    "ru": "IP NUT сервера"},
+            "host_port": {"en": "NUT Server port",     "de": "Port des NUT Servers",  "ru": "Порт NUT сервера"},
+            "ups_name":  {"en": "NUT Name of the UPS", "de": "NUT Name der UPS",     "ru": "NUT имя UPS"},
+            "update_interval":  {"en": "Update Interval", "de": "Aktualisierungsintervall",     "ru": "Update Interval"},
+            "ip_info": {
+              "en":"IP address of the NUT server. NUT needs to run in server mode and needs to be accessible by the computer the iobroker NUT adapter runs on. So check firewall settings if you have problems and allow the access. If the UPS is connected locally you can also use 127.0.0.1 or localhost.",
+              "de":"IP Adresse des NUT Servers. NUT muss im Server-Mode konfiguriert sein und von dem Rechner auf dem der iobroker Adapter installiert ist erreichbar sein. Bei Problemen sollten die Firewall-Einstellungen geprüft werden, dass der Zugriff gestattet ist. Wenn die USV am lokalen rechner angeschlossen ist kann 127.0.0.1 oder localhost genutzt werden.",
+              "ru":"IP address of the NUT server. NUT needs to run in server mode and needs to be accessible by the computer the iobroker NUT adapter runs on. So check firewall settings if you have problems and allow the access. If the UPS is connected locally you can also use 127.0.0.1 or localhost."
+            },
+            "port_info": {
+              "en":"Port of NUT. The default port is 3493.",
+              "de":"Port des NUT Servers. Der Standardport ist 3493.",
+              "ru":"Port of NUT. The default port is 3493."
+            },
+            "name_info": {
+              "en":"Name of the UPS as defined in the NUT configuration of the NUT server.</p>Hint: If you want to connect to an UPS connected to a Synology diskstation the name is simply 'ups'.",
+              "de":"Name der USV, wie in den NUT EInstellungen definiert.</p>Hinweis: Für eine USV, die an eine Synology Diskstation angeschlossen ist, lautet der Name 'ups'.",
+              "ru":"Name of the UPS as defined in the NUT configuration of the NUT server.</p>Hint: If you want to connect to an UPS connected to a Synology diskstation the name is simply 'ups'."
+            },
+            "update_interval_info": {
+              "en":"Interval in Seconds to update the data.",
+              "de":"Intervall in Sekunden in dem die Daten aktualisiert werden.",
+              "ru":"Interval in Seconds to update the data."
+            },
+            "trouble_info": {
+              "en":"When you turn the adapter into debug then you can see all created states and their data in the logfile. If you have problems and the adapter do not deliver the data you can use the two scripts in directory 'test' of the adapter installation (so normally in node_modules/iobroker.nut/test relative to your iobroker installation directory) to try it out on the commandline. Call the scripts using 'node filename.js' to see the awaited parameters.</p><ul><li><b>test_upslist.js</b>: Connects to the NUT server and returns a list of available UPS names</li><li><b>test_upsvars.js</b>: Connects to the NUT server for a defined UPS and returns a list of available UPS variables</li></ul>",
+              "de":"Wenn der Adapter im Debug Modus gestartet wird, werden im Logfile alle erzeugten States und deren Daten aufgelistet. Wenn der Adapter keine Daten liefert können für direklte Tests auch die beiden Skripte im Verzeichnis 'test' der Adapter-Installation (normalerweise unter node_modules/iobroker.nut/test relativ zur iobroker-Installation) an der Kommandozeile aufgerufen werden. Die Skripte können mit 'node filename.js' aufgerufen werden um die benötigten Parameter zu sehen.<ul><li><b>test_upslist.js</b>: Verbindet sich zu einem NUT Server und gibt die Namen der verbundenen USVs aus</li><li><b>test_upsvars.js</b>: Verbindet sich zu einem NUT Server für eine definierte USV und gibt die verfügbaren UPS Varialen aus</li></ul>",
+              "ru":"When you turn the adapter into debug then you can see all created states and their data in the logfile. If you have problems and the adapter do not deliver the data you can use the two scripts in directory 'test' of the adapter installation (so normally in node_modules/iobroker.nut/test relative to your iobroker installation directory) to try it out on the commandline. Call the scripts using 'node filename.js' to see the awaited parameters.</p><ul><li><b>test_upslist.js</b>: Connects to the NUT server and returns a list of available UPS names</li><li><b>test_upsvars.js</b>: Connects to the NUT server for a defined UPS and returns a list of available UPS variables</li></ul>"
+            }
+    };
+    function load(settings, onChange) {
+        $('#host_ip').val(settings['host_ip']);
+        $('#host_port').val(settings['host_port']);
+        $('#ups_name').val(settings['ups_name']);
+        $('#update_interval').val(settings['update_interval']);
+    }
+
+    function save(callback) {
+        callback({host_ip: $('#host_ip').val().trim(), host_port: $('#host_port').val().trim(), ups_name: $('#ups_name').val().trim(), update_interval: $('#update_interval').val().trim()});
+    }
+</script>
+
+<!-- you have to put your config page in a div with id adapter-container -->
+<div id="adapter-container">
+
+    <table><tr>
+        <td><img src="smartmeter.png"/></td>
+        <td><h3 class="translate">page_title</h3></td>
+    </tr></table>
+    <p style="padding-left: 12px">
+        <label for="host_ip" class="translate">host_ip</label> <input class="value" type="text" id="host_ip" size="15"/><br/>
+        <label for="host_port" class="translate">host_port</label> <input class="value" type="text" id="host_port" size="6"/><br/>
+        <label for="ups_name" class="translate">ups_name</label> <input class="value" type="text" id="ups_name" size="20"/><br/>
+        <label for="update_interval" class="translate">update_interval</label> <input class="value" type="text" id="update_interval" size="20"/>s<br/>
+    </p>
+    <h3 class="translate">host_ip</h3>
+    <p class="translate">ip_info</p>
+
+    <h3 class="translate">host_port</h3>
+    <p class="translate">port_info</p>
+
+    <h3 class="translate">ups_name</h3>
+    <p class="translate">name_info</p>
+
+    <h3 class="translate">update_interval</h3>
+    <p class="translate">update_interval_info</p>
+
+    <h3>Troubleshooting</h3>
+    <p class="translate">trouble_info</p>
+
+</div>
+
+</html>

@@ -21,15 +21,25 @@
         "license":                  "MIT",
         "npmLibs": [],
         "type":                     "hardware",
-        "keywords":                 ["iobroker", "smartmeter", "SML", "D0", "eHz"],
+        "keywords":                 ["iobroker", "smartmeter", "SML", "D0", "eHz", "OBIS"],
         "loglevel":                 "info",
         "enabled":                  false
     },
     "native": {
-        "deviceProtocol":         "SML",
-        "deviceSerialPort":       "/dev/ttyUSB0",
-        "deviceSerialBaudrate":   "9600",
-        "updateInterval":         300
+        "protocol":                     "SmlProtocol",
+        "transport":                    "SerialResponseTransport",
+        "requestInterval":              300,
+        "transportSerialPort":          "/dev/ttyUSB0",
+        "transportSerialBaudrate":      9600,
+        "transportHttpRequestUrl":      "",
+        "transportHttpRequestTimeout":  2000,
+        "transportLocalFilePath":       "",
+        "protocolD0WakeupCharacters":   0,
+        "protocolD0DeviceAddress":      "",
+        "protocolD0SignOnMessage":      "",
+        "protocolSmlIgnoreInvalidCRC":  false,
+        "obisFallbackMedium":           "",
+        "obisNameLanguage":             "de"
     },
     "objects": [],
     "instanceObjects": []
