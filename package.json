@@ -18,13 +18,14 @@
   },
   "devDependencies": {
     "mocha": "^3.2.0",
-    "chai": "^3.4.1"
+    "chai": "^3.4.1",
+    "istanbul": "*"
 },
   "bugs": {
     "url": "https://github.com/Apollon77/ioBroker.smartmeter/issues"
   },
   "main": "smartmeter.js",
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha"
+    "test": "node node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec"
   }
 }

@@ -209,16 +209,16 @@ function storeObisData(obisResult) {
         }
         if (!smValues[obisId] || smValues[obisId].valueToString() !== obisResult[obisId].valueToString()) {
             if (obisResult[obisId].getRawValue() !== "") {
-                adapter.log.debug('Set State '+ ioChannelId + '.rawvalue' + ' = ' + obisResult[obisId].getRawValue());
+                adapter.log.debug('Set State ' + ioChannelId + '.rawvalue = ' + obisResult[obisId].getRawValue());
                 adapter.setState(ioChannelId + '.rawvalue', {ack: true, val: obisResult[obisId].getRawValue()});
             }
 
-            adapter.log.debug('Set State '+ ioChannelId + '.value' + ' = ' + obisResult[obisId].getValue(0).value);
+            adapter.log.debug('Set State ' + ioChannelId + '.value = ' + obisResult[obisId].getValue(0).value);
             adapter.setState(ioChannelId + '.value', {ack: true, val: obisResult[obisId].getValue(0).value});
 
             if (obisResult[obisId].getValueLength() > 1) {
                 for (i = 1; i < obisResult[obisId].getValueLength(); i++) {
-                    adapter.log.debug('Set State '+ ioChannelId + '.value' + (i + 1) +' = ' + obisResult[obisId].getValue(i).value);
+                    adapter.log.debug('Set State '+ ioChannelId + '.value' + (i + 1) + ' = ' + obisResult[obisId].getValue(i).value);
                     adapter.setState(ioChannelId + '.value' + (i + 1), {ack: true, val: obisResult[obisId].getValue(i).value});
 
                 }

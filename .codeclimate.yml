@@ -15,6 +15,8 @@ engines:
     checks:
       complexity:
         enabled: false
+    exclude_fingerprints:
+      - b48b8d51245ef95a52fc9bfe0132301d
   fixme:
     enabled: true
 ratings:
