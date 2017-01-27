@@ -58,6 +58,7 @@ function main() {
         adapter.log.error('Smartmeter Transfer is undefined, check your configuration!');
         process.exit();
     }
+    smOptions.transport = adapter.config.transport;
     smOptions.requestInterval = adapter.config.requestInterval = adapter.config.requestInterval || 300;
     if (adapter.config.transport.indexOf('Serial') === 0) { // we have a Serial connection
         if (!adapter.config.transportSerialPort) {

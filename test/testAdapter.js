@@ -3,6 +3,7 @@
 
 var expect = require('chai').expect;
 var setup  = require(__dirname + '/lib/setup');
+var fs = require('fs');
 
 var objects = null;
 var states  = null;
@@ -84,7 +85,13 @@ describe('Test ' + adapterShortName + ' adapter', function() {
             config.common.enabled  = true;
             config.common.loglevel = 'debug';
 
-            //config.native.dbtype   = 'sqlite';
+            config.native.protocol   = 'SmlProtocol';
+            config.native.transport   = 'LocalFileTransport';
+            config.native.transportLocalFilePath   = __dirname + '/test.sml';
+
+            var testData = new Buffer('1b1b1b1b01010101760700190b4cbead6200620072630101760101070019063f3f8f0b0901454d48000041f045010163662d00760700190b4cbeae620062007263070177010b0901454d48000041f045070100620affff72620165063f2f357777078181c78203ff0101010104454d480177070100000009ff010101010b0901454d48000041f0450177070100010800ff6400018201621e52ff560009247a550177070100010801ff0101621e52ff560009247a550177070100010802ff0101621e52ff5600000000000177070100100700ff0101621b52ff55000016030177078181c78205ff0172620165063f2f3501018302e77ef33ea97bb6bba9bfa4fbd8b9f2ede51207b15acf6b98a237c21ca4982ee3ce18efe8438f1deba9d5c40eb68ae8f201010163574a00760700190b4cbeb16200620072630201710163d658000000001b1b1b1b1a03e566', 'hex');
+            fs.writeFileSync(__dirname + '/test.sml', testData);
+
 
             setup.setAdapterConfig(config.common, config.native);
 
@@ -117,12 +124,12 @@ describe('Test ' + adapterShortName + ' adapter', function() {
         });
     });
 
-/*    // We expect ERROR as last Notify necause no nut is running there
-    it('Test ' + adapterShortName + ' adapter: test initial state as ERROR', function (done) {
+    // We expect ERROR as last Notify necause no nut is running there
+    it('Test ' + adapterShortName + ' adapter: test stored data', function (done) {
         this.timeout(25000);
 
         setTimeout(function() {
-            states.getState('nut.0.status.last_notify', function (err, state) {
+/*            states.getState('nut.0.status.last_notify', function (err, state) {
                 if (err) console.error(err);
                 expect(state).to.exist;
                 if (!state) {
@@ -146,44 +153,10 @@ describe('Test ' + adapterShortName + ' adapter', function() {
                     expect(state.val).to.be.equal(4);
                     done();
                 });
-            });
+            });*/
+            done();
         }, 10000);
     });
-
-    it('Test ' + adapterShortName + ' adapter: send notify Message and receive answer', function (done) {
-        this.timeout(25000);
-        var now = new Date().getTime();
-
-        console.log('send notify with "COMMBAD" to adapter ...');
-        sendTo('nut.0', 'notify', {notifytype: 'COMMBAD', upsname: 'nutName@127.0.0.1'});
-        setTimeout(function() {
-            states.getState('nut.0.status.last_notify', function (err, state) {
-                if (err) console.error(err);
-                expect(state).to.exist;
-                if (!state) {
-                    console.error('state "status.last_notify" not set');
-                }
-                else {
-                    console.log('check status.last_notify ... ' + state.val);
-                }
-                expect(state.val).to.be.equal('COMMBAD');
-                states.getState('nut.0.status.severity', function (err, state) {
-                    if (err) console.error(err);
-                    expect(state).to.exist;
-                    if (!state) {
-                        console.error('state "status.severity" not set');
-                    }
-                    else {
-                        console.log('check status.severity ... ' + state.val);
-                    }
-                    expect(state.val).to.exist;
-                    expect(state.val).to.be.equal(4);
-                    done();
-                });
-            });
-        }, 2000);
-    });
-*/
 
     after('Test ' + adapterShortName + ' adapter: Stop js-controller', function (done) {
         this.timeout(10000);
