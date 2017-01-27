@@ -179,7 +179,6 @@ describe('Test ' + adapterShortName + ' adapter', function() {
                     });
                 });
             });
-            done();
         }, 15000);
     });
 
