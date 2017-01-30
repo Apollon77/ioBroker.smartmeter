@@ -23,15 +23,18 @@ This adapter for ioBroker ...
 ...
 
 # changelog
+## 0.1.0
+* Initial version for public testing
+
+
 ## 0.0.1
-* Initial version
+* Initial version for internal testing
 
 
 # Todo
-* Admin Adapter config
 * README
-* publish to npm and make available officially incl tests
-
+* make some logging "debug" instead of "info"
+* Add "update after min change" ...
 
 # License
 
