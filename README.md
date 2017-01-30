@@ -11,22 +11,12 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Apollon
 
 [![NPM](https://nodei.co/npm/iobroker.smartmeter.png?downloads=true)](https://nodei.co/npm/iobroker.smartmeter/)
 
-This adapter for ioBroker connects to a defined smartmeter server to provide the status and details of a connected UPS/USV as ioBroker states, so that it can be used there.
+This adapter for ioBroker ...
+
+***The Adapter needs node 4.x or higher to work!***
 
 ## Description of parameters
 
-
-### deviceProtocol
-...
-
-### deviceSerialPort
-...
-
-### deviceSerialBaudrate
-...
-
-### updateInterval
-Interval in Seconds to update the data. Default is 300s
 
 
 ## Troubleshooting
@@ -38,8 +28,9 @@ Interval in Seconds to update the data. Default is 300s
 
 
 # Todo
-* everything :-)
-* publish to npm and make available officially
+* Admin Adapter config
+* README
+* publish to npm and make available officially incl tests
 
 
 # License

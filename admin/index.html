@@ -17,46 +17,177 @@
 
     // Dictionary (systemDictionary is global variable from adapter-settings.js)
     systemDictionary = {
-            "page_title":   {"en": "NUT Adapter Settings",       "de": "NUT Adapter Einstellungen",    "ru": "NUT Adapter Settings"},
-            "host_ip":   {"en": "NUT Server IP",       "de": "IP des NUT Servers",    "ru": "IP NUT сервера"},
-            "host_port": {"en": "NUT Server port",     "de": "Port des NUT Servers",  "ru": "Порт NUT сервера"},
-            "ups_name":  {"en": "NUT Name of the UPS", "de": "NUT Name der UPS",     "ru": "NUT имя UPS"},
-            "update_interval":  {"en": "Update Interval", "de": "Aktualisierungsintervall",     "ru": "Update Interval"},
-            "ip_info": {
-              "en":"IP address of the NUT server. NUT needs to run in server mode and needs to be accessible by the computer the iobroker NUT adapter runs on. So check firewall settings if you have problems and allow the access. If the UPS is connected locally you can also use 127.0.0.1 or localhost.",
-              "de":"IP Adresse des NUT Servers. NUT muss im Server-Mode konfiguriert sein und von dem Rechner auf dem der iobroker Adapter installiert ist erreichbar sein. Bei Problemen sollten die Firewall-Einstellungen geprüft werden, dass der Zugriff gestattet ist. Wenn die USV am lokalen rechner angeschlossen ist kann 127.0.0.1 oder localhost genutzt werden.",
-              "ru":"IP address of the NUT server. NUT needs to run in server mode and needs to be accessible by the computer the iobroker NUT adapter runs on. So check firewall settings if you have problems and allow the access. If the UPS is connected locally you can also use 127.0.0.1 or localhost."
-            },
-            "port_info": {
-              "en":"Port of NUT. The default port is 3493.",
-              "de":"Port des NUT Servers. Der Standardport ist 3493.",
-              "ru":"Port of NUT. The default port is 3493."
-            },
-            "name_info": {
-              "en":"Name of the UPS as defined in the NUT configuration of the NUT server.</p>Hint: If you want to connect to an UPS connected to a Synology diskstation the name is simply 'ups'.",
-              "de":"Name der USV, wie in den NUT EInstellungen definiert.</p>Hinweis: Für eine USV, die an eine Synology Diskstation angeschlossen ist, lautet der Name 'ups'.",
-              "ru":"Name of the UPS as defined in the NUT configuration of the NUT server.</p>Hint: If you want to connect to an UPS connected to a Synology diskstation the name is simply 'ups'."
-            },
-            "update_interval_info": {
-              "en":"Interval in Seconds to update the data.",
-              "de":"Intervall in Sekunden in dem die Daten aktualisiert werden.",
-              "ru":"Interval in Seconds to update the data."
-            },
-            "trouble_info": {
-              "en":"When you turn the adapter into debug then you can see all created states and their data in the logfile. If you have problems and the adapter do not deliver the data you can use the two scripts in directory 'test' of the adapter installation (so normally in node_modules/iobroker.nut/test relative to your iobroker installation directory) to try it out on the commandline. Call the scripts using 'node filename.js' to see the awaited parameters.</p><ul><li><b>test_upslist.js</b>: Connects to the NUT server and returns a list of available UPS names</li><li><b>test_upsvars.js</b>: Connects to the NUT server for a defined UPS and returns a list of available UPS variables</li></ul>",
-              "de":"Wenn der Adapter im Debug Modus gestartet wird, werden im Logfile alle erzeugten States und deren Daten aufgelistet. Wenn der Adapter keine Daten liefert können für direklte Tests auch die beiden Skripte im Verzeichnis 'test' der Adapter-Installation (normalerweise unter node_modules/iobroker.nut/test relativ zur iobroker-Installation) an der Kommandozeile aufgerufen werden. Die Skripte können mit 'node filename.js' aufgerufen werden um die benötigten Parameter zu sehen.<ul><li><b>test_upslist.js</b>: Verbindet sich zu einem NUT Server und gibt die Namen der verbundenen USVs aus</li><li><b>test_upsvars.js</b>: Verbindet sich zu einem NUT Server für eine definierte USV und gibt die verfügbaren UPS Varialen aus</li></ul>",
-              "ru":"When you turn the adapter into debug then you can see all created states and their data in the logfile. If you have problems and the adapter do not deliver the data you can use the two scripts in directory 'test' of the adapter installation (so normally in node_modules/iobroker.nut/test relative to your iobroker installation directory) to try it out on the commandline. Call the scripts using 'node filename.js' to see the awaited parameters.</p><ul><li><b>test_upslist.js</b>: Connects to the NUT server and returns a list of available UPS names</li><li><b>test_upsvars.js</b>: Connects to the NUT server for a defined UPS and returns a list of available UPS variables</li></ul>"
-            }
+        "page_title":   {"en": "Smartmeter Adapter Settings", "de": "Smartmeter Adapter Einstellungen"},
+
+        "heading_GeneralSettings":   {"en": "General Settings", "de": "Generelle Einstellungen"},
+        "heading_TransportSpecificSettings":   {"en": "Data Transfer Settings", "de": "Einstellungen Datenübertragung"},
+        "heading_ProtocolSpecificSettings":   {"en": "Data Protocol Settings", "de": "Einstellungen Datenprotokoll"},
+
+        "field_protocol":   {"en": "Data Protocol", "de": "Daten-Protokoll"},
+        "value_protocol_D0Protocol":   {"en": "D0 (WakeUp, SignOn, Data)", "de": "D0 (WakeUp, SignOn, Data)"},
+        "value_protocol_JsonEfrProtocol":   {"en": "JSON-Format EFR SmartGridHub", "de": "JSON-Format EFR SmartGridHub"},
+        "value_protocol_SmlProtocol":   {"en": "SmartMeterLanguage 1.0.3", "de": "SmartMeterLanguage 1.0.3"},
+        "info_protocol":   {"en": "", "de": ""},
+
+        "field_transport":   {"en": "Data Transfer", "de": "Datenübertragung"},
+        "value_transport_HttpRequestTransport":   {"en": "Read Data from an HTTP URL", "de": "Daten von einer HTTP-URL auslesen"},
+        "value_transport_LocalFileTransport":   {"en": "Read Data from a local file", "de": "Daten aus einer lokalen Datei lesen"},
+        "value_transport_SerialRequestResponseTransport":   {"en": "Serial Device with Bi-directional communication", "de": "Serielles Gerät mit bidirektionaler Kommunikation"},
+        "value_transport_SerialResponseTransport":   {"en": "Serial Device reading data only", "de": "Serielles Gerät Daten werden nur gelesen"},
+        "info_transport":   {"en": "", "de": ""},
+
+        "field_requestInterval":   {"en": "Data request interval", "de": "Daten Abfrageintervall"},
+        "info_requestInterval":   {"en": "s (use 0 for continous reading/requesting,<br>Default if empty: 300)", "de": "s (0 benutzen um ohne Unterbrechung zu lesen/anzufordern,<br>Standard wenn leer: 300)"},
+
+        "field_transportSerialPort":   {"en": "Serial Device Name", "de": "Serielles Gerät: Name"},
+        "info_transportSerialPort":   {"en": "", "de": ""},
+
+        "field_transportSerialBaudrate":   {"en": "Serial Device Baudrate", "de": "Serielles gerät: Baudrate"},
+        "info_transportSerialBaudrate":   {"en": "If empty, protocol defaults are used<br>(D0: 300, SML: 9600)", "de": "Wenn leer werden Protokoll-Standards verwendet<br>(D0: 300, SML: 9600)"},
+
+        "field_transportHttpRequestUrl":   {"en": "HTTP-URL", "de": "HTTP-URL"},
+        "info_transportHttpRequestUrl":   {"en": "", "de": ""},
+
+        "field_transportHttpRequestTimeout":   {"en": "HTTP-Request Timeout", "de": "HTTP-Amfrage Timeout"},
+        "info_transportHttpRequestTimeout":   {"en": "ms (Default if empty: 2000)", "de": "ms (Standard wenn leer: 2000)"},
+
+        "field_transportLocalFilePath":   {"en": "Absolute path to local datafile", "de": "Absoluter Pfad zur Daten-Datei"},
+        "info_transportLocalFilePath":   {"en": "", "de": ""},
+
+        "field_protocolD0WakeupCharacters":   {"en": "D0: Number of WakeUp-Characters", "de": "D0: Anzahl WakeUp-Character"},
+        "info_protocolD0WakeupCharacters":   {"en": "(NULL characters)<br>Default if empty: 0", "de": "(NULL Zeichen) <br>Standard wenn leer: 0"},
+
+        "field_protocolD0DeviceAddress":   {"en": "D0: Device Address", "de": "D0: Geräteadresse"},
+        "info_protocolD0DeviceAddress":   {"en": "(Empty by default)", "de": "(leer wenn nicht angegeben)"},
+
+        "field_protocolD0SignOnMessage":   {"en": "D0: SignOn-Message Command", "de": "D0: Kommando SignOn-Nachricht"},
+        "info_protocolD0SignOnMessage":   {"en": "(Default if empty: <b>?</b><br>to read mandatory values)", "de": "(Standard wenn leer: <b>?</b><br> um Pflichtwerte zu lesen)"},
+
+        "field_protocolSmlIgnoreInvalidCRC":   {"en": "SML: Ignore CRC checksum error", "de": "SML: CRC-prüfsummenfehler ignorieren"},
+        "info_protocolSmlIgnoreInvalidCRC":   {"en": "", "de": ""},
+
+        "field_obisFallbackMedium":   {"en": "D0: Fallback OBIS-Medium", "de": "D0: Ersatz OBIS-Medium"},
+        "value_obisFallbackMedium_0":   {"en": "0: Abstract", "de": "0: Abstrakt"},
+        "value_obisFallbackMedium_1":   {"en": "1: Electricity", "de": "1: Strom"},
+        "value_obisFallbackMedium_4":   {"en": "4: Heat cost Allocator", "de": "4: Heizkostenverteiler"},
+        "value_obisFallbackMedium_5":   {"en": "5: Cooling", "de": "5: Kälte"},
+        "value_obisFallbackMedium_6":   {"en": "6: Heat", "de": "6: Wärme"},
+        "value_obisFallbackMedium_7":   {"en": "7: Gas", "de": "7: Gas"},
+        "value_obisFallbackMedium_8":   {"en": "8: Cold water", "de": "8: Kaltwasser"},
+        "value_obisFallbackMedium_9":   {"en": "9: Hot water", "de": "9: Warmwasser"},
+        "value_obisFallbackMedium_16":   {"en": "16: Oil", "de": "16: Öl"},
+        "value_obisFallbackMedium_17":   {"en": "17: Compressed air", "de": "17: Druckluft"},
+        "value_obisFallbackMedium_18":   {"en": "18: Nitrogen", "de": "18: Stickstoff"},
+        "info_obisFallbackMedium":   {"en": " (used for name resolving when no OBIS medium is defined in data message)", "de": "(wir zur Namensauflösung benutzt falls kein OBIS-Medium in den Daten existiert)"},
+
+        "field_obisNameLanguage":   {"en": "Language for Datapoint Names", "de": "Sprache der Datenpunktnamen"},
+        "value_obisNameLanguage_de":   {"en": "German", "de": "Deutsch"},
+        "value_obisNameLanguage_en":   {"en": "English", "de": "Englisch"},
+        "info_obisNameLanguage":   {"en": "", "de": ""},
     };
-    function load(settings, onChange) {
-        $('#host_ip').val(settings['host_ip']);
-        $('#host_port').val(settings['host_port']);
-        $('#ups_name').val(settings['ups_name']);
-        $('#update_interval').val(settings['update_interval']);
+
+    var convertComma = null;
+    function setValue(id, value, onChange) {
+        // example: select elements with id=key and class=value and insert value
+        if ($('#' + id + '.value').attr('type') === 'checkbox') {
+            $('#' + id + '.value').prop('checked', value).change(function () {
+                onChange();
+            });
+        } else {
+            $('#' + id + '.value').val(value).change(function() {
+                onChange();
+            }).keyup(function() {
+                // Check that only numbers entered
+                if ($(this).hasClass('number')) {
+                    var val = $(this).val();
+                    if (val) {
+                        var newVal = '';
+                        for (var i = 0; i < val.length; i++) {
+                            if ((val[i] >= '0' && val[i] <= '9') || val[i] === '-' || val[i] === '+' || val[i] === '.' || val[i] === ',') {
+                                if (val[i] === '.' && convertComma === true)  val[i] === ',';
+                                if (val[i] === ',' && convertComma === false) val[i] === '.';
+                                newVal += val[i];
+                            }
+                        }
+
+                        if (val != newVal) $(this).val(newVal);
+                    }
+                }
+                $(this).trigger('change');
+           });
+        }
     }
 
+    function load(settings, onChange) {
+        // works only with newest admin adapter
+        if (typeof systemConfig !== 'undefined') {
+            convertComma = systemConfig.common.isFloatComma;
+        }
+
+       for (var key in settings) {
+            setValue(key, settings[key], onChange);
+        }
+
+        $('#protocol').change(function () {
+            if ($(this).val() === 'D0Protocol') {
+                $('.D0Protocol').show();
+                $('.JsonEfrProtocol').hide();
+                $('.SmlProtocol').hide();
+            } else if ($(this).val() === 'JsonEfrProtocol') {
+                $('.D0Protocol').hide();
+                $('.JsonEfrProtocol').show();
+                $('.SmlProtocol').hide();
+            } else if ($(this).val() === 'SmlProtocol') {
+                $('.D0Protocol').hide();
+                $('.JsonEfrProtocol').hide();
+                $('.SmlProtocol').show();
+            }
+        }).trigger('change');
+
+        $('#transfer').change(function () {
+            if ($(this).val() === 'HttpRequestTransport') {
+                $('.HttpRequestTransport').show();
+                $('.LocalFileTransport').hide();
+                $('.SerialRequestResponseTransport').hide();
+                $('.SerialResponseTransport').hide();
+            } else if ($(this).val() === 'LocalFileTransport') {
+                $('.HttpRequestTransport').hide();
+                $('.LocalFileTransport').show();
+                $('.SerialRequestResponseTransport').hide();
+                $('.SerialResponseTransport').hide();
+            } else if ($(this).val() === 'SerialRequestResponseTransport') {
+                $('.HttpRequestTransport').hide();
+                $('.LocalFileTransport').hide();
+                $('.SerialRequestResponseTransport').show();
+                $('.SerialResponseTransport').hide();
+            } else if ($(this).val() === 'SerialResponseTransport') {
+                $('.HttpRequestTransport').hide();
+                $('.LocalFileTransport').hide();
+                $('.SerialRequestResponseTransport').hide();
+                $('.SerialResponseTransport').show();
+            }
+        }).trigger('change');
+
+        onChange(false);
+    }
+
+    // ... and the function save has to exist.
+    // you have to make sure the callback is called with the settings object as first param!
     function save(callback) {
-        callback({host_ip: $('#host_ip').val().trim(), host_port: $('#host_port').val().trim(), ups_name: $('#ups_name').val().trim(), update_interval: $('#update_interval').val().trim()});
+        // example: select elements with class=value and build settings object
+        var settings = {};
+        $('.value').each(function () {
+            var $this = $(this);
+            var id = $this.attr('id');
+
+            if ($this.attr('type') == 'checkbox') {
+                settings[id] = $this.prop('checked');
+            } else {
+                settings[id] = $this.val();
+           }
+        });
+
+        callback(settings);
     }
 </script>
 
@@ -67,27 +198,105 @@
         <td><img src="smartmeter.png"/></td>
         <td><h3 class="translate">page_title</h3></td>
     </tr></table>
-    <p style="padding-left: 12px">
-        <label for="host_ip" class="translate">host_ip</label> <input class="value" type="text" id="host_ip" size="15"/><br/>
-        <label for="host_port" class="translate">host_port</label> <input class="value" type="text" id="host_port" size="6"/><br/>
-        <label for="ups_name" class="translate">ups_name</label> <input class="value" type="text" id="ups_name" size="20"/><br/>
-        <label for="update_interval" class="translate">update_interval</label> <input class="value" type="text" id="update_interval" size="20"/>s<br/>
-    </p>
-    <h3 class="translate">host_ip</h3>
-    <p class="translate">ip_info</p>
-
-    <h3 class="translate">host_port</h3>
-    <p class="translate">port_info</p>
-
-    <h3 class="translate">ups_name</h3>
-    <p class="translate">name_info</p>
-
-    <h3 class="translate">update_interval</h3>
-    <p class="translate">update_interval_info</p>
-
-    <h3>Troubleshooting</h3>
-    <p class="translate">trouble_info</p>
-
+    <table>
+        <tr><td colspan="3"><h4 class="translate">heading_GeneralSettings</h4></td></tr>
+        <tr>
+            <td class="translate">field_requestInterval</td>
+            <td><input id="requestInterval" type="text" size="10" class="value number"/></td>
+            <td class="translate">info_requestInterval</td>
+        </tr>
+        <tr>
+            <td class="translate">field_transfer</td>
+            <td><select id="transfer" class="value">
+                <option value="HttpRequestTransport">value_transfer_HttpRequestTransport</option>
+                <option value="LocalFileTransport">value_transfer_LocalFileTransport</option>
+                <option value="SerialRequestResponseTransport">value_transfer_SerialRequestResponseTransport</option>
+                <option value="SerialResponseTransport">value_transfer_SerialResponseTransport</option>
+            </select></td>
+            <td class="translate">info_transfer</td>
+        </tr>
+        <tr>
+            <td class="translate">field_protocol</td>
+            <td><select id="protocol" class="value">
+                <option value="D0Protocol">value_protocol_D0Protocol</option>
+                <option value="JsonEfrProtocol">value_protocol_JsonEfrProtocol</option>
+                <option value="SmlProtocol">value_protocol_SmlProtocol</option>
+            </select></td>
+            <td class="translate">info_protocol</td>
+        </tr>
+        <tr>
+            <td class="translate">field_obisNameLanguage</td>
+            <td><select id="obisNameLanguage" class="value">
+                <option value="de">value_obisNameLanguage_de</option>
+                <option value="en">value_obisNameLanguage_en</option>
+            </select></td>
+            <td class="translate">info_obisNameLanguage</td>
+        </tr>
+        <tr><td colspan="3"><h4 class="translate">heading_TransportSpecificSettings</h4></td></tr>
+        <tr class="SerialRequestResponseTransport SerialResponseTransport">
+            <td class="translate">field_transportSerialPort</td>
+            <td><input id="transportSerialPort" type="text" class="value"/></td>
+            <td class="translate">info_transportSerialPort</td>
+        </tr>
+        <tr class="SerialRequestResponseTransport SerialResponseTransport">
+            <td class="translate">field_transportSerialBaudrate</td>
+            <td><input id="transportSerialBaudrate" type="text" class="value number"/></td>
+            <td class="translate">info_transportSerialBaudrate</td>
+        </tr>
+        <tr class="HttpRequestTransport">
+            <td class="translate">field_transportHttpRequestUrl</td>
+            <td><input id="transportHttpRequestUrl" type="text" class="value"/></td>
+            <td class="translate">info transportHttpRequestUrl</td>
+        </tr>
+        <tr class="HttpRequestTransport">
+            <td class="translate">field_transportHttpRequestTimeout</td>
+            <td><input id="transportHttpRequestTimeout" type="text" class="value number"/></td>
+            <td class="translate">info_transportHttpRequestTimeout</td>
+        </tr>
+        <tr class="LocalFileTransport">
+            <td class="translate">field_transportLocalFilePath</td>
+            <td><input id="transportLocalFilePath" type="text" class="value"/></td>
+            <td class="translate">info_transportLocalFilePath</td>
+        </tr>
+        <tr><td colspan="3"><h4 class="translate">heading_ProtocolSpecificSettings</h4></td></tr>
+        <tr class="D0Protocol">
+            <td class="translate">field_protocolD0WakeupCharacters</td>
+            <td><input id="protocolD0WakeupCharacters" type="text" class="value"/></td>
+            <td class="translate">info_protocolD0WakeupCharacters</td>
+        </tr>
+        <tr class="D0Protocol">
+            <td class="translate">field_protocolD0DeviceAddress</td>
+            <td><input id="protocolD0DeviceAddress" type="text" size="32" class="value"/></td>
+            <td class="translate">info_protocolD0DeviceAddress</td>
+        </tr>
+        <tr class="D0Protocol">
+            <td class="translate">field_protocolD0SignOnMessage</td>
+            <td><input id="protocolD0SignOnMessage" type="text" class="value"/></td>
+            <td class="translate">info_protocolD0SignOnMessage</td>
+        </tr>
+        <tr class="SmlProtocol">
+            <td class="translate">field_protocolSmlIgnoreInvalidCRC</td>
+            <td><input id="protocolSmlIgnoreInvalidCRC" type="checkbox" class="value"/></td>
+            <td class="translate">info_protocolSmlIgnoreInvalidCRC</td>
+        </tr>
+        <tr class="D0Protocol">
+            <td class="translate">field_obisFallbackMedium</td>
+            <td><select id="obisFallbackMedium" class="value">
+                <option value="0">value_obisFallbackMedium_0</option>
+                <option value="1">value_obisFallbackMedium_1</option>
+                <option value="4">value_obisFallbackMedium_4</option>
+                <option value="5">value_obisFallbackMedium_5</option>
+                <option value="6">value_obisFallbackMedium_6</option>
+                <option value="7">value_obisFallbackMedium_7</option>
+                <option value="8">value_obisFallbackMedium_8</option>
+                <option value="9">value_obisFallbackMedium_9</option>
+                <option value="16">value_obisFallbackMedium_16</option>
+                <option value="17">value_obisFallbackMedium_17</option>
+                <option value="18">value_obisFallbackMedium_18</option>
+            </select></td>
+            <td class="translate">info_obisFallbackMedium</td>
+        </tr>
+    </table>
 </div>
 
 </html>

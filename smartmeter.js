@@ -37,7 +37,7 @@ process.on('SIGINT', function () {
     if (smTransport) smTransport.stop();
 });
 
-/*
+/* // TODO comment in for production
 process.on('uncaughtException', function (err) {
     adapter.log.warn('Exception: ' + err);
     if (adapter && adapter.setState) {
@@ -53,11 +53,11 @@ function main() {
         smOptions.logger = adapter.log.debug;
     }
     else if (adapter.common.loglevel === 'info') {
-        smOptions.debug = 2; // TODO to 1
+        smOptions.debug = 1;
         smOptions.logger = adapter.log.info;
     }
     else {
-        smOptions.debug = 2; // TODO to 0
+        smOptions.debug = 0;
         smOptions.logger = adapter.log.info;
     }
     if (!adapter.config.protocol) {
