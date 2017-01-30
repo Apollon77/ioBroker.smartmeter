@@ -1,7 +1,7 @@
 {
     "common": {
         "name":                     "smartmeter",
-        "version":                  "0.0.1",
+        "version":                  "0.1.0",
 		"news": {
               "0.0.1": {
                   "en": "Initial version",
@@ -30,7 +30,7 @@
         "transport":                    "SerialResponseTransport",
         "requestInterval":              300,
         "transportSerialPort":          "/dev/ttyUSB0",
-        "transportSerialBaudrate":      9600,
+        "transportSerialBaudrate":      "",
         "transportHttpRequestUrl":      "",
         "transportHttpRequestTimeout":  2000,
         "transportLocalFilePath":       "",
