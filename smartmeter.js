@@ -37,14 +37,12 @@ process.on('SIGINT', function () {
     if (smTransport) smTransport.stop();
 });
 
-/* // TODO comment in for production
 process.on('uncaughtException', function (err) {
     adapter.log.warn('Exception: ' + err);
-    if (adapter && adapter.setState) {
-        finish();
+    if (adapter && smTransport) {
+        if (smTransport) smTransport.stop();
     }
 });
-*/
 
 function main() {
     var smOptions = {};
@@ -58,7 +56,7 @@ function main() {
     }
     else {
         smOptions.debug = 0;
-        smOptions.logger = adapter.log.info;
+        smOptions.logger = adapter.log.warn;
     }
     if (!adapter.config.protocol) {
         throw Error('Smartmeter Protocol is undefined, check your configuration!');

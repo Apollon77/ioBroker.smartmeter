@@ -23,9 +23,11 @@ This adapter for ioBroker ...
 ...
 
 # changelog
+## 0.1.1
+* Update smartmeter-obis library to 0.2.5 to add Serial Timeout for Request/Response protocol
+
 ## 0.1.0
 * Initial version for public testing
-
 
 ## 0.0.1
 * Initial version for internal testing
