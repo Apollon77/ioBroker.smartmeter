@@ -1,13 +1,18 @@
 {
     "common": {
         "name":                     "smartmeter",
-        "version":                  "0.1.0",
+        "version":                  "0.1.1",
 		"news": {
-              "0.0.1": {
-                  "en": "Initial version",
-                  "de": "Initiale Version",
-                  "ru": "Initial version"
-              }
+            "0.1.1": {
+                "en": "Enhanced Error and Timeouthandling",
+                "de": "Fehlerbehandlung und Behandlung von fehlende Antworten verbessert",
+                "ru": "Enhanced Error and Timeouthandling"
+            },
+            "0.1.0": {
+                "en": "Initial public test version",
+                "de": "Initiale öffentliche Testversion",
+                "ru": "Initial public test version"
+            }
         },
         "title":                    "Smartmeter Adapter",
         "desc":                     "Read data from Smartmeter Devices using various protocols like SML and D0",
