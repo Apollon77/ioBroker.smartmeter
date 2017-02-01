@@ -11,6 +11,7 @@
 <script type="text/javascript" src="../../js/translate.js"></script>
 <script type="text/javascript" src="../../js/adapter-settings.js"></script>
 
+<link rel="stylesheet" type="text/css" href="./tooltip.css"/>
 
 <!-- you have to define 2 functions in the global scope: -->
 <script type="text/javascript">
@@ -37,7 +38,7 @@
         "info_transport":   {"en": " ", "de": " "},
 
         "field_requestInterval":   {"en": "Data request interval", "de": "Daten Abfrageintervall"},
-        "info_requestInterval":   {"en": "s (use 0 for continous reading/requesting,<br>Default if empty: 300)", "de": "s (0 benutzen um ohne Unterbrechung zu lesen/anzufordern,<br>Standard wenn leer: 300)"},
+        "info_requestInterval":   {"en": "use 0 for continous reading/requesting,<br>Default if empty: 300", "de": "0 benutzen um ohne Unterbrechung zu lesen/anzufordern,<br>Standard wenn leer: 300"},
 
         "field_transportSerialPort":   {"en": "Serial Device Name", "de": "Serielles Gerät: Name"},
         "info_transportSerialPort":   {"en": " ", "de": " "},
@@ -49,7 +50,7 @@
         "info_transportHttpRequestUrl":   {"en": " ", "de": " "},
 
         "field_transportHttpRequestTimeout":   {"en": "HTTP-Request Timeout", "de": "HTTP-Amfrage Timeout"},
-        "info_transportHttpRequestTimeout":   {"en": "ms (Default if empty: 2000)", "de": "ms (Standard wenn leer: 2000)"},
+        "info_transportHttpRequestTimeout":   {"en": "Default if empty: 2000", "de": "Standard wenn leer: 2000"},
 
         "field_transportLocalFilePath":   {"en": "Absolute path to local datafile", "de": "Absoluter Pfad zur Daten-Datei"},
         "info_transportLocalFilePath":   {"en": " ", "de": " "},
@@ -78,7 +79,7 @@
         "value_obisFallbackMedium_16":   {"en": "16: Oil", "de": "16: Öl"},
         "value_obisFallbackMedium_17":   {"en": "17: Compressed air", "de": "17: Druckluft"},
         "value_obisFallbackMedium_18":   {"en": "18: Nitrogen", "de": "18: Stickstoff"},
-        "info_obisFallbackMedium":   {"en": " (used for name resolving when no OBIS medium is defined in data message)", "de": "(wir zur Namensauflösung benutzt falls kein OBIS-Medium in den Daten existiert)"},
+        "info_obisFallbackMedium":   {"en": "(used for name resolving when no OBIS medium is defined in data message)", "de": "(wird zur Namensauflösung benutzt falls kein OBIS-Medium in den Daten existiert)"},
 
         "field_obisNameLanguage":   {"en": "Language for Datapoint Names", "de": "Sprache der Datenpunktnamen"},
         "value_obisNameLanguage_de":   {"en": "German", "de": "Deutsch"},
@@ -198,8 +199,15 @@
         <tr><td colspan="3"><h4 class="translate">heading_GeneralSettings</h4></td></tr>
         <tr>
             <td class="translate">field_requestInterval</td>
-            <td><input id="requestInterval" type="text" size="10" class="value number"/></td>
-            <td class="translate">info_requestInterval</td>
+            <td><input id="requestInterval" type="text" size="10" class="value number"/> s</td>
+            <td>
+                <div class="tooltip">
+                    <a href="https://github.com/Apollon77/ioBroker.smartmeter/#data-request-interval" target="_blank">
+                        <img width="15" height="15" src="./questionmark.png">
+                    </a>
+                    <span class="tooltiptext translate">info_requestInterval</span>
+                </div>
+            </td>
         </tr>
         <tr>
             <td class="translate">field_transport</td>
@@ -209,7 +217,14 @@
                 <option class="translate" value="SerialRequestResponseTransport">value_transport_SerialRequestResponseTransport</option>
                 <option class="translate" value="SerialResponseTransport">value_transport_SerialResponseTransport</option>
             </select></td>
-            <td class="translate">info_transport</td>
+            <td>
+                <div class="tooltip">
+                    <a href="https://github.com/Apollon77/ioBroker.smartmeter/#data-transfer" target="_blank">
+                        <img width="15" height="15" src="./questionmark.png">
+                    </a>
+                    <!-- <span class="tooltiptext translate">info_transport</span> -->
+                </div>
+            </td>
         </tr>
         <tr>
             <td class="translate">field_protocol</td>
@@ -218,7 +233,14 @@
                 <option class="translate" value="JsonEfrProtocol">value_protocol_JsonEfrProtocol</option>
                 <option class="translate" value="SmlProtocol">value_protocol_SmlProtocol</option>
             </select></td>
-            <td class="translate">info_protocol</td>
+            <td>
+                <div class="tooltip">
+                    <a href="https://github.com/Apollon77/ioBroker.smartmeter/#data-protocol" target="_blank">
+                        <img width="15" height="15" src="./questionmark.png">
+                    </a>
+                    <!-- <span class="tooltiptext translate">info_protocol</span> -->
+                </div>
+            </td>
         </tr>
         <tr>
             <td class="translate">field_obisNameLanguage</td>
@@ -236,8 +258,15 @@
         </tr>
         <tr class="SerialTransports">
             <td class="translate">field_transportSerialBaudrate</td>
-            <td><input id="transportSerialBaudrate" type="text" class="value number"/></td>
-            <td class="translate">info_transportSerialBaudrate</td>
+            <td><input id="transportSerialBaudrate" type="text" class="value number"/> baud</td>
+            <td>
+                <div class="tooltip">
+                    <a href="https://github.com/Apollon77/ioBroker.smartmeter/#serial-device-baudrate" target="_blank">
+                        <img width="15" height="15" src="./questionmark.png">
+                    </a>
+                    <span class="tooltiptext translate">info_transportSerialBaudrate</span>
+                </div>
+            </td>
         </tr>
         <tr class="HttpRequestTransport">
             <td class="translate">field_transportHttpRequestUrl</td>
@@ -246,8 +275,13 @@
         </tr>
         <tr class="HttpRequestTransport">
             <td class="translate">field_transportHttpRequestTimeout</td>
-            <td><input id="transportHttpRequestTimeout" type="text" class="value number"/></td>
-            <td class="translate">info_transportHttpRequestTimeout</td>
+            <td><input id="transportHttpRequestTimeout" type="text" class="value number"/> ms</td>
+            <td>
+                <div class="tooltip">
+                    <img width="15" height="15" src="./questionmark.png">
+                    <span class="tooltiptext translate">info_transportHttpRequestTimeout</span>
+                </div>
+            </td>
         </tr>
         <tr class="LocalFileTransport">
             <td class="translate">field_transportLocalFilePath</td>
@@ -259,17 +293,34 @@
         <tr class="D0Protocol">
             <td class="translate">field_protocolD0WakeupCharacters</td>
             <td><input id="protocolD0WakeupCharacters" type="text" class="value"/></td>
-            <td class="translate">info_protocolD0WakeupCharacters</td>
+            <td>
+                <div class="tooltip">
+                    <img width="15" height="15" src="./questionmark.png">
+                    <span class="tooltiptext translate">info_protocolD0WakeupCharacters</span>
+                </div>
+            </td>
         </tr>
         <tr class="D0Protocol">
             <td class="translate">field_protocolD0DeviceAddress</td>
             <td><input id="protocolD0DeviceAddress" type="text" size="32" class="value"/></td>
-            <td class="translate">info_protocolD0DeviceAddress</td>
+            <td>
+                <div class="tooltip">
+                    <img width="15" height="15" src="./questionmark.png">
+                    <span class="tooltiptext translate">info_protocolD0DeviceAddress</span>
+                </div>
+            </td>
         </tr>
         <tr class="D0Protocol">
             <td class="translate">field_protocolD0SignOnMessage</td>
             <td><input id="protocolD0SignOnMessage" type="text" class="value"/></td>
-            <td class="translate">info_protocolD0SignOnMessage</td>
+            <td>
+                <div class="tooltip">
+                    <a href="https://github.com/Apollon77/ioBroker.smartmeter/#d0--signon-message-command" target="_blank">
+                        <img width="15" height="15" src="./questionmark.png">
+                    </a>
+                    <span class="tooltiptext translate">info_protocolD0SignOnMessage</span>
+                </div>
+            </td>
         </tr>
         <tr class="SmlProtocol">
             <td class="translate">field_protocolSmlIgnoreInvalidCRC</td>
@@ -291,7 +342,12 @@
                 <option class="translate" value="17">value_obisFallbackMedium_17</option>
                 <option class="translate" value="18">value_obisFallbackMedium_18</option>
             </select></td>
-            <td class="translate">info_obisFallbackMedium</td>
+            <td>
+                <div class="tooltip">
+                    <img width="15" height="15" src="./questionmark.png">
+                    <span class="tooltiptext translate">info_obisFallbackMedium</span>
+                </div>
+            </td>
         </tr>
     </table>
 </div>

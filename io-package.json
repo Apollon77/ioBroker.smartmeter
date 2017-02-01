@@ -1,8 +1,13 @@
 {
     "common": {
         "name":                     "smartmeter",
-        "version":                  "0.1.1",
+        "version":                  "0.2.0",
 		"news": {
+            "0.2.0": {
+                "en": "Public release with some optimizations",
+                "de": "Öffentliche Veröffentlichung mit einigen Optimierungen",
+                "ru": "Public release with some optimizations"
+            },
             "0.1.1": {
                 "en": "Enhanced Error and Timeouthandling",
                 "de": "Fehlerbehandlung und Behandlung von fehlende Antworten verbessert",

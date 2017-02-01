@@ -39,7 +39,7 @@ process.on('SIGINT', function () {
 
 process.on('uncaughtException', function (err) {
     adapter.log.warn('Exception: ' + err);
-    if (adapter && smTransport) {
+    if (smTransport) {
         if (smTransport) smTransport.stop();
     }
 });
@@ -127,7 +127,7 @@ function main() {
         }
         smOptions.obisFallbackMedium = adapter.config.obisFallbackMedium;
     }
-    adapter.log.info('SmartmeterObis options: ' + JSON.stringify(smOptions)); //TODO to debug
+    adapter.log.debug('SmartmeterObis options: ' + JSON.stringify(smOptions));
 
     smTransport = SmartmeterObis.init(smOptions, storeObisData);
 
@@ -138,7 +138,7 @@ function storeObisData(obisResult) {
     for (var obisId in obisResult) {
         if (!obisResult.hasOwnProperty(obisId)) continue;
 
-        adapter.log.info(obisResult[obisId].idToString() + ': ' + SmartmeterObis.ObisNames.resolveObisName(obisResult[obisId], adapter.config.obisNameLanguage).obisName + ' = ' + obisResult[obisId].valueToString());
+        adapter.log.debug(obisResult[obisId].idToString() + ': ' + SmartmeterObis.ObisNames.resolveObisName(obisResult[obisId], adapter.config.obisNameLanguage).obisName + ' = ' + obisResult[obisId].valueToString());
         var i;
         var ioChannelId = obisResult[obisId].idToString().replace(/\./g, "_");
         if (!smValues[obisId]) {

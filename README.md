@@ -11,34 +11,52 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Apollon
 
 [![NPM](https://nodei.co/npm/iobroker.smartmeter.png?downloads=true)](https://nodei.co/npm/iobroker.smartmeter/)
 
-This adapter for ioBroker ...
+This adapter for ioBroker allows the reading and parsing of smartmeter protocols that follow the OBIS number logic to make their data available.
 
 ***The Adapter needs node 4.x or higher to work!***
 
 ## Description of parameters
 
+### Data Protocol
+Supported Protocols:
+* **Sml**: SML (SmartMeterLanguage) as binary format
+* **D0**: D0 (based on IEC 62056-21:2002/IEC 61107/EN 61107) as ASCII format (binary protocol mode E not supported currently)
+* **Json-Efr**: OBIS data from EFR Smart Grid Hub (JSON format)
 
+### Data Transfer
+* **Serial Receiving**: receive through serial push data (smartmeter send data without any request on regular intervals). Mostly used for SML
+* **Serial Bi-Directional Communication**: D0 protocol in modes A, B, C and D (mode E curently NOT supported!) with Wakeup-, Signon-, pot. ACK- and Data-messages to read out data (programing/write mode not implemented so far)
+* **Http-Requests**: Read data via HTTP by requesting an defined URL
+* **Local Files**: Read data from a local file
 
-## Troubleshooting
-...
+### Data request interval
+Number of seconds to wait for next request or pause serial receiving, value 0 possible to restart directly after finishing one message,
 
-# changelog
-## 0.1.1
+Default: is 300 (=5 Minutes)
+
+### Serial Device Baudrate
+baudrate for initial serial connection, if not defined default values per Transport type are used (9600 for SerialResponseTransprt and 300 for SerialRequestResponseTransport)
+
+### D0: SignOn-Message Command
+command for SignIn-Message, default "?" to query mandatory fields, other values depending on device
+
+## changelog
+### 0.2.0
+* Public release of Adapter after forum Tests
+* remove all additional logging
+* enhance Adapter config screenxw
+
+### 0.1.1
 * Update smartmeter-obis library to 0.2.5 to add Serial Timeout for Request/Response protocol
 
-## 0.1.0
+### 0.1.0
 * Initial version for public testing
 
-## 0.0.1
+### 0.0.1
 * Initial version for internal testing
 
 
-# Todo
-* README
-* make some logging "debug" instead of "info"
-* Add "update after min change" ...
-
-# License
+## License
 
 The MIT License (MIT)
 
