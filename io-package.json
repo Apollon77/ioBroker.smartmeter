@@ -1,8 +1,13 @@
 {
     "common": {
         "name":                     "smartmeter",
-        "version":                  "0.2.0",
+        "version":                  "0.2.1",
 		"news": {
+            "0.2.1": {
+                "en": "Small Optimizations in Admin, enhance serial port settings",
+                "de": "Kleinere Optimierungen im Admin-Bereich, Einstellungen des seriellen Ports erweitert",
+                "ru": "Small Optimizations in Admin, enhance serial port settings"
+            },
             "0.2.0": {
                 "en": "Public release with some optimizations",
                 "de": "Öffentliche Veröffentlichung mit einigen Optimierungen",
@@ -25,6 +30,7 @@
         "mode":                     "daemon",
         "messagebox":               true,
         "subscribe":                "messagebox",
+        "stopBeforeUpdate":         true,
         "icon":                     "smartmeter.png",
         "extIcon":                  "https://raw.githubusercontent.com/Apollon77/ioBroker.smartmeter/master/admin/smartmeter.png",
         "readme":                   "https://github.com/Apollon77/ioBroker.smartmeter",
@@ -41,6 +47,9 @@
         "requestInterval":              300,
         "transportSerialPort":          "/dev/ttyUSB0",
         "transportSerialBaudrate":      "",
+        "transportSerialDataBits":      "",
+        "transportSerialStopBits":      "",
+        "transportSerialParity":        "",
         "transportHttpRequestUrl":      "",
         "transportHttpRequestTimeout":  2000,
         "transportLocalFilePath":       "",

@@ -81,9 +81,31 @@ function main() {
             smOptions.transportSerialBaudrate = adapter.config.transportSerialBaudrate;
         }
         // maybe we add them later
-        //adapter.config.transportSerialDataBits
-        //adapter.config.transportSerialStopBits
-        //adapter.config.transportSerialParity
+        if (adapter.config.transportSerialDataBits !== null && adapter.config.transportSerialDataBits !== undefined && adapter.config.transportSerialDataBits !== "") {
+            adapter.config.transportSerialDataBits = parseInt(adapter.config.transportSerialDataBits, 10);
+
+            if ((adapter.config.transportSerialDataBits < 5) || (adapter.config.transportSerialDataBits > 8)) {
+                throw Error('Serial port data bits invalid, check your configuration!');
+            }
+            smOptions.transportSerialDataBits = adapter.config.transportSerialDataBits;
+        }
+        if (adapter.config.transportSerialStopBits !== null && adapter.config.transportSerialStopBits !== undefined  && adapter.config.transportSerialStopBits !== "") {
+            adapter.config.transportSerialStopBits = parseInt(adapter.config.transportSerialStopBits, 10);
+
+            if ((adapter.config.transportSerialStopBits !== 1) && (adapter.config.transportSerialStopBits !== 2)) {
+                throw Error('Serial port stopbits invalid, check your configuration!');
+            }
+            smOptions.transportSerialStopBits = adapter.config.transportSerialStopBits;
+        }
+        if (adapter.config.transportSerialParity !== null && adapter.config.transportSerialParity !== undefined  && adapter.config.transportSerialParity !== "") {
+            if ((adapter.config.transportSerialParity !== "none") && (adapter.config.transportSerialParity !== "even") &&
+                (adapter.config.transportSerialParity !== "mark") && (adapter.config.transportSerialParity !== "odd") &&
+                (adapter.config.transportSerialParity !== "space")) {
+
+                throw Error('Serial port parity invalid, check your configuration!');
+            }
+            smOptions.transportSerialParity = adapter.config.transportSerialParity;
+        }
         //adapter.config.transportSerialMaxBufferSize
     }
     else if (adapter.config.transport === 'HttpRequestTransfer') { // we have a Serial connection

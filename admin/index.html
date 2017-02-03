@@ -24,6 +24,8 @@
         "heading_TransportSpecificSettings":   {"en": "Data Transfer Settings", "de": "Einstellungen Datenübertragung"},
         "heading_ProtocolSpecificSettings":   {"en": "Data Protocol Settings", "de": "Einstellungen Datenprotokoll"},
 
+        "value_protocol_default":   {"en": "Protocol-/Transport-Default", "de": "Standard Protokoll/Übertragung"},
+
         "field_protocol":   {"en": "Data Protocol", "de": "Daten-Protokoll"},
         "value_protocol_D0Protocol":   {"en": "D0 (WakeUp, SignOn, Data)", "de": "D0 (WakeUp, SignOn, Data)"},
         "value_protocol_JsonEfrProtocol":   {"en": "JSON-Format EFR SmartGridHub", "de": "JSON-Format EFR SmartGridHub"},
@@ -43,8 +45,17 @@
         "field_transportSerialPort":   {"en": "Serial Device Name", "de": "Serielles Gerät: Name"},
         "info_transportSerialPort":   {"en": " ", "de": " "},
 
-        "field_transportSerialBaudrate":   {"en": "Serial Device Baudrate", "de": "Serielles gerät: Baudrate"},
+        "field_transportSerialBaudrate":   {"en": "Serial Device Baudrate", "de": "Serielles Gerät: Baudrate"},
         "info_transportSerialBaudrate":   {"en": "If empty, protocol defaults are used<br>(D0: 300, SML: 9600)", "de": "Wenn leer werden Protokoll-Standards verwendet<br>(D0: 300, SML: 9600)"},
+
+        "field_transportSerialDataBits":   {"en": "Serial Device DataBits", "de": "Serielles Gerät: Data-Bits"},
+        "info_transportSerialDataBits":   {"en": "If empty, protocol defaults are used<br>(D0: 7, SML: 8)", "de": "Wenn leer werden Protokoll-Standards verwendet<br>(D0: 7, SML: 8)"},
+
+        "field_transportSerialStopBits":   {"en": "Serial Device StopBits", "de": "Serielles Gerät: Stop-Bits"},
+        "info_transportSerialStopBits":   {"en": "If empty, protocol defaults are used<br>(D0: 1, SML: 1)", "de": "Wenn leer werden Protokoll-Standards verwendet<br>(D0: 1, SML: 1)"},
+
+        "field_transportSerialParity":   {"en": "Serial Device Parity", "de": "Serielles Gerät: Parität"},
+        "info_transportSerialParity":   {"en": "If empty, protocol defaults are used<br>(D0: even, SML: none)", "de": "Wenn leer werden Protokoll-Standards verwendet<br>(D0: even, SML: none)"},
 
         "field_transportHttpRequestUrl":   {"en": "HTTP-URL", "de": "HTTP-URL"},
         "info_transportHttpRequestUrl":   {"en": " ", "de": " "},
@@ -265,6 +276,53 @@
                         <img width="15" height="15" src="./questionmark.png">
                     </a>
                     <span class="tooltiptext translate">info_transportSerialBaudrate</span>
+                </div>
+            </td>
+        </tr>
+        <tr class="SerialTransports">
+            <td class="translate">field_transportSerialDataBits</td>
+            <td><select id="transportSerialDataBits" class="value">
+                <option class="translate" value="">value_protocol_default</option>
+                <option value="8">8</option>
+                <option value="7">7</option>
+                <option value="6">6</option>
+                <option value="5">5</option>
+            </select></td>
+            <td>
+                <div class="tooltip">
+                    <img width="15" height="15" src="./questionmark.png">
+                    <span class="tooltiptext translate">info_transportSerialDataBits</span>
+                </div>
+            </td>
+        </tr>
+        <tr class="SerialTransports">
+            <td class="translate">field_transportSerialDataBits</td>
+            <td><select id="transportSerialDataBits" class="value">
+                <option class="translate" value="">value_protocol_default</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select></td>
+            <td>
+                <div class="tooltip">
+                    <img width="15" height="15" src="./questionmark.png">
+                    <span class="tooltiptext translate">info_transportSerialDataBits</span>
+                </div>
+            </td>
+        </tr>
+        <tr class="SerialTransports">
+            <td class="translate">field_transportSerialParity</td>
+            <td><select id="transportSerialParity" class="value">
+                <option class="translate" value="">value_protocol_default</option>
+                <option value="none">none</option>
+                <option value="even">even</option>
+                <option value="mark">mark</option>
+                <option value="odd">odd</option>
+                <option value="space">space</option>
+            </select></td>
+            <td>
+                <div class="tooltip">
+                    <img width="15" height="15" src="./questionmark.png">
+                    <span class="tooltiptext translate">info_transportSerialParity</span>
                 </div>
             </td>
         </tr>
