@@ -1,12 +1,12 @@
 {
     "common": {
         "name":                     "smartmeter",
-        "version":                  "0.2.2",
+        "version":                  "0.2.3",
 		"news": {
-            "0.2.2": {
-                "en": "Small Optimizations in Admin, enhance serial port settings",
-                "de": "Kleinere Optimierungen im Admin-Bereich, Einstellungen des seriellen Ports erweitert",
-                "ru": "Small Optimizations in Admin, enhance serial port settings"
+            "0.2.3": {
+                "en": "Small Optimizations in Admin, enhance serial port settings, enhance serial communications",
+                "de": "Kleinere Optimierungen im Admin-Bereich, Einstellungen des seriellen Ports erweitert, Serielle Kommunikation verbessert",
+                "ru": "Small Optimizations in Admin, enhance serial port settings, enhance serial communications"
             },
             "0.2.0": {
                 "en": "Public release with some optimizations",
