@@ -80,12 +80,11 @@ function main() {
             }
             smOptions.transportSerialBaudrate = adapter.config.transportSerialBaudrate;
         }
-        // maybe we add them later
         if (adapter.config.transportSerialDataBits !== null && adapter.config.transportSerialDataBits !== undefined && adapter.config.transportSerialDataBits !== "") {
             adapter.config.transportSerialDataBits = parseInt(adapter.config.transportSerialDataBits, 10);
 
             if ((adapter.config.transportSerialDataBits < 5) || (adapter.config.transportSerialDataBits > 8)) {
-                throw Error('Serial port data bits invalid, check your configuration!');
+                throw Error('Serial port data bits ' + adapter.config.transportSerialDataBits + ' invalid, check your configuration!');
             }
             smOptions.transportSerialDataBits = adapter.config.transportSerialDataBits;
         }
@@ -93,7 +92,7 @@ function main() {
             adapter.config.transportSerialStopBits = parseInt(adapter.config.transportSerialStopBits, 10);
 
             if ((adapter.config.transportSerialStopBits !== 1) && (adapter.config.transportSerialStopBits !== 2)) {
-                throw Error('Serial port stopbits invalid, check your configuration!');
+                throw Error('Serial port stopbits ' + adapter.config.transportSerialStopBits + ' invalid, check your configuration!');
             }
             smOptions.transportSerialStopBits = adapter.config.transportSerialStopBits;
         }
@@ -102,7 +101,7 @@ function main() {
                 (adapter.config.transportSerialParity !== "mark") && (adapter.config.transportSerialParity !== "odd") &&
                 (adapter.config.transportSerialParity !== "space")) {
 
-                throw Error('Serial port parity invalid, check your configuration!');
+                throw Error('Serial port parity ' + adapter.config.transportSerialParity + ' invalid, check your configuration!');
             }
             smOptions.transportSerialParity = adapter.config.transportSerialParity;
         }
