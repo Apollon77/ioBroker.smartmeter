@@ -156,6 +156,7 @@ function main() {
 }
 
 function storeObisData(obisResult) {
+    var updateCount = 0;
     for (var obisId in obisResult) {
         if (!obisResult.hasOwnProperty(obisId)) continue;
 
@@ -243,11 +244,13 @@ function storeObisData(obisResult) {
                 }
             }
             smValues[obisId] = obisResult[obisId];
+            updateCount++;
         }
         else {
             adapter.log.debug('Data for '+ ioChannelId + ' unchanged');
         }
     }
+    adapter.log.info('Received ' + Object.keys(obisResult) + ' values, ' + updateCount + 'updated');
 }
 
 function processMessage(message) {
