@@ -25,6 +25,7 @@
         "heading_ProtocolSpecificSettings":   {"en": "Data Protocol Settings", "de": "Einstellungen Datenprotokoll"},
 
         "value_protocol_default":   {"en": "Protocol-/Transport-Default", "de": "Standard Protokoll/Übertragung"},
+        "value_no_overwrite":   {"en": "Use Mode defined by device", "de": "Mode des Devices nutzen"},
 
         "field_protocol":   {"en": "Data Protocol", "de": "Daten-Protokoll"},
         "value_protocol_D0Protocol":   {"en": "D0 (WakeUp, SignOn, Data)", "de": "D0 (WakeUp, SignOn, Data)"},
@@ -388,7 +389,14 @@
         </tr>
         <tr class="D0Protocol">
             <td class="translate">field_protocolD0ModeOverwrite</td>
-            <td><input id="protocolD0ModeOverwrite" type="text" class="value number"/></td>
+            <td><select id="protocolD0ModeOverwrite" class="value">
+                <option class="translate" value="">value_no_overwrite</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+            </select></td>
             <td>
                 <div class="tooltip">
                     <img width="15" height="15" src="./questionmark.png">

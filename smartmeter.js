@@ -250,7 +250,7 @@ function storeObisData(obisResult) {
             adapter.log.debug('Data for '+ ioChannelId + ' unchanged');
         }
     }
-    adapter.log.info('Received ' + Object.keys(obisResult).length + ' values, ' + updateCount + 'updated');
+    adapter.log.info('Received ' + Object.keys(obisResult).length + ' values, ' + updateCount + ' updated');
 }
 
 function processMessage(message) {
