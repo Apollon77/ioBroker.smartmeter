@@ -75,6 +75,12 @@
         "field_protocolD0SignOnMessage":   {"en": "D0: SignOn-Message Command", "de": "D0: Kommando SignOn-Nachricht"},
         "info_protocolD0SignOnMessage":   {"en": "(Default if empty: <b>?</b><br>to read mandatory values)", "de": "(Standard wenn leer: <b>?</b><br> um Pflichtwerte zu lesen)"},
 
+        "field_protocolD0ModeOverwrite":   {"en": "D0: Mode Overwrite", "de": "D0: Überschreiben des Modus"},
+        "info_protocolD0ModeOverwrite":   {"en": "(Empty if Mode from Device should be used, else A, B, C, D or E is allowed to overwrite", "de": "Leer wenn Mode vom Device genutzt werden soll, ansonsten Überschreiben: A, B, C, D, E"},
+
+        "field_protocolD0BaudrateChangeoverOverwrite":   {"en": "D0: Baudrate Changeover Overwrite", "de": "D0: Überschreiben der Baudrate-Änderung"},
+        "info_protocolD0BaudrateChangeoverOverwrite":   {"en": "Empty if Baudrate from Device is used", "de": "Leer wenn die Baudrate vom Device verwendet werden soll"},
+
         "field_protocolSmlIgnoreInvalidCRC":   {"en": "SML: Ignore CRC checksum error", "de": "SML: CRC-prüfsummenfehler ignorieren"},
         "info_protocolSmlIgnoreInvalidCRC":   {"en": " ", "de": " "},
 
@@ -377,6 +383,26 @@
                         <img width="15" height="15" src="./questionmark.png">
                     </a>
                     <span class="tooltiptext translate">info_protocolD0SignOnMessage</span>
+                </div>
+            </td>
+        </tr>
+        <tr class="D0Protocol">
+            <td class="translate">field_protocolD0ModeOverwrite</td>
+            <td><input id="protocolD0ModeOverwrite" type="text" class="value number"/></td>
+            <td>
+                <div class="tooltip">
+                    <img width="15" height="15" src="./questionmark.png">
+                    <span class="tooltiptext translate">info_protocolD0ModeOverwrite</span>
+                </div>
+            </td>
+        </tr>
+        <tr class="D0Protocol">
+            <td class="translate">field_protocolD0BaudrateChangeoverOverwrite</td>
+            <td><input id="protocolD0BaudrateChangeoverOverwrite" type="text" class="value number"/> baud</td>
+            <td>
+                <div class="tooltip">
+                    <img width="15" height="15" src="./questionmark.png">
+                    <span class="tooltiptext translate">info_protocolD0BaudrateChangeoverOverwrite</span>
                 </div>
             </td>
         </tr>

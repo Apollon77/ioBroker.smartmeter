@@ -1,8 +1,13 @@
 {
     "common": {
         "name":                     "smartmeter",
-        "version":                  "0.2.3",
+        "version":                  "0.2.4",
 		"news": {
+            "0.2.4": {
+                "en": "Update to latest Obis Library to support overwriting of D0 Mode and Baudrate-Changeover",
+                "de": "Aktualisierung auf neueste Obis Library um Überschreiben des D0 Modus und Baudrate-Änderung zu erlauben",
+                "ru": "Update to latest Obis Library to support overwriting of D0 Mode and Baudrate-Changeover"
+            },
             "0.2.3": {
                 "en": "Small Optimizations in Admin, enhance serial port settings, enhance serial communications",
                 "de": "Kleinere Optimierungen im Admin-Bereich, Einstellungen des seriellen Ports erweitert, Serielle Kommunikation verbessert",
@@ -56,6 +61,8 @@
         "protocolD0WakeupCharacters":   0,
         "protocolD0DeviceAddress":      "",
         "protocolD0SignOnMessage":      "",
+        "protocolD0ModeOverwrite":      "",
+        "protocolD0BaudrateChangeoverOverwrite":      "",
         "protocolSmlIgnoreInvalidCRC":  false,
         "obisFallbackMedium":           "",
         "obisNameLanguage":             "de"
