@@ -1,8 +1,13 @@
 {
     "common": {
         "name":                     "smartmeter",
-        "version":                  "0.2.4",
+        "version":                  "0.2.5",
 		"news": {
+            "0.2.5": {
+                "en": "Optimize memory handling",
+                "de": "Speicherhandling optimiert",
+                "ru": "Optimize memory handling"
+            },
             "0.2.4": {
                 "en": "Update to latest Obis Library to support overwriting of D0 Mode and Baudrate-Changeover",
                 "de": "Aktualisierung auf neueste Obis Library um Überschreiben des D0 Modus und Baudrate-Änderung zu erlauben",
@@ -44,7 +49,8 @@
         "type":                     "hardware",
         "keywords":                 ["iobroker", "smartmeter", "SML", "D0", "eHz", "OBIS"],
         "loglevel":                 "info",
-        "enabled":                  false
+        "enabled":                  false,
+        "restartAdapters":          ["smartmeter"]
     },
     "native": {
         "protocol":                     "SmlProtocol",
