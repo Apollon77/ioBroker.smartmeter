@@ -115,7 +115,7 @@ function main() {
         if (adapter.config.transportHttpRequestTimeout !== null && adapter.config.transportHttpRequestTimeout !== undefined) {
             adapter.config.transportHttpRequestTimeout = parseInt(adapter.config.transportHttpRequestTimeout, 10);
             if (adapter.config.transportHttpRequestTimeout < 500) {
-                throw Error('HTTP Request timeout invalid, check your configuration!');
+                throw Error('HTTP Request timeout ' + adapter.config.transportHttpRequestTimeout + ' invalid, check your configuration!');
             }
             smOptions.transportHttpRequestTimeout = adapter.config.transportHttpRequestTimeout;
         }
@@ -131,12 +131,21 @@ function main() {
         if (adapter.config.protocolD0WakeupCharacters !== null && adapter.config.protocolD0WakeupCharacters !== undefined) {
             adapter.config.protocolD0WakeupCharacters = parseInt(adapter.config.protocolD0WakeupCharacters, 10);
             if (adapter.config.protocolD0WakeupCharacters < 0) {
-                throw Error('D0 Number of Wakeup NULL characters invalid, check your configuration!');
+                throw Error('D0 Number of Wakeup NULL characters ' + adapter.config.protocolD0WakeupCharacters + ' invalid, check your configuration!');
             }
             smOptions.protocolD0WakeupCharacters = adapter.config.protocolD0WakeupCharacters;
         }
         if (adapter.config.protocolD0DeviceAddress) smOptions.protocolD0DeviceAddress = adapter.config.protocolD0DeviceAddress;
         if (adapter.config.protocolD0SignOnMessage) smOptions.protocolD0SignOnMessage = adapter.config.protocolD0SignOnMessage;
+        if (adapter.config.protocolD0ModeOverwrite) smOptions.protocolD0ModeOverwrite = adapter.config.protocolD0ModeOverwrite;
+        if (adapter.config.protocolD0BaudrateChangeoverOverwrite !== null && adapter.config.protocolD0BaudrateChangeoverOverwrite !== undefined  && adapter.config.protocolD0BaudrateChangeoverOverwrite !== "") {
+            adapter.config.protocolD0BaudrateChangeoverOverwrite = parseInt(adapter.config.protocolD0BaudrateChangeoverOverwrite, 10);
+
+            if (adapter.config.protocolD0BaudrateChangeoverOverwrite < 300) {
+                throw Error('D0 baudrate changeover overwrite ' + adapter.config.protocolD0BaudrateChangeoverOverwrite + ' invalid, check your configuration!');
+            }
+            smOptions.protocolD0BaudrateChangeoverOverwrite = adapter.config.protocolD0BaudrateChangeoverOverwrite;
+        }
     }
     if (adapter.config.protocol === 'SmlProtocol') { // we have a Serial connection
         smOptions.protocolSmlIgnoreInvalidCRC = adapter.config.protocolSmlIgnoreInvalidCRC = adapter.config.protocolSmlIgnoreInvalidCRC === 'true' || adapter.config.protocolSmlIgnoreInvalidCRC === true;
@@ -144,7 +153,7 @@ function main() {
     if (adapter.config.obisFallbackMedium !== null && adapter.config.obisFallbackMedium !== undefined) {
         adapter.config.obisFallbackMedium = parseInt(adapter.config.obisFallbackMedium, 10);
         if (adapter.config.obisFallbackMedium < 0 || adapter.config.obisFallbackMedium > 18 ) {
-            throw Error('OBIS Fallback medium code invalid, check your configuration!');
+            throw Error('OBIS Fallback medium code ' + adapter.config.obisFallbackMedium + ' invalid, check your configuration!');
         }
         smOptions.obisFallbackMedium = adapter.config.obisFallbackMedium;
     }
