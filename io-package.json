@@ -1,9 +1,9 @@
 {
     "common": {
         "name":                     "smartmeter",
-        "version":                  "0.2.5",
+        "version":                  "0.2.7",
 		"news": {
-            "0.2.5": {
+            "0.2.7": {
                 "en": "Optimize memory handling",
                 "de": "Speicherhandling optimiert",
                 "ru": "Optimize memory handling"
