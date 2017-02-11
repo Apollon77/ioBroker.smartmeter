@@ -15,6 +15,8 @@ This adapter for ioBroker allows the reading and parsing of smartmeter protocols
 
 ***The Adapter needs node 4.x or higher to work!***
 
+***This Adapter needs to have git installed currently for installing!***
+
 ## Description of parameters
 
 ### Data Protocol
@@ -41,14 +43,18 @@ baudrate for initial serial connection, if not defined default values per Transp
 command for SignIn-Message, default "?" to query mandatory fields, other values depending on device
 
 ## changelog
-### 0.3.x
-* Add possibility to overwrite serial connections settings and also D0 Mode for devices that send a wrong identification
-* update smartmeter-obis library for memory optimizations
+### 0.4.0
+* Finalized
+
+### 0.3.0
+* We now should be quiet stable
 
 ### 0.2.x
 * Public release of Adapter after forum Tests
 * remove all additional logging
 * enhance Adapter config screenxw
+* Add possibility to overwrite serial connections settings and also D0 Mode for devices that send a wrong identification
+* update smartmeter-obis library for memory optimizations
 
 ### 0.1.1
 * Update smartmeter-obis library to 0.2.5 to add Serial Timeout for Request/Response protocol

@@ -1,8 +1,13 @@
 {
     "common": {
         "name":                     "smartmeter",
-        "version":                  "0.2.7",
+        "version":                  "0.3.0",
 		"news": {
+            "0.3.0": {
+                "en": "Optimize D0 message handling, Finalize",
+                "de": "D0 Nachrichtenbehandlung optimiert. Finalisierung",
+                "ru": "Optimize D0 message handling. Finalize"
+            },
             "0.2.7": {
                 "en": "Optimize memory handling",
                 "de": "Speicherhandling optimiert",
