@@ -43,9 +43,6 @@ baudrate for initial serial connection, if not defined default values per Transp
 command for SignIn-Message, default "?" to query mandatory fields, other values depending on device
 
 ## changelog
-### 0.4.0
-* Finalized
-
 ### 0.3.0
 * We now should be quiet stable
 
