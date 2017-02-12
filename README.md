@@ -17,6 +17,10 @@ This adapter for ioBroker allows the reading and parsing of smartmeter protocols
 
 ***This Adapter needs to have git installed currently for installing!***
 
+## Currently known problems
+* This Adapter uses the Serialport Library. This can mean a longer installation time if it needs to be compiled
+* It seems that memory handling is sometimes suboptimal and can lead to crashes with SIGABRT or SIGSEGV during reading data. iobroker Controller will restart the Adapter automatically, so 2-3 loglines is the only effect here :-)
+
 ## Description of parameters
 
 ### Data Protocol
@@ -40,10 +44,26 @@ Default: is 300 (=5 Minutes)
 baudrate for initial serial connection, if not defined default values per Transport type are used (9600 for SerialResponseTransprt and 300 for SerialRequestResponseTransport)
 
 ### D0: SignOn-Message Command
-command for SignIn-Message, default "?" to query mandatory fields, other values depending on device
+Command for SignIn-Message, default "?" to query mandatory fields, other values depending on device.
+Example: The 2WR5 Heatmeter uses "#" to query a lot more data (optional fields together with all mandatory)
+
+### D0: Mode-Overwrite
+The Adapter tries to determine the D0 Protocol mode as defined in the specifications. There are some devices that do not comply to the specifications and so bring problems. Using this option you can overwrite the determined protocol mode.
+* Mode A: no baudrate changeover, no Ack-Message
+* Mode B: baudrate changeover, no Ack-Message
+* Mode C: baudrate changeover and Ack-Message needed
+* Mode D: No baudrate changeover, baudrate always 2400
+* Mode E: baudrate changeover and Ack-Message needed, Custom protocols, not Supported currectly!! Contact me if you have such an smartmeter
+
+### D0: Baudrate-Changeover-Overwrite
+The adapter tries to determine the Baudrate for the data messages as defined in the protocol specifications. But as with the Mode some smartmeter provide wrong data here. SO you can use this to overwrite the baudrate for the data message as needed. Leave empty to use the baudrate changeover as defined by the smart meter.
+
 
 ## changelog
-### 0.3.0
+### 0.3.1 (12.07.2017)
+* Finalize Adapter config and added some informations
+
+### 0.3.0 (11.02.2017)
 * We now should be quiet stable
 
 ### 0.2.x
