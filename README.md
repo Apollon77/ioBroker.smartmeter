@@ -60,7 +60,7 @@ The adapter tries to determine the Baudrate for the data messages as defined in 
 
 
 ## changelog
-### 0.3.1 (12.07.2017)
+### 0.3.1 (12.02.2017)
 * Finalize Adapter config and added some informations
 
 ### 0.3.0 (11.02.2017)
