@@ -58,8 +58,13 @@ The Adapter tries to determine the D0 Protocol mode as defined in the specificat
 ### D0: Baudrate-Changeover-Overwrite
 The adapter tries to determine the Baudrate for the data messages as defined in the protocol specifications. But as with the Mode some smartmeter provide wrong data here. SO you can use this to overwrite the baudrate for the data message as needed. Leave empty to use the baudrate changeover as defined by the smart meter.
 
+## Todo
+* Update Sml support to 1.0.4 (if needed)
 
 ## changelog
+### 0.3.2 (22.02.2017)
+* Optimize D0 protocol handling for mode E
+
 ### 0.3.1 (12.02.2017)
 * Finalize Adapter config and added some informations
 

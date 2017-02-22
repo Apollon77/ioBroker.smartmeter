@@ -1,8 +1,13 @@
 {
     "common": {
         "name":                     "smartmeter",
-        "version":                  "0.3.1",
+        "version":                  "0.3.2",
 		"news": {
+            "0.3.2": {
+                "en": "Optimize D0 protocol handling for mode E",
+                "de": "D0 Protokoll Modus E Behandlung optimiert",
+                "ru": "Optimize D0 protocol handling for mode E"
+            },
             "0.3.1": {
                 "en": "Finalize Adapter config and added some informations",
                 "de": "Adapter-Konfiguration finalisiert und Informationen hinzugefügt",
