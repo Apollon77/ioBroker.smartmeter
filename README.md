@@ -23,6 +23,8 @@ This adapter for ioBroker allows the reading and parsing of smartmeter protocols
 
 ## Description of parameters
 
+ioBroker-Forum-Thread: http://forum.iobroker.net/viewtopic.php?f=23&t=5047&p=54973
+
 ### Data Protocol
 Supported Protocols:
 * **Sml**: SML (SmartMeterLanguage) as binary format
