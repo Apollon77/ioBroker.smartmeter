@@ -64,6 +64,9 @@ The adapter tries to determine the Baudrate for the data messages as defined in 
 * Update Sml support to 1.0.4 (if needed)
 
 ## changelog
+### 0.4.0 (23.02.2017)
+* Optimize for D0 Message handling and baudrate changeovers
+
 ### 0.3.2 (22.02.2017)
 * Optimize D0 protocol handling for mode E
 
