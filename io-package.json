@@ -1,8 +1,13 @@
 {
     "common": {
         "name":                     "smartmeter",
-        "version":                  "0.3.2",
+        "version":                  "0.3.3",
 		"news": {
+            "0.3.3": {
+                "en": "Make Serial Response timeout configurable",
+                "de": "Wartezeit auf Serielle Antworten konfigurierbar gemacht",
+                "ru": "Make Serial Response timeout configurable"
+            },
             "0.3.2": {
                 "en": "Optimize D0 protocol handling for mode E",
                 "de": "D0 Protokoll Modus E Behandlung optimiert",
@@ -76,6 +81,7 @@
         "transportSerialDataBits":      "",
         "transportSerialStopBits":      "",
         "transportSerialParity":        "",
+        "transportSerialMessageTimeout": "",
         "transportHttpRequestUrl":      "",
         "transportHttpRequestTimeout":  2000,
         "transportLocalFilePath":       "",

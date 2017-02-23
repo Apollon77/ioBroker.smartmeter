@@ -58,10 +58,13 @@
         "field_transportSerialParity":   {"en": "Serial Device Parity", "de": "Serielles Gerät: Parität"},
         "info_transportSerialParity":   {"en": "If empty, protocol defaults are used<br>(D0: even, SML: none)", "de": "Wenn leer werden Protokoll-Standards verwendet<br>(D0: even, SML: none)"},
 
+        "field_transportSerialMessageTimeout":   {"en": "Serial-Response Timeout", "de": "Serielle Antwort Wartezeit"},
+        "info_transportSerialMessageTimeout":   {"en": "Defines how long to wait for a valid message before restarting. Consider the baudrate!<br>Default if empty: 120s", "de": "Wie lange soll auf eine korrekte Nachricht gewartet werden? Die Baudrate muss berücjsichtigt werden!<br>Standard wenn leer: 120s"},
+
         "field_transportHttpRequestUrl":   {"en": "HTTP-URL", "de": "HTTP-URL"},
         "info_transportHttpRequestUrl":   {"en": " ", "de": " "},
 
-        "field_transportHttpRequestTimeout":   {"en": "HTTP-Request Timeout", "de": "HTTP-Amfrage Timeout"},
+        "field_transportHttpRequestTimeout":   {"en": "HTTP-Request Timeout", "de": "HTTP-Anfrage Timeout"},
         "info_transportHttpRequestTimeout":   {"en": "Default if empty: 2000", "de": "Standard wenn leer: 2000"},
 
         "field_transportLocalFilePath":   {"en": "Absolute path to local datafile", "de": "Absoluter Pfad zur Daten-Datei"},
@@ -217,7 +220,6 @@
         <tr><td colspan="3"><h4 class="translate">heading_GeneralSettings</h4></td></tr>
         <tr>
             <td class="translate">field_requestInterval</td>
-            <td><input id="requestInterval" type="text" size="10" class="value number"/> s</td>
             <td>
                 <div class="tooltip">
                     <a href="https://github.com/Apollon77/ioBroker.smartmeter/#data-request-interval" target="config_help">
@@ -225,16 +227,13 @@
                     </a>
                     <span class="tooltiptext translate">info_requestInterval</span>
                 </div>
+                <input id="requestInterval" type="text" size="10" class="value number"/> s
+            </td>
+            <td>
             </td>
         </tr>
         <tr>
             <td class="translate">field_transport</td>
-            <td><select id="transport" class="value">
-                <option class="translate" value="HttpRequestTransport">value_transport_HttpRequestTransport</option>
-                <option class="translate" value="LocalFileTransport">value_transport_LocalFileTransport</option>
-                <option class="translate" value="SerialRequestResponseTransport">value_transport_SerialRequestResponseTransport</option>
-                <option class="translate" value="SerialResponseTransport">value_transport_SerialResponseTransport</option>
-            </select></td>
             <td>
                 <div class="tooltip">
                     <a href="https://github.com/Apollon77/ioBroker.smartmeter/#data-transfer" target="config_help">
@@ -242,15 +241,18 @@
                     </a>
                     <!-- <span class="tooltiptext translate">info_transport</span> -->
                 </div>
+                <select id="transport" class="value">
+                    <option class="translate" value="HttpRequestTransport">value_transport_HttpRequestTransport</option>
+                    <option class="translate" value="LocalFileTransport">value_transport_LocalFileTransport</option>
+                    <option class="translate" value="SerialRequestResponseTransport">value_transport_SerialRequestResponseTransport</option>
+                    <option class="translate" value="SerialResponseTransport">value_transport_SerialResponseTransport</option>
+                </select>
+            </td>
+            <td>
             </td>
         </tr>
         <tr>
             <td class="translate">field_protocol</td>
-            <td><select id="protocol" class="value">
-                <option class="translate" value="D0Protocol">value_protocol_D0Protocol</option>
-                <option class="translate" value="JsonEfrProtocol">value_protocol_JsonEfrProtocol</option>
-                <option class="translate" value="SmlProtocol">value_protocol_SmlProtocol</option>
-            </select></td>
             <td>
                 <div class="tooltip">
                     <a href="https://github.com/Apollon77/ioBroker.smartmeter/#data-protocol" target="config_help">
@@ -258,14 +260,24 @@
                     </a>
                     <!-- <span class="tooltiptext translate">info_protocol</span> -->
                 </div>
+                <select id="protocol" class="value">
+                    <option class="translate" value="D0Protocol">value_protocol_D0Protocol</option>
+                    <option class="translate" value="JsonEfrProtocol">value_protocol_JsonEfrProtocol</option>
+                    <option class="translate" value="SmlProtocol">value_protocol_SmlProtocol</option>
+                </select>
+            </td>
+            <td>
             </td>
         </tr>
         <tr>
             <td class="translate">field_obisNameLanguage</td>
-            <td><select id="obisNameLanguage" class="value">
-                <option class="translate" value="de">value_obisNameLanguage_de</option>
-                <option class="translate" value="en">value_obisNameLanguage_en</option>
-            </select></td>
+            <td>
+
+                <select id="obisNameLanguage" class="value">
+                    <option class="translate" value="de">value_obisNameLanguage_de</option>
+                    <option class="translate" value="en">value_obisNameLanguage_en</option>
+                </select>
+            </td>
             <td class="translate">info_obisNameLanguage</td>
         </tr>
         <tr><td colspan="3"><h4 class="translate">heading_TransportSpecificSettings</h4></td></tr>
@@ -276,7 +288,6 @@
         </tr>
         <tr class="SerialTransports">
             <td class="translate">field_transportSerialBaudrate</td>
-            <td><input id="transportSerialBaudrate" type="text" class="value number"/> baud</td>
             <td>
                 <div class="tooltip">
                     <a href="https://github.com/Apollon77/ioBroker.smartmeter/#serial-device-baudrate" target="config_help">
@@ -284,53 +295,74 @@
                     </a>
                     <span class="tooltiptext translate">info_transportSerialBaudrate</span>
                 </div>
+                <input id="transportSerialBaudrate" type="text" class="value number"/> baud
+            </td>
+            <td>
             </td>
         </tr>
         <tr class="SerialTransports">
             <td class="translate">field_transportSerialDataBits</td>
-            <td><select id="transportSerialDataBits" class="value">
-                <option class="translate" value="">value_protocol_default</option>
-                <option value="8">8</option>
-                <option value="7">7</option>
-                <option value="6">6</option>
-                <option value="5">5</option>
-            </select></td>
             <td>
                 <div class="tooltip">
                     <img width="15" height="15" src="./questionmark.png">
                     <span class="tooltiptext translate">info_transportSerialDataBits</span>
                 </div>
+                <select id="transportSerialDataBits" class="value">
+                    <option class="translate" value="">value_protocol_default</option>
+                    <option value="8">8</option>
+                    <option value="7">7</option>
+                    <option value="6">6</option>
+                    <option value="5">5</option>
+                </select>
+            </td>
+            <td>
             </td>
         </tr>
         <tr class="SerialTransports">
             <td class="translate">field_transportSerialStopBits</td>
-            <td><select id="transportSerialStopBits" class="value">
-                <option class="translate" value="">value_protocol_default</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-            </select></td>
             <td>
                 <div class="tooltip">
                     <img width="15" height="15" src="./questionmark.png">
                     <span class="tooltiptext translate">info_transportSerialStopBits</span>
                 </div>
+                <select id="transportSerialStopBits" class="value">
+                    <option class="translate" value="">value_protocol_default</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </td>
+            <td>
             </td>
         </tr>
         <tr class="SerialTransports">
             <td class="translate">field_transportSerialParity</td>
-            <td><select id="transportSerialParity" class="value">
-                <option class="translate" value="">value_protocol_default</option>
-                <option value="none">none</option>
-                <option value="even">even</option>
-                <option value="mark">mark</option>
-                <option value="odd">odd</option>
-                <option value="space">space</option>
-            </select></td>
             <td>
                 <div class="tooltip">
                     <img width="15" height="15" src="./questionmark.png">
                     <span class="tooltiptext translate">info_transportSerialParity</span>
                 </div>
+                <select id="transportSerialParity" class="value">
+                    <option class="translate" value="">value_protocol_default</option>
+                    <option value="none">none</option>
+                    <option value="even">even</option>
+                    <option value="mark">mark</option>
+                    <option value="odd">odd</option>
+                    <option value="space">space</option>
+                </select>
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr class="SerialTransports">
+            <td class="translate">field_transportSerialMessageTimeout</td>
+            <td>
+                <div class="tooltip">
+                    <img width="15" height="15" src="./questionmark.png">
+                    <span class="tooltiptext translate">info_transportSerialMessageTimeout</span>
+                </div>
+                <input id="transportSerialMessageTimeout" type="text" class="value number"/>s
+            </td>
+            <td>
             </td>
         </tr>
         <tr class="HttpRequestTransport">
@@ -340,12 +372,14 @@
         </tr>
         <tr class="HttpRequestTransport">
             <td class="translate">field_transportHttpRequestTimeout</td>
-            <td><input id="transportHttpRequestTimeout" type="text" class="value number"/> ms</td>
             <td>
                 <div class="tooltip">
                     <img width="15" height="15" src="./questionmark.png">
                     <span class="tooltiptext translate">info_transportHttpRequestTimeout</span>
                 </div>
+                <input id="transportHttpRequestTimeout" type="text" class="value number"/> ms
+            </td>
+            <td>
             </td>
         </tr>
         <tr class="LocalFileTransport">
@@ -357,27 +391,30 @@
         <tr class="SmlProtocol"><td colspan="3"><h4 class="translate">heading_ProtocolSpecificSettings</h4></td></tr>
         <tr class="D0Protocol">
             <td class="translate">field_protocolD0WakeupCharacters</td>
-            <td><input id="protocolD0WakeupCharacters" type="text" class="value number"/></td>
             <td>
                 <div class="tooltip">
                     <img width="15" height="15" src="./questionmark.png">
                     <span class="tooltiptext translate">info_protocolD0WakeupCharacters</span>
                 </div>
+                <input id="protocolD0WakeupCharacters" type="text" class="value number"/>
+            </td>
+            <td>
             </td>
         </tr>
         <tr class="D0Protocol">
             <td class="translate">field_protocolD0DeviceAddress</td>
-            <td><input id="protocolD0DeviceAddress" type="text" size="32" class="value"/></td>
             <td>
                 <div class="tooltip">
                     <img width="15" height="15" src="./questionmark.png">
                     <span class="tooltiptext translate">info_protocolD0DeviceAddress</span>
                 </div>
+                <input id="protocolD0DeviceAddress" type="text" size="32" class="value"/>
+            </td>
+            <td>
             </td>
         </tr>
         <tr class="D0Protocol">
             <td class="translate">field_protocolD0SignOnMessage</td>
-            <td><input id="protocolD0SignOnMessage" type="text" class="value"/></td>
             <td>
                 <div class="tooltip">
                     <a href="https://github.com/Apollon77/ioBroker.smartmeter/#d0--signon-message-command" target="config_help">
@@ -385,18 +422,13 @@
                     </a>
                     <span class="tooltiptext translate">info_protocolD0SignOnMessage</span>
                 </div>
+                <input id="protocolD0SignOnMessage" type="text" class="value"/>
+            </td>
+            <td>
             </td>
         </tr>
         <tr class="D0Protocol">
             <td class="translate">field_protocolD0ModeOverwrite</td>
-            <td><select id="protocolD0ModeOverwrite" class="value">
-                <option class="translate" value="">value_no_overwrite</option>
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <option value="D">D</option>
-                <option value="E">E</option>
-            </select></td>
             <td>
                 <div class="tooltip">
                     <a href="https://github.com/Apollon77/ioBroker.smartmeter/#d0--mode-overwrite" target="config_help">
@@ -404,11 +436,20 @@
                     </a>
                     <span class="tooltiptext translate">info_protocolD0ModeOverwrite</span>
                 </div>
+                <select id="protocolD0ModeOverwrite" class="value">
+                    <option class="translate" value="">value_no_overwrite</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                </select>
+            </td>
+            <td>
             </td>
         </tr>
         <tr class="D0Protocol">
             <td class="translate">field_protocolD0BaudrateChangeoverOverwrite</td>
-            <td><input id="protocolD0BaudrateChangeoverOverwrite" type="text" class="value number"/> baud</td>
             <td>
                 <div class="tooltip">
                     <a href="https://github.com/Apollon77/ioBroker.smartmeter/#d0--baudrate-changeover-overwrite" target="config_help">
@@ -416,6 +457,9 @@
                     </a>
                     <span class="tooltiptext translate">info_protocolD0BaudrateChangeoverOverwrite</span>
                 </div>
+                <input id="protocolD0BaudrateChangeoverOverwrite" type="text" class="value number"/> baud
+            </td>
+            <td>
             </td>
         </tr>
         <tr class="SmlProtocol">
@@ -425,24 +469,26 @@
         </tr>
         <tr class="D0Protocol">
             <td class="translate">field_obisFallbackMedium</td>
-            <td><select id="obisFallbackMedium" class="value">
-                <option class="translate" value="0">value_obisFallbackMedium_0</option>
-                <option class="translate" value="1">value_obisFallbackMedium_1</option>
-                <option class="translate" value="4">value_obisFallbackMedium_4</option>
-                <option class="translate" value="5">value_obisFallbackMedium_5</option>
-                <option class="translate" value="6">value_obisFallbackMedium_6</option>
-                <option class="translate" value="7">value_obisFallbackMedium_7</option>
-                <option class="translate" value="8">value_obisFallbackMedium_8</option>
-                <option class="translate" value="9">value_obisFallbackMedium_9</option>
-                <option class="translate" value="16">value_obisFallbackMedium_16</option>
-                <option class="translate" value="17">value_obisFallbackMedium_17</option>
-                <option class="translate" value="18">value_obisFallbackMedium_18</option>
-            </select></td>
             <td>
                 <div class="tooltip">
                     <img width="15" height="15" src="./questionmark.png">
                     <span class="tooltiptext translate">info_obisFallbackMedium</span>
                 </div>
+                <select id="obisFallbackMedium" class="value">
+                    <option class="translate" value="0">value_obisFallbackMedium_0</option>
+                    <option class="translate" value="1">value_obisFallbackMedium_1</option>
+                    <option class="translate" value="4">value_obisFallbackMedium_4</option>
+                    <option class="translate" value="5">value_obisFallbackMedium_5</option>
+                    <option class="translate" value="6">value_obisFallbackMedium_6</option>
+                    <option class="translate" value="7">value_obisFallbackMedium_7</option>
+                    <option class="translate" value="8">value_obisFallbackMedium_8</option>
+                    <option class="translate" value="9">value_obisFallbackMedium_9</option>
+                    <option class="translate" value="16">value_obisFallbackMedium_16</option>
+                    <option class="translate" value="17">value_obisFallbackMedium_17</option>
+                    <option class="translate" value="18">value_obisFallbackMedium_18</option>
+                </select>
+            </td>
+            <td>
             </td>
         </tr>
     </table>

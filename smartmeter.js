@@ -105,6 +105,14 @@ function main() {
             }
             smOptions.transportSerialParity = adapter.config.transportSerialParity;
         }
+        if (adapter.config.transportSerialMessageTimeout !== null && adapter.config.transportSerialMessageTimeout !== undefined) {
+            adapter.config.transportSerialMessageTimeout = parseInt(adapter.config.transportSerialMessageTimeout, 10)*1000;
+            if (adapter.config.transportSerialMessageTimeout < 1000) {
+                throw Error('HTTP Request timeout ' + adapter.config.transportSerialMessageTimeout + ' invalid, check your configuration!');
+            }
+            smOptions.transportSerialMessageTimeout = adapter.config.transportSerialMessageTimeout;
+        }
+
         //adapter.config.transportSerialMaxBufferSize
     }
     else if (adapter.config.transport === 'HttpRequestTransfer') { // we have a Serial connection
