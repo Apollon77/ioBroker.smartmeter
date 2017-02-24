@@ -1,8 +1,13 @@
 {
     "common": {
         "name":                     "smartmeter",
-        "version":                  "0.4.0",
+        "version":                  "0.4.1",
 		"news": {
+            "0.4.1": {
+                "en": "Fix potential hanging communication with D0 Serial",
+                "de": "Potentielles problem mit hängender Kommunikation behoben",
+                "ru": "Fix potential hanging communication with D0 Serial"
+            },
             "0.4.0": {
                 "en": "Optimize for D0 Message handling and baudrate changeovers",
                 "de": "D0-Nachrichtenbehandlung mit Baudrate-Änderung optimiert",
