@@ -64,6 +64,9 @@ The adapter tries to determine the Baudrate for the data messages as defined in 
 * Update Sml support to 1.0.4 (if needed)
 
 ## changelog
+### 0.5.0 (26.02.2017)
+* maintenance update
+
 ### 0.4.2 (27.02.2017)
 * one last try to fix the crashes SIGABRT/SIGSEGV
 
