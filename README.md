@@ -64,6 +64,12 @@ The adapter tries to determine the Baudrate for the data messages as defined in 
 * Update Sml support to 1.0.4 (if needed)
 
 ## changelog
+### 0.4.2 (27.02.2017)
+* only last try to fix the crashes SIGABRT/SIGSEGV
+
+### 0.4.1 (24.02.2017)
+* Fix potential hanging communication with D0 Serial
+
 ### 0.4.0 (23.02.2017)
 * Optimize for D0 Message handling and baudrate changeovers
 

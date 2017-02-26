@@ -1,8 +1,13 @@
 {
     "common": {
         "name":                     "smartmeter",
-        "version":                  "0.4.1",
+        "version":                  "0.4.2",
 		"news": {
+            "0.4.2": {
+                "en": "one last try to fix the crashes SIGABRT/SIGSEGV",
+                "de": "Letzter Versuch die Absturzprobleme zu lösen",
+                "ru": "one last try to fix the crashes SIGABRT/SIGSEGV"
+            },
             "0.4.1": {
                 "en": "Fix potential hanging communication with D0 Serial",
                 "de": "Potentielles problem mit hängender Kommunikation behoben",
