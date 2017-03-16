@@ -1,7 +1,7 @@
 {
     "common": {
         "name":                     "smartmeter",
-        "version":                  "0.5.2",
+        "version":                  "0.5.3",
 		"news": {
             "0.5.2": {
                 "en": "Better handling on Timeouts",

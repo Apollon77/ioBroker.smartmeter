@@ -1,6 +1,6 @@
 {
   "name": "iobroker.smartmeter",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "Smartmeter Adapter",
   "author": "Ingo Fischer <ingo@fischer-ka.de>",
   "contributors": [],
@@ -14,7 +14,7 @@
     "url": "https://github.com/Apollon77/ioBroker.smartmeter"
   },
   "dependencies": {
-    "smartmeter-obis": "^0.5.2"
+    "smartmeter-obis": "^0.5.3"
   },
   "devDependencies": {
     "mocha": "^3.2.0",
