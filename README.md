@@ -66,6 +66,7 @@ The adapter tries to determine the Baudrate for the data messages as defined in 
 ## changelog
 ### 0.5.5 (19.03.2017)
 * improved baudrate-changeover logic for D0 protocol (now hopefully finally)
+* enhanced D0 protocol support for multiple values
 
 ### 0.5.0 (26.02.2017)
 * maintenance update
