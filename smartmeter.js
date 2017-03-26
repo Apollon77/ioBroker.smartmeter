@@ -39,9 +39,7 @@ process.on('SIGINT', function () {
 
 process.on('uncaughtException', function (err) {
     adapter.log.warn('Exception: ' + err);
-    if (smTransport) {
-        if (smTransport) smTransport.stop();
-    }
+    if (smTransport) smTransport.stop();
 });
 
 function main() {
@@ -203,7 +201,7 @@ function storeObisData(obisResult) {
                         write: false
                     },
                     native: {
-                        id: ioChannelId + '.value'
+                        id: ioChannelId + '.rawvalue'
                     }
                 });
             }

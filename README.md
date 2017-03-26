@@ -60,6 +60,18 @@ The Adapter tries to determine the D0 Protocol mode as defined in the specificat
 ### D0: Baudrate-Changeover-Overwrite
 The adapter tries to determine the Baudrate for the data messages as defined in the protocol specifications. But as with the Mode some smartmeter provide wrong data here. SO you can use this to overwrite the baudrate for the data message as needed. Leave empty to use the baudrate changeover as defined by the smart meter.
 
+## Adapter is tested with ...
+... at least:
+* Hager eHz Energy Meter (multiple, e.g. eHZ-IW8E2A5L0EK2P, EHZ363W5, )
+* EMH Energy Meter
+* EFR SmartGridHub
+* Siemens 2WR5 reader from an heat station
+* Elster AS1440
+* Iskraemeco MT174
+* Itron EM214 Typ 720
+
+Please send me an info on devices where you have used the library successfully and I will add it here.
+
 ## Todo
 * Update Sml support to 1.0.4 (if needed)
 
