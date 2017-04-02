@@ -1,8 +1,13 @@
 {
     "common": {
         "name":                     "smartmeter",
-        "version":                  "0.5.5",
+        "version":                  "0.5.6",
 		"news": {
+            "0.5.6": {
+                "en": "improved baudrate-changeover logic for D0 protocol (now hopefully finally). enhanced D0 protocol support for multiple values",
+                "de": "Behandlung von Baudrate-Änderungen verbessert. D=-Protokoll mit mehreren Werten pro Datenpunkt erweitert.",
+                "ru": "improved baudrate-changeover logic for D0 protocol (now hopefully finally). enhanced D0 protocol support for multiple values"
+            },
             "0.5.2": {
                 "en": "Better handling on Timeouts",
                 "de": "Behandlung von Timeouts verbessert",

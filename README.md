@@ -76,6 +76,9 @@ Please send me an info on devices where you have used the library successfully a
 * Update Sml support to 1.0.4 (if needed)
 
 ## changelog
+### 0.5.6 (02.04.2017)
+* update library
+
 ### 0.5.5 (19.03.2017)
 * improved baudrate-changeover logic for D0 protocol (now hopefully finally)
 * enhanced D0 protocol support for multiple values
