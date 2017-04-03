@@ -1,9 +1,9 @@
 {
     "common": {
         "name":                     "smartmeter",
-        "version":                  "0.5.6",
+        "version":                  "0.5.7",
 		"news": {
-            "0.5.6": {
+            "0.5.7": {
                 "en": "improved baudrate-changeover logic for D0 protocol (now hopefully finally). enhanced D0 protocol support for multiple values",
                 "de": "Behandlung von Baudrate-Änderungen verbessert. D=-Protokoll mit mehreren Werten pro Datenpunkt erweitert.",
                 "ru": "improved baudrate-changeover logic for D0 protocol (now hopefully finally). enhanced D0 protocol support for multiple values"
@@ -99,8 +99,7 @@
         "type":                     "hardware",
         "keywords":                 ["iobroker", "smartmeter", "SML", "D0", "eHz", "OBIS"],
         "loglevel":                 "info",
-        "enabled":                  false,
-        "restartAdapters":          ["smartmeter"]
+        "enabled":                  false
     },
     "native": {
         "protocol":                     "SmlProtocol",
