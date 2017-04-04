@@ -1,8 +1,13 @@
 {
     "common": {
         "name":                     "smartmeter",
-        "version":                  "0.5.7",
+        "version":                  "0.5.8",
 		"news": {
+            "0.5.8": {
+                "en": "improve Serial support for Windows",
+                "de": "Windows-Unterstützung für Serielle Kommunikation verbessert",
+                "ru": "improve Serial support for Windows"
+            },
             "0.5.7": {
                 "en": "improved baudrate-changeover logic for D0 protocol (now hopefully finally). enhanced D0 protocol support for multiple values",
                 "de": "Behandlung von Baudrate-Änderungen verbessert. D=-Protokoll mit mehreren Werten pro Datenpunkt erweitert.",
