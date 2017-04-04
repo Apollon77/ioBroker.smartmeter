@@ -74,6 +74,7 @@ Please send me an info on devices where you have used the library successfully a
 
 ## Todo
 * Update Sml support to 1.0.4 (if needed)
+* docs for webpage
 
 ## changelog
 ### 0.5.6 (02.04.2017)
