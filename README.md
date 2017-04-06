@@ -77,6 +77,9 @@ Please send me an info on devices where you have used the library successfully a
 * docs for webpage
 
 ## changelog
+### 0.5.8 (06.04.2017)
+* optimize Serial handling on Windows (because pause and resume are not supported there)
+
 ### 0.5.6 (02.04.2017)
 * update library
 
