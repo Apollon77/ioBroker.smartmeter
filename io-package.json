@@ -1,8 +1,13 @@
 {
     "common": {
         "name":                     "smartmeter",
-        "version":                  "0.5.8",
+        "version":                  "0.5.9",
 		"news": {
+            "0.5.9": {
+                "en": "improve handling for some devices",
+                "de": "Behandlung fpr einige Geräte verbessert",
+                "ru": "improve handling for some devices"
+            },
             "0.5.8": {
                 "en": "improve Serial support for Windows",
                 "de": "Windows-Unterstützung für Serielle Kommunikation verbessert",
