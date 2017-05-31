@@ -1,9 +1,14 @@
 {
     "common": {
         "name":                     "smartmeter",
-        "version":                  "0.5.9",
+        "version":                  "0.5.10",
 		"news": {
             "0.5.9": {
+                "en": "improve handling for some devices",
+                "de": "Behandlung fpr einige Geräte verbessert",
+                "ru": "improve handling for some devices"
+            },
+            "0.5.10": {
                 "en": "improve handling for some devices",
                 "de": "Behandlung fpr einige Geräte verbessert",
                 "ru": "improve handling for some devices"
