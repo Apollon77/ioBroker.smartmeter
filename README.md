@@ -69,6 +69,7 @@ The adapter tries to determine the Baudrate for the data messages as defined in 
 * Elster AS1440
 * Iskraemeco MT174
 * Itron EM214 Typ 720
+* Dutch smart meter using DSRM protocol (use "Serial Device reading data only" and "D0" as protocol)
 
 Please send me an info on devices where you have used the library successfully and I will add it here.
 
@@ -77,6 +78,9 @@ Please send me an info on devices where you have used the library successfully a
 * docs for webpage
 
 ## changelog
+### 0.5.11 (21.06.2017)
+* optimize D0 handling and add support for Dutch smartmeter using DSRM protocol.
+
 ### 0.5.8 (06.04.2017)
 * optimize Serial handling on Windows (because pause and resume are not supported there)
 

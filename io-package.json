@@ -1,8 +1,13 @@
 {
     "common": {
         "name":                     "smartmeter",
-        "version":                  "0.5.10",
+        "version":                  "0.5.11",
 		"news": {
+            "0.5.11": {
+                "en": "improve handling for some devices, add support for dutch smart meters using DSRM",
+                "de": "Behandlung fpr einige Geräte verbessert, Unterstützung für Niederländische Smart-Meter mit DSRM Protokoll hinzugefügt",
+                "ru": "improve handling for some devices, add support for dutch smart meters using DSRM"
+            },
             "0.5.9": {
                 "en": "improve handling for some devices",
                 "de": "Behandlung fpr einige Geräte verbessert",
