@@ -1,8 +1,13 @@
 {
     "common": {
         "name":                     "smartmeter",
-        "version":                  "0.5.11",
+        "version":                  "0.5.12",
 		"news": {
+            "0.5.12": {
+                "en": "Update SML library",
+                "de": "SML Bibliothek aktualisiert",
+                "ru": "Update SML library"
+            },
             "0.5.11": {
                 "en": "improve handling for some devices, add support for dutch smart meters using DSRM",
                 "de": "Behandlung fpr einige Geräte verbessert, Unterstützung für Niederländische Smart-Meter mit DSRM Protokoll hinzugefügt",

@@ -78,6 +78,9 @@ Please send me an info on devices where you have used the library successfully a
 * docs for webpage
 
 ## changelog
+### 0.5.12 (23.07.2017)
+* update SML library
+
 ### 0.5.11 (21.06.2017)
 * optimize D0 handling and add support for Dutch smartmeter using DSRM protocol.
 
