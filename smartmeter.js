@@ -170,7 +170,12 @@ function main() {
     smTransport.process();
 }
 
-function storeObisData(obisResult) {
+function storeObisData(err, obisResult) {
+    if (err) {
+        adapter.log.error(err.message);
+        adapter.log.debug(err);
+        return true;
+    }
     var updateCount = 0;
     for (var obisId in obisResult) {
         if (!obisResult.hasOwnProperty(obisId)) continue;
@@ -266,6 +271,7 @@ function storeObisData(obisResult) {
         }
     }
     adapter.log.info('Received ' + Object.keys(obisResult).length + ' values, ' + updateCount + ' updated');
+    return true;
 }
 
 function processMessage(message) {
