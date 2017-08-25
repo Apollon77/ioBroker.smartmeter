@@ -4,9 +4,9 @@
         "version":                  "1.0.0",
 		"news": {
             "1.0.0": {
-                "en": "Update smartmeter and node-serialport library, kick support for nodejs 5, 7 and Win32/x86 with nodejs 4.x!",
-                "de": "Smartmeter und node-serialport Bibliotheken aktualisiert, Unterstützung für nodejs 5, 7 und Win32/x86 mit nodejs 4.x entfernt",
-                "ru": "Update smartmeter and node-serialport library, kick support for nodejs 5, 7 and Win32/x86 with nodejs 4.x!"
+                "en": "Update smartmeter library and fix some timing issues",
+                "de": "Smartmeter Bibliothek aktualisiert und Timing-Probleme behoben",
+                "ru": "Update smartmeter library and fix some timing issues"
             },
             "0.5.12": {
                 "en": "Update SML library",

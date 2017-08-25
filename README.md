@@ -78,6 +78,9 @@ Please send me an info on devices where you have used the library successfully a
 * docs for webpage
 
 ## changelog
+### 1.0.0 (25.08.2017)
+* Update smartmeter library and fix some timing issues
+
 ### 0.5.12 (23.07.2017)
 * update SML library
 
