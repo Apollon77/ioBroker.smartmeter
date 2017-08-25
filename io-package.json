@@ -1,8 +1,13 @@
 {
     "common": {
         "name":                     "smartmeter",
-        "version":                  "0.5.12",
+        "version":                  "1.0.0",
 		"news": {
+            "1.0.0": {
+                "en": "Update smartmeter library and fix some timing issues",
+                "de": "Smartmeter Bibliothek aktualisiert und Timing-Probleme behoben",
+                "ru": "Update smartmeter library and fix some timing issues"
+            },
             "0.5.12": {
                 "en": "Update SML library",
                 "de": "SML Bibliothek aktualisiert",
@@ -15,12 +20,12 @@
             },
             "0.5.9": {
                 "en": "improve handling for some devices",
-                "de": "Behandlung fpr einige Geräte verbessert",
+                "de": "Behandlung für einige Geräte verbessert",
                 "ru": "improve handling for some devices"
             },
             "0.5.10": {
                 "en": "improve handling for some devices",
-                "de": "Behandlung fpr einige Geräte verbessert",
+                "de": "Behandlung für einige Geräte verbessert",
                 "ru": "improve handling for some devices"
             },
             "0.5.8": {

@@ -170,7 +170,12 @@ function main() {
     smTransport.process();
 }
 
-function storeObisData(obisResult) {
+function storeObisData(err, obisResult) {
+    if (err) {
+        adapter.log.error(err.message);
+        adapter.log.debug(err);
+        return;
+    }
     var updateCount = 0;
     for (var obisId in obisResult) {
         if (!obisResult.hasOwnProperty(obisId)) continue;
