@@ -7,7 +7,12 @@
   "homepage": "",
   "license": "MIT",
   "keywords": [
-    "iobroker", "smartmeter", "SML", "D0", "eHz", "OBIS"
+    "iobroker",
+    "smartmeter",
+    "SML",
+    "D0",
+    "eHz",
+    "OBIS"
   ],
   "repository": {
     "type": "git",
@@ -17,9 +22,9 @@
     "smartmeter-obis": "^1.0.0"
   },
   "devDependencies": {
-    "mocha": "^3.2.0",
-    "chai": "^3.4.1"
-},
+    "mocha": "^3.5.3",
+    "chai": "^4.1.2"
+  },
   "bugs": {
     "url": "https://github.com/Apollon77/ioBroker.smartmeter/issues"
   },
