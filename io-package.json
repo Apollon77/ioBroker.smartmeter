@@ -1,7 +1,7 @@
 {
     "common": {
         "name":                     "smartmeter",
-        "version":                  "1.0.0",
+        "version":                  "1.1.0",
 		"news": {
             "1.0.0": {
                 "en": "Update smartmeter library and fix some timing issues",
@@ -114,6 +114,9 @@
                 "ru": "Initial public test version"
             }
         },
+        "authors": [
+            "Apollon77 <ingo@fischer-ka.de>"
+        ],
         "title":                    "Smartmeter Adapter",
         "desc":                     "Read data from Smartmeter Devices using various protocols like SML and D0",
         "platform":                 "Javascript/Node.js",
