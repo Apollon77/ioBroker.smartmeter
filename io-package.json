@@ -3,6 +3,11 @@
         "name": "smartmeter",
         "version": "1.1.0",
         "news": {
+            "1.1.0": {
+                "en": "Allow multiple queries for D0 and Serial-Bidirectional communication",
+                "de": "Mehrere ABfragen für D0 und Serielle bidirektionale Kommunikation unterstützt.",
+                "ru": "Allow multiple queries for D0 and Serial-Bidirectional communication"
+            },
             "1.0.0": {
                 "en": "Update smartmeter library and fix some timing issues",
                 "de": "Smartmeter Bibliothek aktualisiert und Timing-Probleme behoben",
@@ -161,7 +166,8 @@
         "protocolD0BaudrateChangeoverOverwrite": "",
         "protocolSmlIgnoreInvalidCRC": false,
         "obisFallbackMedium": "",
-        "obisNameLanguage": "de"
+        "obisNameLanguage": "de",
+        "anotherQueryDelay": 1000
     },
     "objects": [],
     "instanceObjects": []

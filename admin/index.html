@@ -85,6 +85,9 @@
         "field_protocolD0BaudrateChangeoverOverwrite":   {"en": "D0: Baudrate Changeover Overwrite", "de": "D0: Überschreiben der Baudrate-Änderung"},
         "info_protocolD0BaudrateChangeoverOverwrite":   {"en": "Empty if Baudrate from Device is used", "de": "Leer wenn die Baudrate vom Device verwendet werden soll"},
 
+        "field_anotherQueryDelay":   {"en": "Delay between multiple SignOn-Messages", "de": "Verzögerung zwischen zwei SignOn-Nachrichten"},
+        "info_anotherQueryDelay":   {"en": "A delay is needed because Adapter will send a new mesaage and device needs to reset first,<br>Default if empty: 1000", "de": "EIne Verzögerung ist nötig, da sich das Gerät resetten muss,<br>Standardwert wenn leer ist 1000"},
+
         "field_protocolSmlIgnoreInvalidCRC":   {"en": "SML: Ignore CRC checksum error", "de": "SML: CRC-prüfsummenfehler ignorieren"},
         "info_protocolSmlIgnoreInvalidCRC":   {"en": " ", "de": " "},
 
@@ -458,6 +461,18 @@
                     <span class="tooltiptext translate">info_protocolD0BaudrateChangeoverOverwrite</span>
                 </div>
                 <input id="protocolD0BaudrateChangeoverOverwrite" type="text" class="value number"/> baud
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr class="D0Protocol">
+            <td class="translate">field_anotherQueryDelay</td>
+            <td>
+                <div class="tooltip">
+                    <img width="15" height="15" src="./questionmark.png">
+                    <span class="tooltiptext translate">info_anotherQueryDelay</span>
+                </div>
+                <input id="anotherQueryDelay" type="text" class="value number"/> ms
             </td>
             <td>
             </td>
