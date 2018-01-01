@@ -22,7 +22,7 @@
     "smartmeter-obis": "^1.1.0-alpha4"
   },
   "devDependencies": {
-    "mocha": "^3.5.3",
+    "mocha": "^4.1.0",
     "chai": "^4.1.2"
   },
   "bugs": {
