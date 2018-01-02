@@ -30,6 +30,6 @@
   },
   "main": "smartmeter.js",
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha"
+    "test": "node node_modules/mocha/bin/mocha --exit"
   }
 }
