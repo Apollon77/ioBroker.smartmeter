@@ -16,7 +16,7 @@ var smTransport;
 
 var smValues = {};
 
-var adapter = utils.adapter('smartmeter');
+var adapter = utils.Adapter('smartmeter');
 
 adapter.on('ready', function (obj) {
     main();
