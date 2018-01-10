@@ -39,7 +39,9 @@ process.on('SIGINT', function () {
 });
 
 process.on('uncaughtException', function (err) {
-    adapter.log.warn('Exception: ' + err);
+    if (adapter && adapter.log) {
+        adapter.log.warn('Exception: ' + err);
+    }
     if (smTransport) smTransport.stop();
 });
 
