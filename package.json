@@ -23,13 +23,21 @@
   },
   "devDependencies": {
     "mocha": "^4.1.0",
-    "chai": "^4.1.2"
+    "chai": "^4.1.2",
+    "nyc": "*"
   },
   "bugs": {
     "url": "https://github.com/Apollon77/ioBroker.smartmeter/issues"
   },
   "main": "smartmeter.js",
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha --exit"
+    "test": "nyc --reporter=lcov node_modules/mocha/bin/mocha --exit"
+  },
+  "nyc": {
+    "exclude": ["!**/node_modules/"],
+    "include": [
+        "**/tmp/node_modules/iobroker.smartmeter/*.js"
+    ],
+    "produce-source-map": true
   }
 }

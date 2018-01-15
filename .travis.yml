@@ -9,6 +9,15 @@ node_js:
 before_install:
   - 'if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export CC=clang++; export CXX=clang++; export CXXFLAGS=-std=c++11; fi'
   - 'if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX=g++-4.8; fi'
+before_script:
+  - 'if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter; fi'
+  - 'if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then chmod +x ./cc-test-reporter; fi'
+  - npm install winston@2.3.1
+  - 'npm install https://github.com/ioBroker/ioBroker.js-controller/tarball/master --production'
+  - 'if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./cc-test-reporter before-build; fi'
+after_success:
+  - sed -i "s|tmp/node_modules/iobroker.smartmeter/||" ./coverage/lcov.info
+  - 'if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT -r abc26545a45ed8f13ebf886fa752de676d077494c6c9d4e469c6399ae136158b; fi'
 addons:
   apt:
     sources:
