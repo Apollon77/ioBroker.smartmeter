@@ -69,6 +69,7 @@ function main() {
     }
     smOptions.transport = adapter.config.transport;
     smOptions.requestInterval = adapter.config.requestInterval = adapter.config.requestInterval || 300;
+    if (adapter.config.anotherQueryDelay) smOptions.anotherQueryDelay = adapter.config.anotherQueryDelay;
     if (adapter.config.transport.indexOf('Serial') === 0) { // we have a Serial connection
         if (!adapter.config.transportSerialPort) {
             throw Error('Serial port device is undefined, check your configuration!');
@@ -147,7 +148,7 @@ function main() {
         }
         if (adapter.config.protocolD0DeviceAddress) smOptions.protocolD0DeviceAddress = adapter.config.protocolD0DeviceAddress;
         if (adapter.config.protocolD0SignOnMessage) smOptions.protocolD0SignOnMessage = adapter.config.protocolD0SignOnMessage;
-        if (adapter.config.protocolD0ModeOverwrite) smOptions.protocolD0ModeOverwrite = adapter.config.protocolD0ModeOverwrite;
+        if (adapter.config.protocolD0SignOnMessage) smOptions.protocolD0SignOnMessage = adapter.config.protocolD0SignOnMessage;
         if (adapter.config.protocolD0BaudrateChangeoverOverwrite !== null && adapter.config.protocolD0BaudrateChangeoverOverwrite !== undefined  && adapter.config.protocolD0BaudrateChangeoverOverwrite !== "") {
             adapter.config.protocolD0BaudrateChangeoverOverwrite = parseInt(adapter.config.protocolD0BaudrateChangeoverOverwrite, 10);
 
