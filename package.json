@@ -19,7 +19,7 @@
     "url": "https://github.com/Apollon77/ioBroker.smartmeter"
   },
   "dependencies": {
-    "smartmeter-obis": "^1.1.0-alpha9"
+    "smartmeter-obis": "^1.1.0-alpha11"
   },
   "devDependencies": {
     "mocha": "^4.1.0",
