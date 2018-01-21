@@ -177,7 +177,7 @@ function main() {
 
 function storeObisData(err, obisResult) {
     if (err) {
-        adapter.log.error(err.message);
+        adapter.log.warn(err.message);
         adapter.log.debug(err);
         return;
     }
