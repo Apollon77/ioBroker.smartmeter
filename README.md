@@ -79,11 +79,10 @@ Please send me an info on devices where you have used the library successfully a
 * stay updated with node-serialport 6.x, but still unstable at the moment because on some Linux not working :-()
 
 ## changelog
-### 1.1.0 (xx.01.2018)
+### 1.1.0 (31.01.2018)
 * Allow multiple queries for D0 and Serial-Bidirectional communication
 * a lot of bugfixing and Optimizations
 * Switch to Serialport 6.0.4 to hopefully get more stable (less/no SIGSEGV/SIGABRT ...)
-
 
 ### 1.0.0 (25.08.2017)
 * Update smartmeter library and fix some timing issues

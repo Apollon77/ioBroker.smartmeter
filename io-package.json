@@ -4,9 +4,9 @@
         "version": "1.1.0",
         "news": {
             "1.1.0": {
-                "en": "Allow multiple queries for D0 and Serial-Bidirectional communication",
-                "de": "Mehrere ABfragen für D0 und Serielle bidirektionale Kommunikation unterstützt.",
-                "ru": "Allow multiple queries for D0 and Serial-Bidirectional communication"
+                "en": "Allow multiple queries for D0 and Serial-Bidirectional communication and much more",
+                "de": "Mehrere ABfragen für D0 und Serielle bidirektionale Kommunikation unterstützt und vieles mehr.",
+                "ru": "Allow multiple queries for D0 and Serial-Bidirectional communication and much more"
             },
             "1.0.0": {
                 "en": "Update smartmeter library and fix some timing issues",
