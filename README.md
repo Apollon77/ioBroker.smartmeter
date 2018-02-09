@@ -1,6 +1,8 @@
 ![Logo](admin/smartmeter.png)
 # ioBroker.smartmeter
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Apollon77/ioBroker.smartmeter.svg)](https://greenkeeper.io/)
+
 [![NPM version](http://img.shields.io/npm/v/iobroker.smartmeter.svg)](https://www.npmjs.com/package/iobroker.smartmeter)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.smartmeter.svg)](https://www.npmjs.com/package/iobroker.smartmeter)
 [![Dependency Status](https://gemnasium.com/badges/github.com/Apollon77/ioBroker.smartmeter.svg)](https://gemnasium.com/github.com/Apollon77/ioBroker.smartmeter)
