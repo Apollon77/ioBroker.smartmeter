@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "smartmeter",
-        "version": "1.1.0",
+        "version": "1.1.1",
         "news": {
             "1.1.0": {
                 "en": "Allow multiple queries for D0 and Serial-Bidirectional communication and much more",
