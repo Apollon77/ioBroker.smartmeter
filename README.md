@@ -78,9 +78,12 @@ Please send me an info on devices where you have used the library successfully a
 ## Todo
 * Update Sml support to 1.0.4 (if needed)
 * docs for webpage
-* stay updated with node-serialport 6.x, but still unstable at the moment because on some Linux not working :-()
 
 ## changelog
+
+### 1.1.2 (26.03.2018)
+* Add better support for devices with more then 16 values (OpenSML Library upgrade)
+
 ### 1.1.0 (31.01.2018)
 * Allow multiple queries for D0 and Serial-Bidirectional communication
 * a lot of bugfixing and Optimizations
