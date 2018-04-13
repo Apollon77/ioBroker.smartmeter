@@ -79,7 +79,7 @@ Please send me an info on devices where you have used the library successfully a
 * Update Sml support to 1.0.4 (if needed)
 * docs for webpage
 
-## changelog
+## Changelog
 
 ### 1.1.2 (26.03.2018)
 * Add better support for devices with more then 16 values (OpenSML Library upgrade)
@@ -150,7 +150,7 @@ Please send me an info on devices where you have used the library successfully a
 
 The MIT License (MIT)
 
-Copyright (c) 2015-2017 Apollon77 <ingo@fischer-ka.de>
+Copyright (c) 2015-2018 Apollon77 <ingo@fischer-ka.de>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
