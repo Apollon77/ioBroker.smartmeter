@@ -1,8 +1,19 @@
 {
     "common": {
         "name": "smartmeter",
-        "version": "1.1.3",
+        "version": "1.2.0",
         "news": {
+            "1.2.0": {
+                "en": "BREAKING CHANGE: State names changed because * no longer supported",
+                "de": "BREAKING CHANGE: Statusnamen wurden geändert, weil * nicht mehr unterstützt wird",
+                "ru": "BREAKING CHANGE: названия состояний изменены, потому что * больше не поддерживается",
+                "pt": "BREAKING CHANGE: nomes de estados alterados porque * não é mais suportado",
+                "nl": "BREAKING CHANGE: namen van namen zijn gewijzigd omdat * niet langer wordt ondersteund",
+                "fr": "RUPTURE DE CHANGEMENT: Les noms d'état ont changé car * n'est plus supporté",
+                "it": "BREAKING CHANGE: i nomi degli stati sono cambiati perché * non è più supportato",
+                "es": "BREAKING CHANGE: los nombres de los estados cambiaron porque * ya no es compatible",
+                "pl": "ZMIANA ZMIAN: Nazwy stanów zostały zmienione, ponieważ * nie jest już obsługiwany"
+            },
             "1.1.3": {
                 "en": "Fix Admin",
                 "de": "Fixe Admin",
