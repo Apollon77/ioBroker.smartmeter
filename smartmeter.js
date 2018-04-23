@@ -197,6 +197,10 @@ function storeObisData(err, obisResult) {
                     name: ioChannelName
                 },
                 native: {}
+            }, function(err, obj) {
+                if (err) {
+                    adapter.log.error('Error creating Channel: ' + err);
+                }
             });
 
             if (obisResult[obisId].getRawValue() !== undefined) {
@@ -212,6 +216,10 @@ function storeObisData(err, obisResult) {
                     },
                     native: {
                         id: ioChannelId + '.rawvalue'
+                    }
+                }, function(err, obj) {
+                    if (err) {
+                        adapter.log.error('Error creating State: ' + err);
                     }
                 });
             }
@@ -230,6 +238,10 @@ function storeObisData(err, obisResult) {
                 native: {
                     id: ioChannelId + '.value'
                 }
+            }, function(err, obj) {
+                if (err) {
+                    adapter.log.error('Error creating State: ' + err);
+                }
             });
 
             if (obisResult[obisId].getValueLength() > 1) {
@@ -247,6 +259,10 @@ function storeObisData(err, obisResult) {
                         },
                         native: {
                             id: ioChannelId + '.value' + (i + 1)
+                        }
+                    }, function(err, obj) {
+                        if (err) {
+                            adapter.log.error('Error creating State: ' + err);
                         }
                     });
                 }
