@@ -187,7 +187,7 @@ function storeObisData(err, obisResult) {
 
         adapter.log.debug(obisResult[obisId].idToString() + ': ' + SmartmeterObis.ObisNames.resolveObisName(obisResult[obisId], adapter.config.obisNameLanguage).obisName + ' = ' + obisResult[obisId].valueToString());
         var i;
-        var ioChannelId = obisResult[obisId].idToString().replace(/[.*]/g, "_");
+        var ioChannelId = obisResult[obisId].idToString().replace(/[\]\[*,;'"`<>\\?.]/g, '_');
         if (!smValues[obisId]) {
             var ioChannelName = SmartmeterObis.ObisNames.resolveObisName(obisResult[obisId], adapter.config.obisNameLanguage).obisName;
             adapter.log.debug('Create Channel ' + ioChannelId + ' with name ' + ioChannelName);

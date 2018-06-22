@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "smartmeter",
-        "version": "1.2.0",
+        "version": "1.2.1",
         "news": {
-            "1.2.0": {
+            "1.2.1": {
                 "en": "BREAKING CHANGE: State names changed because * no longer supported",
                 "de": "BREAKING CHANGE: Statusnamen wurden geändert, weil * nicht mehr unterstützt wird",
                 "ru": "BREAKING CHANGE: названия состояний изменены, потому что * больше не поддерживается",
