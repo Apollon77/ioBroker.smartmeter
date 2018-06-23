@@ -81,6 +81,9 @@ Please send me an info on devices where you have used the library successfully a
 
 ## Changelog
 
+### 1.2.1 (2018-06-23)
+* BREAKING CHANGE: State names changed because * no longer supported. Is replaced by _
+
 ### 1.1.3 (2018-04-13)
 * Fix Admin
 
