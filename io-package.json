@@ -4,15 +4,15 @@
         "version": "1.2.2",
         "news": {
             "1.2.2": {
-                "en": "Update smartmeter library",
-                "de": "Aktualisieren Sie die Smartmeter-Bibliothek",
-                "ru": "Обновление библиотеки smartmeter",
-                "pt": "Atualizar biblioteca de medidores inteligentes",
-                "nl": "Update smartmeter-bibliotheek",
-                "fr": "Mettre à jour la bibliothèque du smartmeter",
-                "it": "Aggiorna la libreria di smartmeter",
-                "es": "Actualizar la librería de smartmeter",
-                "pl": "Zaktualizuj bibliotekę Smartmeter"
+                "en": "Update smartmeter library, fix HTTP-JSON-Transport",
+                "de": "Smartmeter-Bibliothek aktualisieren, HTTP-JSON-Transport korrigieren",
+                "ru": "Обновите библиотеку smartmeter, исправьте HTTP-JSON-Transport",
+                "pt": "Atualize a biblioteca smartmeter, corrija HTTP-JSON-Transport",
+                "nl": "Update smartmeter-bibliotheek, herstel HTTP-JSON-transport",
+                "fr": "Mettre à jour la bibliothèque smartmeter, réparer HTTP-JSON-Transport",
+                "it": "Aggiorna la libreria di smartmeter, correggi il trasporto HTTP-JSON",
+                "es": "Actualizar la biblioteca de smartmeter, arreglar HTTP-JSON-Transport",
+                "pl": "Zaktualizuj bibliotekę Smartmeter, napraw HTTP-JSON-Transport"
             },
             "1.2.1": {
                 "en": "BREAKING CHANGE: State names changed because * no longer supported",

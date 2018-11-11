@@ -118,7 +118,7 @@ function main() {
 
         //adapter.config.transportSerialMaxBufferSize
     }
-    else if (adapter.config.transport === 'HttpRequestTransfer') { // we have a Serial connection
+    else if (adapter.config.transport === 'HttpRequestTransport') { // we have a Serial connection
         if (!adapter.config.transportHttpRequestUrl) {
             throw Error('HTTP Request URL is undefined, check your configuration!');
         }
