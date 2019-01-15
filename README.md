@@ -69,6 +69,7 @@ The adapter tries to determine the Baudrate for the data messages as defined in 
 * Siemens 2WR5 reader from an heat station
 * Elster AS1440
 * Iskraemeco MT174
+* Iskraemeco MT175
 * Itron EM214 Typ 720
 * Dutch smart meter using DSRM protocol (use "Serial Device reading data only" and "D0" as protocol)
 
