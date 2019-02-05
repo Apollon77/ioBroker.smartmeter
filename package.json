@@ -24,7 +24,7 @@
   "devDependencies": {
     "mocha": "^5.0.0",
     "chai": "^4.1.2",
-    "nyc": "11.9.0"
+    "nyc": "13.2.0"
   },
   "bugs": {
     "url": "https://github.com/Apollon77/ioBroker.smartmeter/issues"
