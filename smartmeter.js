@@ -11,7 +11,7 @@
  *
  */
 var path = require('path');
-var utils = require(path.join(__dirname,'lib','utils')); // Get common adapter utils
+var utils = require('@iobroker/adapter-core'); // Get common adapter utils
 var SmartmeterObis = require('smartmeter-obis');
 var smTransport;
 
