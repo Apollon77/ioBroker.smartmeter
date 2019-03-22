@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "smartmeter",
-        "version": "1.2.2",
+        "version": "2.0.0",
         "news": {
+            "2.0.0": {
+                "en": "BREAKING CHANGE: State names with * in changed again because of collisions",
+                "de": "BREAKING CHANGE: Zustandsnamen mit * in wurden aufgrund von Kollisionen erneut geändert",
+                "ru": "BREAKING CHANGE: имена состояний с * in снова изменены из-за коллизий",
+                "pt": "BREAKING CHANGE: nomes de estados com * alterados novamente devido a colisões",
+                "nl": "BREAKING CHANGE: Staatsnamen met * worden opnieuw gewijzigd vanwege botsingen",
+                "fr": "BREAKING CHANGE: les noms d'état avec * sont modifiés à nouveau à cause de collisions",
+                "it": "MODIFICA DELLA ROTTURA: i nomi di stato con * sono cambiati di nuovo a causa di collisioni",
+                "es": "ROTO DEL CAMBIO: los nombres de los estados con * cambian nuevamente debido a colisiones",
+                "pl": "BREAKING CHANGE: Nazwy stanów z * in zmieniły się ponownie z powodu kolizji",
+                "zh-cn": "BREAKING CHANGE：由于碰撞，* in的状态名称再次更改"
+            },
             "1.2.2": {
                 "en": "Update smartmeter library, fix HTTP-JSON-Transport",
                 "de": "Smartmeter-Bibliothek aktualisieren, HTTP-JSON-Transport korrigieren",

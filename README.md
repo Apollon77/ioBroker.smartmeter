@@ -81,6 +81,12 @@ Please send me an info on devices where you have used the library successfully a
 
 ## Changelog
 
+### 2.0.0 (2019-03-22)
+* BREAKING CHANGE: State names changed because * no longer supported. Is replaced by __ now because of possible collisions in state names with only one _
+
+### 1.2.2 (2018-11-11)
+* Update smartmeter library, fix HTTP-JSON-Transport
+
 ### 1.2.1 (2018-06-23)
 * BREAKING CHANGE: State names changed because * no longer supported. Is replaced by _
 
