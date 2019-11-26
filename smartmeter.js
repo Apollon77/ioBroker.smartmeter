@@ -20,12 +20,6 @@ const SmartmeterObis = require('smartmeter-obis');
 let smTransport;
 let serialport;
 
-try {
-    serialport = require('serialport');
-} catch (err) {
-    console.warn('Cannot load serialport module');
-}
-
 const smValues = {};
 
 let adapter;
@@ -38,6 +32,19 @@ function startAdapter(options) {
     adapter = new utils.Adapter(options);
 
     adapter.on('ready', () => {
+        try {
+            serialport = require('serialport');
+        } catch (err) {
+            adapter.log.error('Cannot load serialport module. Please use "npm rebuild". Stop adapter.');
+            adapter.extendForeignObject('system.adapter.' + adapter.namespace, {
+                common: {
+                    enabled: false
+                }
+            });
+            adapter.stop();
+            return;
+        }
+
         Sentry.init({
             release: packageJson.name + '@' + packageJson.version,
             dsn: 'https://e01aa5e8f38449a880cd61715e1222e1@sentry.io/1834914',
