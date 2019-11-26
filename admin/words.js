@@ -90,4 +90,28 @@ systemDictionary = {
     "value_obisNameLanguage_de":   {"en": "German", "de": "Deutsch"},
     "value_obisNameLanguage_en":   {"en": "English", "de": "Englisch"},
     "info_obisNameLanguage":   {"en": " ", "de": " "},
+    "Not available": {
+        "en": "Not available",
+        "de": "Nicht verfügbar",
+        "ru": "Недоступен",
+        "pt": "Não disponível",
+        "nl": "Niet beschikbaar",
+        "fr": "Indisponible",
+        "it": "Non disponibile",
+        "es": "No disponible",
+        "pl": "Niedostępne"
+    },
+    "Not existing:": {
+        "en": "Not existing:",
+        "de": "Nicht existierend:",
+        "ru": "Не существует:",
+        "pt": "Não existe:",
+        "nl": "Niet bestaand:",
+        "fr": "N'existe pas:",
+        "it": "Inesistente:",
+        "es": "Inexistente:",
+        "pl": "Nie istniejący:",
+        "zh-cn": "不存在："
+    }
+
 };

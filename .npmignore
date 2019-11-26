@@ -12,3 +12,10 @@ appveyor.yml
 .eslinkignore
 .eslintrc
 .vscode
+package-lock.json
+.github
+.gitignore
+.vscode/ftp-sync.json
+.vscode/launch.json
+.remote-sync.json
+node_modules

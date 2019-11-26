@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "smartmeter",
-        "version": "2.0.0",
+        "version": "3.0.0",
         "news": {
             "2.0.0": {
                 "en": "BREAKING CHANGE: State names with * in changed again because of collisions",
@@ -194,7 +194,8 @@
             "OBIS"
         ],
         "loglevel": "info",
-        "enabled": false
+        "enabled": false,
+        "compact": true
     },
     "native": {
         "protocol": "SmlProtocol",

@@ -81,6 +81,9 @@ Please send me an info on devices where you have used the library successfully a
 
 ## Changelog
 
+### 3.0.0 (2019-11-2x)
+* BREAKING CHANGE: Supports nodejs 8.x+ only
+
 ### 2.0.0 (2019-03-22)
 * BREAKING CHANGE: State names changed because * no longer supported. Is replaced by __ now because of possible collisions in state names with only one _
 

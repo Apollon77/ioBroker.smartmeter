@@ -49,6 +49,61 @@
         }
     }
 
+    var timeout;
+    var counter  = 0;
+
+    function getComPorts(actualValue) {
+        counter++;
+        if (counter > 20) return;
+
+        timeout = setTimeout(function () {
+            getComPorts(actualValue);
+        }, 2000);
+
+        sendTo(null, 'listUart', null, function (list) {
+            if (timeout) {
+                clearTimeout(timeout);
+                timeout = null;
+            }
+            if (!list || !list.length) {
+                setTimeout(function () {
+                    getComPorts(actualValue);
+                }, 1000);
+                return;
+            }
+            var $port = $('#transportSerialPort');
+            var text = '<option value="">' + _('Select port') + '</option>';
+            var selectedMinimalOnce = false;
+            for (var j = 0; j < list.length; j++) {
+                if (list[j].path === 'Not available') {
+                    text += '<option value="" selected>' + _('Not available') + '</option>';
+                    $port.prop('disabled', true);
+                    break;
+                } else {
+                    var pathName = '';
+                    var pathDisplayName = '';
+                    var isSelected = false;
+                    if (list[j].realPath) {
+                        pathName = list[j].realPath;
+                        pathDisplayName = list[j].realPath + ' (' + list[j].path + ')';
+                        isSelected = (actualValue === list[j].realPath || actualValue === list[j].path);
+                    }
+                    else {
+                        pathName = list[j].path;
+                        pathDisplayName = list[j].path;
+                        isSelected = (actualValue === list[j].path);
+                    }
+                    selectedMinimalOnce = selectedMinimalOnce || isSelected;
+                    text += '<option value="' + pathName + '" ' + (isSelected ? 'selected' : '') + '>' + pathDisplayName + '</option>';
+                }
+                if (!selectedMinimalOnce && actualValue) {
+                    text += '<option value="' + actualValue + '" selected>' + actualValue + ' (' + _('Not existing:') + ')' + '</option>';
+                }
+            }
+            $port.html(text);
+        });
+    }
+
     function load(settings, onChange) {
         // works only with newest admin adapter
         if (typeof systemConfig !== 'undefined') {
@@ -58,6 +113,15 @@
        for (var key in settings) {
             setValue(key, settings[key], onChange);
         }
+
+        getIsAdapterAlive(function (isAlive) {
+            if (isAlive || common.enabled) {
+                getComPorts(settings.serialPort);
+            } else {
+                $('#transportSerialPort').replaceWith($('<input type="text" id="transportSerialPort" class="value" value="' + settings.serialPort + '"/>'));
+            }
+        });
+
 
         $('#protocol').change(function () {
             if ($(this).val() === 'D0Protocol') {
@@ -192,7 +256,7 @@
         <tr><td colspan="3"><h4 class="translate">heading_TransportSpecificSettings</h4></td></tr>
         <tr class="SerialTransports">
             <td class="translate">field_transportSerialPort</td>
-            <td><input id="transportSerialPort" type="text" class="value"/></td>
+            <td><select class="value" id="transportSerialPort"></select></td><td></td>
             <td class="translate">info_transportSerialPort</td>
         </tr>
         <tr class="SerialTransports">

@@ -10,36 +10,97 @@
  * Adapter reading smartmeter data and pushing the values into ioBroker
  *
  */
-var path = require('path');
-var utils = require('@iobroker/adapter-core'); // Get common adapter utils
-var SmartmeterObis = require('smartmeter-obis');
-var smTransport;
+const Sentry = require('@sentry/node');
+const SentryIntegrations = require('@sentry/integrations');
+const packageJson = require('./package.json');
 
-var smValues = {};
+const fs = require('fs');
+const utils = require('@iobroker/adapter-core'); // Get common adapter utils
+const SmartmeterObis = require('smartmeter-obis');
+let smTransport;
+let serialport;
 
-var adapter = utils.Adapter('smartmeter');
+try {
+    serialport = require('serialport');
+} catch (err) {
+    console.warn('Cannot load serialport module');
+}
 
-adapter.on('ready', function (obj) {
-    main();
-});
+const smValues = {};
 
-adapter.on('message', function (msg) {
-    processMessage(msg);
-});
+let adapter;
 
-adapter.on('stateChange', function (id, state) {
-    adapter.log.debug('stateChange ' + id + ' ' + JSON.stringify(state));
-});
+function startAdapter(options) {
+    options = options || {};
+    Object.assign(options, {
+        name: 'smartmeter'
+    });
+    adapter = new utils.Adapter(options);
 
-adapter.on('unload', function (callback) {
+    adapter.on('ready', () => {
+        Sentry.init({
+            release: packageJson.name + '@' + packageJson.version,
+            dsn: 'https://e01aa5e8f38449a880cd61715e1222e1@sentry.io/1834914',
+            integrations: [
+                new SentryIntegrations.Dedupe()
+            ]
+        });
+        Sentry.configureScope(scope => {
+            scope.setTag('version', adapter.common.installedVersion || adapter.common.version);
+            if (adapter.common.installedFrom) {
+                scope.setTag('installedFrom', adapter.common.installedFrom);
+            }
+            else {
+                scope.setTag('installedFrom', adapter.common.installedVersion || adapter.common.version);
+            }
+        });
+
+        adapter.getForeignObject('system.config', (err, obj) => {
+            if (obj && obj.common && obj.common.diag) {
+                adapter.getForeignObject('system.meta.uuid', (err, obj) => {
+                    // create uuid
+                    if (!err  && obj) {
+                        Sentry.configureScope(scope => {
+                            scope.setUser({
+                                id: obj.native.uuid
+                            });
+                        });
+                    }
+                    main();
+                });
+            }
+            else {
+                main();
+            }
+        });
+    });
+
+    adapter.on('message', msg => {
+        processMessage(msg);
+    });
+
+    /*
+    adapter.on('stateChange', (id, state) => {
+        adapter.log.debug('stateChange ' + id + ' ' + JSON.stringify(state));
+    });
+    */
+
+    adapter.on('unload', callback => {
+        if (smTransport) {
+            smTransport.stop(callback);
+        } else {
+            callback();
+        }
+    });
+
+    return adapter;
+}
+
+process.on('SIGINT', () => {
     if (smTransport) smTransport.stop();
 });
 
-process.on('SIGINT', function () {
-    if (smTransport) smTransport.stop();
-});
-
-process.on('uncaughtException', function (err) {
+process.on('uncaughtException', err => {
     if (adapter && adapter.log) {
         adapter.log.warn('Exception: ' + err);
     }
@@ -47,7 +108,7 @@ process.on('uncaughtException', function (err) {
 });
 
 function main() {
-    var smOptions = {};
+    const smOptions = {};
     if (adapter.common.loglevel === 'debug') {
         smOptions.debug = 2;
         smOptions.logger = adapter.log.debug;
@@ -181,16 +242,16 @@ function storeObisData(err, obisResult) {
         adapter.log.debug(err);
         return;
     }
-    var updateCount = 0;
-    for (var obisId in obisResult) {
+    let updateCount = 0;
+    for (const obisId in obisResult) {
         if (!obisResult.hasOwnProperty(obisId)) continue;
 
         adapter.log.debug(obisResult[obisId].idToString() + ': ' + SmartmeterObis.ObisNames.resolveObisName(obisResult[obisId], adapter.config.obisNameLanguage).obisName + ' = ' + obisResult[obisId].valueToString());
-        var i;
-        var ioChannelId = obisResult[obisId].idToString().replace(/[\]\[*,;'"`<>\\?]/g, '__');
+        let i;
+        let ioChannelId = obisResult[obisId].idToString().replace(/[\]\[*,;'"`<>\\?]/g, '__');
         ioChannelId = ioChannelId.replace(/\./g, '_');
         if (!smValues[obisId]) {
-            var ioChannelName = SmartmeterObis.ObisNames.resolveObisName(obisResult[obisId], adapter.config.obisNameLanguage).obisName;
+            let ioChannelName = SmartmeterObis.ObisNames.resolveObisName(obisResult[obisId], adapter.config.obisNameLanguage).obisName;
             adapter.log.debug('Create Channel ' + ioChannelId + ' with name ' + ioChannelName);
             adapter.setObjectNotExists(ioChannelId, {
                 type: 'channel',
@@ -198,7 +259,7 @@ function storeObisData(err, obisResult) {
                     name: ioChannelName
                 },
                 native: {}
-            }, function(err, obj) {
+            }, err => {
                 if (err) {
                     adapter.log.error('Error creating Channel: ' + err);
                 }
@@ -218,7 +279,7 @@ function storeObisData(err, obisResult) {
                     native: {
                         id: ioChannelId + '.rawvalue'
                     }
-                }, function(err, obj) {
+                }, err => {
                     if (err) {
                         adapter.log.error('Error creating State: ' + err);
                     }
@@ -239,7 +300,7 @@ function storeObisData(err, obisResult) {
                 native: {
                     id: ioChannelId + '.value'
                 }
-            }, function(err, obj) {
+            }, err => {
                 if (err) {
                     adapter.log.error('Error creating State: ' + err);
                 }
@@ -261,7 +322,7 @@ function storeObisData(err, obisResult) {
                         native: {
                             id: ioChannelId + '.value' + (i + 1)
                         }
-                    }, function(err, obj) {
+                    }, err => {
                         if (err) {
                             adapter.log.error('Error creating State: ' + err);
                         }
@@ -295,8 +356,49 @@ function storeObisData(err, obisResult) {
     adapter.log.info('Received ' + Object.keys(obisResult).length + ' values, ' + updateCount + ' updated');
 }
 
-function processMessage(message) {
-    if (!message) return;
+function processMessage(obj) {
+    if (!obj) return;
 
-    adapter.log.info('(Unhandled) Message received = ' + JSON.stringify(message));
+    adapter.log.info('(Unhandled) Message received = ' + JSON.stringify(obj));
+
+    switch (obj.command) {
+        case 'listUart':
+            if (obj.callback) {
+                if (serialport) {
+                    // read all found serial ports
+                    serialport.list((err, ports) => {
+                        adapter.log.info('List of port: ' + JSON.stringify(ports));
+                        if (process.platform !== 'win32') {
+                            ports.forEach(port => {
+                                if (port.pnpId) {
+                                    try {
+                                        const pathById = '/dev/serial/by-id/' + port.pnpId;
+                                        if (fs.existsSync(pathById)) {
+                                            port.realPath = port.path;
+                                            port.path = pathById;
+                                        }
+                                    } catch (err) {
+                                        adapter.log.debug('pnpId ' + port.pnpId + ' not existing: ' + err);
+                                    }
+                                    return port;
+                                }
+                            });
+                        }
+                        adapter.sendTo(obj.from, obj.command, ports, obj.callback);
+                    });
+                } else {
+                    adapter.log.warn('Module serialport is not available');
+                    adapter.sendTo(obj.from, obj.command, [{path: 'Not available'}], obj.callback);
+                }
+            }
+            break;
+    }
+}
+
+// If started as allInOne/compact mode => return function to create instance
+if (module && module.parent) {
+    module.exports = startAdapter;
+} else {
+    // or start the instance directly
+    startAdapter();
 }
