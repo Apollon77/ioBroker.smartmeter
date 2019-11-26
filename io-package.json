@@ -30,8 +30,31 @@
         "authors": [
             "Apollon77 <ingo@fischer-ka.de>"
         ],
-        "title": "Smartmeter Adapter",
-        "desc": "Read data from Smartmeter Devices using various protocols like SML and D0",
+        "title": "Smartmeter devices support",
+        "titleLang": {
+            "en": "Smartmeter devices support",
+            "de": "Unterstützung für Smartmeter-Geräte",
+            "ru": "Поддержка устройств Smartmeter",
+            "pt": "Suporte para dispositivos Smartmeter",
+            "nl": "Ondersteuning voor smartmeter-apparaten",
+            "fr": "Prise en charge des appareils Smartmeter",
+            "it": "Supporto dispositivi Smartmeter",
+            "es": "Soporte de dispositivos Smartmeter",
+            "pl": "Obsługa urządzeń Smartmeter",
+            "zh-cn": "Smartmeter设备支持"
+        },
+        "desc": {
+            "en": "Read data from Smartmeter Devices using various protocols like SML, D0 and others",
+            "de": "Auslesen von Smartmeter-Geräten mit verschiedenen Protokollen wie SML, D0 und anderen",
+            "ru": "Чтение данных с устройств Smartmeter с использованием различных протоколов, таких как SML, D0 и др.",
+            "pt": "Leia dados de dispositivos Smartmeter usando vários protocolos como SML, D0 e outros",
+            "nl": "Lees gegevens van Smartmeter-apparaten met behulp van verschillende protocollen zoals SML, D0 en anderen",
+            "fr": "Lire des données à partir de périphériques Smartmeter en utilisant divers protocoles tels que SML, D0 et autres",
+            "it": "Leggi i dati dai dispositivi Smartmeter utilizzando vari protocolli come SML, D0 e altri",
+            "es": "Lea datos de dispositivos Smartmeter usando varios protocolos como SML, D0 y otros",
+            "pl": "Odczytaj dane z urządzeń Smartmeter przy użyciu różnych protokołów, takich jak SML, D0 i inne",
+            "zh-cn": "使用SML，D0等各种协议从Smartmeter设备读取数据"
+        },
         "platform": "Javascript/Node.js",
         "mode": "daemon",
         "messagebox": true,
