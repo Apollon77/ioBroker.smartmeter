@@ -96,9 +96,9 @@
                     selectedMinimalOnce = selectedMinimalOnce || isSelected;
                     text += '<option value="' + pathName + '" ' + (isSelected ? 'selected' : '') + '>' + pathDisplayName + '</option>';
                 }
-                if (!selectedMinimalOnce && actualValue) {
-                    text += '<option value="' + actualValue + '" selected>' + actualValue + ' (' + _('Not existing:') + ')' + '</option>';
-                }
+            }
+            if (!selectedMinimalOnce && actualValue) {
+                text += '<option value="' + actualValue + '" selected>' + actualValue + ' (' + _('Not existing') + ')' + '</option>';
             }
             $port.html(text);
         });
@@ -116,9 +116,9 @@
 
         getIsAdapterAlive(function (isAlive) {
             if (isAlive || common.enabled) {
-                getComPorts(settings.serialPort);
+                getComPorts(settings.transportSerialPort);
             } else {
-                $('#transportSerialPort').replaceWith($('<input type="text" id="transportSerialPort" class="value" value="' + settings.serialPort + '"/>'));
+                $('#transportSerialPort').replaceWith($('<input type="text" id="transportSerialPort" class="value" value="' + settings.transportSerialPort + '"/>'));
             }
         });
 

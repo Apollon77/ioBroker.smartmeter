@@ -22,7 +22,30 @@ let serialport;
 
 const smValues = {};
 
+let connected = null;
 let adapter;
+
+function stopIt(logMessage) {
+    setConnected(false);
+    adapter.log.error(logMessage);
+    adapter.extendForeignObject('system.adapter.' + adapter.namespace, {
+        common: {
+            enabled: false
+        }
+    });
+    adapter.stop();
+}
+
+function setConnected(isConnected) {
+    if (connected !== isConnected) {
+        connected = isConnected;
+        adapter && adapter.setState('info.connection', connected, true, (err) => {
+            // analyse if the state could be set (because of permissions)
+            if (err && adapter && adapter.log) adapter.log.error('Can not update connected state: ' + err);
+            else if (adapter && adapter.log) adapter.log.debug('connected set to ' + connected);
+        });
+    }
+}
 
 function startAdapter(options) {
     options = options || {};
@@ -32,16 +55,11 @@ function startAdapter(options) {
     adapter = new utils.Adapter(options);
 
     adapter.on('ready', () => {
+        setConnected(false);
         try {
             serialport = require('serialport');
         } catch (err) {
-            adapter.log.error('Cannot load serialport module. Please use "npm rebuild". Stop adapter.');
-            adapter.extendForeignObject('system.adapter.' + adapter.namespace, {
-                common: {
-                    enabled: false
-                }
-            });
-            adapter.stop();
+            stopIt('Cannot load serialport module. Please use "npm rebuild". Stop adapter.');
             return;
         }
 
@@ -93,6 +111,7 @@ function startAdapter(options) {
     */
 
     adapter.on('unload', callback => {
+        setConnected(false);
         if (smTransport) {
             smTransport.stop(callback);
         } else {
@@ -104,10 +123,12 @@ function startAdapter(options) {
 }
 
 process.on('SIGINT', () => {
+    setConnected(false);
     if (smTransport) smTransport.stop();
 });
 
 process.on('uncaughtException', err => {
+    setConnected(false);
     if (adapter && adapter.log) {
         adapter.log.warn('Exception: ' + err);
     }
@@ -129,25 +150,29 @@ function main() {
         smOptions.logger = adapter.log.warn;
     }
     if (!adapter.config.protocol) {
-        throw Error('Smartmeter Protocol is undefined, check your configuration!');
+        adapter.log.error('Smartmeter Protocol is undefined, check your configuration!');
+        return;
     }
     smOptions.protocol = adapter.config.protocol;
     if (!adapter.config.transport) {
-        throw Error('Smartmeter Transfer is undefined, check your configuration!');
+        adapter.log.error('Smartmeter Transfer is undefined, check your configuration!');
+        return;
     }
     smOptions.transport = adapter.config.transport;
     smOptions.requestInterval = adapter.config.requestInterval = adapter.config.requestInterval || 300;
     if (adapter.config.anotherQueryDelay) smOptions.anotherQueryDelay = adapter.config.anotherQueryDelay;
     if (adapter.config.transport.indexOf('Serial') === 0) { // we have a Serial connection
         if (!adapter.config.transportSerialPort) {
-            throw Error('Serial port device is undefined, check your configuration!');
+            adapter.log.error('Serial port device is undefined, check your configuration!');
+            return;
         }
         smOptions.transportSerialPort = adapter.config.transportSerialPort;
         if (adapter.config.transportSerialBaudrate !== null && adapter.config.transportSerialBaudrate !== undefined) {
             adapter.config.transportSerialBaudrate = parseInt(adapter.config.transportSerialBaudrate, 10);
 
             if (adapter.config.transportSerialBaudrate < 300) {
-                throw Error('Serial port baudrate invalid, check your configuration!');
+                adapter.log.error('Serial port baudrate invalid, check your configuration!');
+                return;
             }
             smOptions.transportSerialBaudrate = adapter.config.transportSerialBaudrate;
         }
@@ -155,7 +180,8 @@ function main() {
             adapter.config.transportSerialDataBits = parseInt(adapter.config.transportSerialDataBits, 10);
 
             if ((adapter.config.transportSerialDataBits < 5) || (adapter.config.transportSerialDataBits > 8)) {
-                throw Error('Serial port data bits ' + adapter.config.transportSerialDataBits + ' invalid, check your configuration!');
+                adapter.log.error('Serial port data bits ' + adapter.config.transportSerialDataBits + ' invalid, check your configuration!');
+                return;
             }
             smOptions.transportSerialDataBits = adapter.config.transportSerialDataBits;
         }
@@ -163,7 +189,8 @@ function main() {
             adapter.config.transportSerialStopBits = parseInt(adapter.config.transportSerialStopBits, 10);
 
             if ((adapter.config.transportSerialStopBits !== 1) && (adapter.config.transportSerialStopBits !== 2)) {
-                throw Error('Serial port stopbits ' + adapter.config.transportSerialStopBits + ' invalid, check your configuration!');
+                adapter.log.error('Serial port stopbits ' + adapter.config.transportSerialStopBits + ' invalid, check your configuration!');
+                return;
             }
             smOptions.transportSerialStopBits = adapter.config.transportSerialStopBits;
         }
@@ -172,14 +199,16 @@ function main() {
                 (adapter.config.transportSerialParity !== "mark") && (adapter.config.transportSerialParity !== "odd") &&
                 (adapter.config.transportSerialParity !== "space")) {
 
-                throw Error('Serial port parity ' + adapter.config.transportSerialParity + ' invalid, check your configuration!');
+                adapter.log.error('Serial port parity ' + adapter.config.transportSerialParity + ' invalid, check your configuration!');
+                return;
             }
             smOptions.transportSerialParity = adapter.config.transportSerialParity;
         }
         if (adapter.config.transportSerialMessageTimeout !== null && adapter.config.transportSerialMessageTimeout !== undefined) {
             adapter.config.transportSerialMessageTimeout = parseInt(adapter.config.transportSerialMessageTimeout, 10)*1000;
             if (adapter.config.transportSerialMessageTimeout < 1000) {
-                throw Error('HTTP Request timeout ' + adapter.config.transportSerialMessageTimeout + ' invalid, check your configuration!');
+                adapter.log.error('HTTP Request timeout ' + adapter.config.transportSerialMessageTimeout + ' invalid, check your configuration!');
+                return;
             }
             smOptions.transportSerialMessageTimeout = adapter.config.transportSerialMessageTimeout;
         }
@@ -188,20 +217,23 @@ function main() {
     }
     else if (adapter.config.transport === 'HttpRequestTransport') { // we have a Serial connection
         if (!adapter.config.transportHttpRequestUrl) {
-            throw Error('HTTP Request URL is undefined, check your configuration!');
+            adapter.log.error('HTTP Request URL is undefined, check your configuration!');
+            return;
         }
         smOptions.transportHttpRequestUrl = adapter.config.transportHttpRequestUrl;
         if (adapter.config.transportHttpRequestTimeout !== null && adapter.config.transportHttpRequestTimeout !== undefined) {
             adapter.config.transportHttpRequestTimeout = parseInt(adapter.config.transportHttpRequestTimeout, 10);
             if (adapter.config.transportHttpRequestTimeout < 500) {
-                throw Error('HTTP Request timeout ' + adapter.config.transportHttpRequestTimeout + ' invalid, check your configuration!');
+                adapter.log.error('HTTP Request timeout ' + adapter.config.transportHttpRequestTimeout + ' invalid, check your configuration!');
+                return;
             }
             smOptions.transportHttpRequestTimeout = adapter.config.transportHttpRequestTimeout;
         }
     }
     else if (adapter.config.transport === 'LocalFileTransport') { // we have a Serial connection
         if (!adapter.config.transportLocalFilePath) {
-            throw Error('HTTP Request URL is undefined, check your configuration!');
+            adapter.log.error('HTTP Request URL is undefined, check your configuration!');
+            return;
         }
         smOptions.transportLocalFilePath = adapter.config.transportLocalFilePath;
     }
@@ -210,7 +242,8 @@ function main() {
         if (adapter.config.protocolD0WakeupCharacters !== null && adapter.config.protocolD0WakeupCharacters !== undefined) {
             adapter.config.protocolD0WakeupCharacters = parseInt(adapter.config.protocolD0WakeupCharacters, 10);
             if (adapter.config.protocolD0WakeupCharacters < 0) {
-                throw Error('D0 Number of Wakeup NULL characters ' + adapter.config.protocolD0WakeupCharacters + ' invalid, check your configuration!');
+                adapter.log.error('D0 Number of Wakeup NULL characters ' + adapter.config.protocolD0WakeupCharacters + ' invalid, check your configuration!');
+                return;
             }
             smOptions.protocolD0WakeupCharacters = adapter.config.protocolD0WakeupCharacters;
         }
@@ -221,7 +254,8 @@ function main() {
             adapter.config.protocolD0BaudrateChangeoverOverwrite = parseInt(adapter.config.protocolD0BaudrateChangeoverOverwrite, 10);
 
             if (adapter.config.protocolD0BaudrateChangeoverOverwrite < 300) {
-                throw Error('D0 baudrate changeover overwrite ' + adapter.config.protocolD0BaudrateChangeoverOverwrite + ' invalid, check your configuration!');
+                adapter.log.error('D0 baudrate changeover overwrite ' + adapter.config.protocolD0BaudrateChangeoverOverwrite + ' invalid, check your configuration!');
+                return;
             }
             smOptions.protocolD0BaudrateChangeoverOverwrite = adapter.config.protocolD0BaudrateChangeoverOverwrite;
         }
@@ -232,7 +266,8 @@ function main() {
     if (adapter.config.obisFallbackMedium !== null && adapter.config.obisFallbackMedium !== undefined) {
         adapter.config.obisFallbackMedium = parseInt(adapter.config.obisFallbackMedium, 10);
         if (adapter.config.obisFallbackMedium < 0 || adapter.config.obisFallbackMedium > 18 ) {
-            throw Error('OBIS Fallback medium code ' + adapter.config.obisFallbackMedium + ' invalid, check your configuration!');
+            adapter.log.error('OBIS Fallback medium code ' + adapter.config.obisFallbackMedium + ' invalid, check your configuration!');
+            return;
         }
         smOptions.obisFallbackMedium = adapter.config.obisFallbackMedium;
     }
@@ -247,8 +282,10 @@ function storeObisData(err, obisResult) {
     if (err) {
         adapter.log.warn(err.message);
         adapter.log.debug(err);
+        setConnected(false);
         return;
     }
+    setConnected(true);
     let updateCount = 0;
     for (const obisId in obisResult) {
         if (!obisResult.hasOwnProperty(obisId)) continue;
@@ -373,7 +410,7 @@ function processMessage(obj) {
             if (obj.callback) {
                 if (serialport) {
                     // read all found serial ports
-                    serialport.list((err, ports) => {
+                    serialport.list().then(ports => {
                         adapter.log.info('List of port: ' + JSON.stringify(ports));
                         if (process.platform !== 'win32') {
                             ports.forEach(port => {
@@ -392,6 +429,9 @@ function processMessage(obj) {
                             });
                         }
                         adapter.sendTo(obj.from, obj.command, ports, obj.callback);
+                    }).catch(err => {
+                        adapter.log.warn('Can not get Serial port list: ' + err);
+                        adapter.sendTo(obj.from, obj.command, [{path: 'Not available'}], obj.callback);
                     });
                 } else {
                     adapter.log.warn('Module serialport is not available');

@@ -194,14 +194,14 @@
             "OBIS"
         ],
         "loglevel": "info",
-        "enabled": false,
+        "enabled": true,
         "compact": true
     },
     "native": {
         "protocol": "SmlProtocol",
         "transport": "SerialResponseTransport",
         "requestInterval": 300,
-        "transportSerialPort": "/dev/ttyUSB0",
+        "transportSerialPort": "",
         "transportSerialBaudrate": "",
         "transportSerialDataBits": "",
         "transportSerialStopBits": "",
@@ -221,5 +221,26 @@
         "anotherQueryDelay": 1000
     },
     "objects": [],
-    "instanceObjects": []
+    "instanceObjects": [{
+        "_id": "info",
+        "type": "channel",
+        "common": {
+            "name": "Information"
+        },
+        "native": {}
+    },
+        {
+            "_id": "info.connection",
+            "type": "state",
+            "common": {
+                "role": "indicator.connected",
+                "name": "If connected to Smartmeter device",
+                "type": "boolean",
+                "read": true,
+                "write": false,
+                "def": false
+            },
+            "native": {}
+        }
+    ]
 }

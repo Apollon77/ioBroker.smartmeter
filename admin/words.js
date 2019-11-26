@@ -101,17 +101,17 @@ systemDictionary = {
         "es": "No disponible",
         "pl": "Niedostępne"
     },
-    "Not existing:": {
-        "en": "Not existing:",
-        "de": "Nicht existierend:",
-        "ru": "Не существует:",
-        "pt": "Não existe:",
-        "nl": "Niet bestaand:",
-        "fr": "N'existe pas:",
-        "it": "Inesistente:",
-        "es": "Inexistente:",
-        "pl": "Nie istniejący:",
-        "zh-cn": "不存在："
+    "Not existing": {
+        "en": "Not existing",
+        "de": "Nicht existierend",
+        "ru": "Не существует",
+        "pt": "Não existe",
+        "nl": "Niet bestaand",
+        "fr": "N'existe pas",
+        "it": "Inesistente",
+        "es": "Inexistente",
+        "pl": "Nie istniejący",
+        "zh-cn": "不存在"
     }
 
 };
