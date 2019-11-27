@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "smartmeter",
-        "version": "3.0.0",
+        "version": "3.0.1",
         "news": {
+            "3.0.1": {
+                "en": "BREAKING CHANGE: only supports nodejs 8.x+, compact mode added, add Sentry for error reporting, user \"by-id\" serial paths if possible",
+                "de": "ÄNDERUNG UNTERBRECHEN: Unterstützt nur NodeJS 8.x +, Kompaktmodus hinzugefügt, Sentry für die Fehlerberichterstattung hinzugefügt, Benutzer \"by-id\" serielle Pfade, wenn möglich",
+                "ru": "BREAKING CHANGE: поддерживает только nodejs 8.x +, добавлен компактный режим, добавьте Sentry для отчетов об ошибках, последовательные пути пользователя by-id, если это возможно",
+                "pt": "BREAKING CHANGE: suporta apenas nodejs 8.x +, modo compacto adicionado, adicione Sentry para relatório de erros, caminhos seriais \"por id\" do usuário, se possível",
+                "nl": "BREAKING CHANGE: ondersteunt alleen nodejs 8.x +, compacte modus toegevoegd, voeg Sentry toe voor foutrapportage, gebruiker \"by-id\" seriële paden indien mogelijk",
+                "fr": "BREAKING CHANGE: ne supporte que nodejs 8.x +, mode compact ajouté, ajoutez Sentry pour signaler les erreurs, les chemins série \"by-id\" de l'utilisateur si possible",
+                "it": "CAMBIAMENTO DI ROTTURA: supporta solo nodejs 8.x +, aggiunta la modalità compatta, aggiungere Sentry per la segnalazione degli errori, se possibile percorsi seriali \"by-id\" dell'utente",
+                "es": "CAMBIO DE INTERRUPCIÓN: solo admite nodejs 8.x +, modo compacto agregado, agregue Sentry para informes de errores, rutas seriales \"by-id\" del usuario si es posible",
+                "pl": "ZMIANA ZMIANY: obsługuje tylko nodejs 8.x +, dodano tryb kompaktowy, dodaj Sentry do zgłaszania błędów, jeśli to możliwe, ścieżki szeregowe „by-id” użytkownika",
+                "zh-cn": "突破性变化：仅支持nodejs 8.x +，添加了紧凑模式，添加了Sentry用于错误报告，并在可能的情况下添加了用户“ by-id”串行路径"
+            },
             "2.0.0": {
                 "en": "BREAKING CHANGE: State names with * in changed again because of collisions",
                 "de": "BREAKING CHANGE: Zustandsnamen mit * in wurden aufgrund von Kollisionen erneut geändert",
