@@ -77,7 +77,7 @@ function sendTo(target, command, message, callback) {
 
 describe('Test ' + adapterShortName + ' adapter', function() {
     before('Test ' + adapterShortName + ' adapter: Start js-controller', function (_done) {
-        this.timeout(1800000); // because of first install from npm
+        this.timeout(45*60*60*1000); // because of first install from npm
 
         setup.setupController(function () {
             var config = setup.getAdapterConfig();
