@@ -80,21 +80,18 @@
                     $port.prop('disabled', true);
                     break;
                 } else {
-                    var pathName = '';
                     var pathDisplayName = '';
                     var isSelected = false;
                     if (list[j].realPath) {
-                        pathName = list[j].realPath;
-                        pathDisplayName = list[j].realPath + ' (' + list[j].path + ')';
+                        pathDisplayName = list[j].path + ' (' + list[j].realPath + ')';
                         isSelected = (actualValue === list[j].realPath || actualValue === list[j].path);
                     }
                     else {
-                        pathName = list[j].path;
                         pathDisplayName = list[j].path;
                         isSelected = (actualValue === list[j].path);
                     }
                     selectedMinimalOnce = selectedMinimalOnce || isSelected;
-                    text += '<option value="' + pathName + '" ' + (isSelected ? 'selected' : '') + '>' + pathDisplayName + '</option>';
+                    text += '<option value="' + list[j].path + '" ' + (isSelected ? 'selected' : '') + '>' + pathDisplayName + '</option>';
                 }
             }
             if (!selectedMinimalOnce && actualValue) {

@@ -1,6 +1,6 @@
 {
   "name": "iobroker.smartmeter",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Smartmeter Adapter",
   "author": "Ingo Fischer <ingo@fischer-ka.de>",
   "contributors": [],

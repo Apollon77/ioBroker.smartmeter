@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "smartmeter",
-        "version": "3.0.1",
+        "version": "3.0.2",
         "news": {
+            "3.0.2": {
+                "en": "fix that \"by-id\" serial paths are used if possible",
+                "de": "Korrigieren Sie, dass nach Möglichkeit \"by-id\" serielle Pfade verwendet werden",
+                "ru": "исправьте использование последовательных путей \"by-id\", если это возможно",
+                "pt": "corrija que os caminhos seriais \"by-id\" sejam usados, se possível",
+                "nl": "repareer dat \"by-id\" seriële paden worden gebruikt indien mogelijk",
+                "fr": "corrige que les chemins série \"by-id\" sont utilisés si possible",
+                "it": "correggi che i percorsi seriali \"by-id\" siano usati se possibile",
+                "es": "arregla que se usen rutas seriales \"by-id\" si es posible",
+                "pl": "naprawić, że ścieżki szeregowe „by-id” są używane, jeśli to możliwe",
+                "zh-cn": "修复可能的情况下使用“ by-id”串行路径"
+            },
             "3.0.1": {
                 "en": "BREAKING CHANGE: only supports nodejs 8.x+, compact mode added, add Sentry for error reporting, user \"by-id\" serial paths if possible",
                 "de": "ÄNDERUNG UNTERBRECHEN: Unterstützt nur NodeJS 8.x +, Kompaktmodus hinzugefügt, Sentry für die Fehlerberichterstattung hinzugefügt, Benutzer \"by-id\" serielle Pfade, wenn möglich",
