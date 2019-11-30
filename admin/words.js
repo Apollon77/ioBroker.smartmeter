@@ -91,27 +91,39 @@ systemDictionary = {
     "value_obisNameLanguage_en":   {"en": "English", "de": "Englisch"},
     "info_obisNameLanguage":   {"en": " ", "de": " "},
     "Not available": {
-        "en": "Not available",
-        "de": "Nicht verfügbar",
-        "ru": "Недоступен",
-        "pt": "Não disponível",
-        "nl": "Niet beschikbaar",
-        "fr": "Indisponible",
-        "it": "Non disponibile",
-        "es": "No disponible",
-        "pl": "Niedostępne"
+        "en": "Port list not available",
+        "de": "Portliste nicht verfügbar",
+        "ru": "Список портов недоступен",
+        "pt": "Lista de portas não disponível",
+        "nl": "Poortlijst niet beschikbaar",
+        "fr": "Liste de ports non disponible",
+        "it": "Elenco delle porte non disponibile",
+        "es": "Lista de puertos no disponible",
+        "pl": "Lista portów niedostępna",
+        "zh-cn": "端口列表不可用"
     },
-    "Not existing": {
-        "en": "Not existing",
-        "de": "Nicht existierend",
-        "ru": "Не существует",
-        "pt": "Não existe",
-        "nl": "Niet bestaand",
-        "fr": "N'existe pas",
-        "it": "Inesistente",
-        "es": "Inexistente",
-        "pl": "Nie istniejący",
-        "zh-cn": "不存在"
+    "Use custom Serial port path": {
+        "en": "Use custom Serial port path",
+        "de": "Verwenden Sie einen benutzerdefinierten Pfad für den seriellen Anschluss",
+        "ru": "Использовать пользовательский путь последовательного порта",
+        "pt": "Usar caminho de porta serial personalizado",
+        "nl": "Gebruik een aangepast serieel poortpad",
+        "fr": "Utiliser un chemin de port série personnalisé",
+        "it": "Usa percorso porta seriale personalizzato",
+        "es": "Usar ruta de puerto serie personalizada",
+        "pl": "Użyj niestandardowej ścieżki portu szeregowego",
+        "zh-cn": "使用自定义串行端口路径"
+    },
+    "field_customSerialPort": {
+        "en": "Custom serial Port path",
+        "de": "Benutzerdefinierter Pfad der seriellen Schnittstelle",
+        "ru": "Пользовательский последовательный порт",
+        "pt": "Caminho da porta serial personalizado",
+        "nl": "Aangepast serieel poortpad",
+        "fr": "Chemin du port série personnalisé",
+        "it": "Percorso della porta seriale personalizzata",
+        "es": "Ruta de puerto serie personalizada",
+        "pl": "Niestandardowa ścieżka portu szeregowego",
+        "zh-cn": "自定义串行端口路径"
     }
-
 };

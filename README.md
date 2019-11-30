@@ -83,6 +83,9 @@ Please send me an info on devices where you have used the library successfully a
 
 ## Changelog
 
+### 3.0.3 (2019-11-30)
+* serial port configuration further optimized
+
 ### 3.0.2 (2019-11-29)
 * Fix use of "/dev/serial/by-id" paths on linux if available
 

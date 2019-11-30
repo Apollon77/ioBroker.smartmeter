@@ -52,15 +52,26 @@
     var timeout;
     var counter  = 0;
 
-    function getComPorts(actualValue) {
+    function getComPorts(actualValue, onChange) {
         counter++;
-        if (counter > 20) return;
+        if (counter > 20) {
+            var text = '<option value="-" ' + (actualValue ? 'selected' : '') + '>' + _('Use custom Serial port path') + '</option>';
+            text += '<option value="" ' + (!actualValue ? 'selected' : '') + '>' + _('Not available') + '</option>';
+            $port.html(text);
+            if (actualValue) {
+                setValue('customSerialPort', actualValue, onChange);
+                setValue('transportSerialPort', '-', onChange);
+                $('.CustomSerialPort').show();
+            }
+            return;
+        };
 
         timeout = setTimeout(function () {
             getComPorts(actualValue);
         }, 2000);
 
         sendTo(null, 'listUart', null, function (list) {
+            console.log('Received Port list: ' + JSON.stringify(list));
             if (timeout) {
                 clearTimeout(timeout);
                 timeout = null;
@@ -77,7 +88,6 @@
             for (var j = 0; j < list.length; j++) {
                 if (list[j].path === 'Not available') {
                     text += '<option value="" selected>' + _('Not available') + '</option>';
-                    $port.prop('disabled', true);
                     break;
                 } else {
                     var pathDisplayName = '';
@@ -95,7 +105,14 @@
                 }
             }
             if (!selectedMinimalOnce && actualValue) {
-                text += '<option value="' + actualValue + '" selected>' + actualValue + ' (' + _('Not existing') + ')' + '</option>';
+                text += '<option value="-" selected>' + _('Use custom Serial port path') + '</option>';
+                setValue('customSerialPort', actualValue, onChange);
+                setValue('transportSerialPort', '-', onChange);
+                $('.CustomSerialPort').show();
+            }
+            else {
+                text += '<option value="-">' + _('Use custom Serial port path') + '</option>';
+                $('.CustomSerialPort').hide();
             }
             $port.html(text);
         });
@@ -112,10 +129,18 @@
         }
 
         getIsAdapterAlive(function (isAlive) {
+            var actualValue = settings.transportSerialPort;
             if (isAlive || common.enabled) {
-                getComPorts(settings.transportSerialPort);
+                getComPorts(actualValue);
             } else {
-                $('#transportSerialPort').replaceWith($('<input type="text" id="transportSerialPort" class="value" value="' + settings.transportSerialPort + '"/>'));
+                var text = '<option value="-" ' + (actualValue ? 'selected' : '') + '>' + _('Use custom Serial port path') + '</option>';
+                text += '<option value="" ' + (!actualValue ? 'selected' : '') + '>' + _('Not available') + '</option>';
+                $('#transportSerialPort').html(text);
+                if (actualValue) {
+                    setValue('customSerialPort', actualValue, onChange);
+                    setValue('transportSerialPort', '-', onChange);
+                    $('.CustomSerialPort').show();
+                }
             }
         });
 
@@ -149,10 +174,21 @@
                 $('.HttpRequestTransport').hide();
                 $('.LocalFileTransport').hide();
                 $('.SerialTransports').show();
+                $('#transportSerialPort').trigger('change');
             } else if ($(this).val() === 'SerialResponseTransport') {
                 $('.HttpRequestTransport').hide();
                 $('.LocalFileTransport').hide();
                 $('.SerialTransports').show();
+                $('#transportSerialPort').trigger('change');
+            }
+        }).trigger('change');
+
+        $('#transportSerialPort').change(function() {
+            if ($(this).val() === '-' && ($('#transport').val() === 'SerialRequestResponseTransport' || $('#transport').val() === 'SerialResponseTransport')) {
+                $('.CustomSerialPort').show();
+            }
+            else {
+                $('.CustomSerialPort').hide();
             }
         }).trigger('change');
 
@@ -171,7 +207,12 @@
             if ($this.attr('type') == 'checkbox') {
                 settings[id] = $this.prop('checked');
             } else {
-                settings[id] = $this.val();
+                if (id === 'transportSerialPort' && $this.val() === '-') {
+                    settings[id] = $('#customSerialPort').val();
+                }
+                else if (id !== 'customSerialPort') {
+                    settings[id] = $this.val();
+                }
            }
         });
 
@@ -255,6 +296,14 @@
             <td class="translate">field_transportSerialPort</td>
             <td><select class="value" id="transportSerialPort"></select></td><td></td>
             <td class="translate">info_transportSerialPort</td>
+        </tr>
+        <tr class="SerialTransports CustomSerialPort">
+            <td class="translate">field_customSerialPort</td>
+            <td>
+                <input id="customSerialPort" type="text" size="32" class="value"/>
+            </td>
+            <td>
+            </td>
         </tr>
         <tr class="SerialTransports">
             <td class="translate">field_transportSerialBaudrate</td>
