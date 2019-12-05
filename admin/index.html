@@ -55,6 +55,7 @@
     function getComPorts(actualValue, onChange) {
         counter++;
         if (counter > 20) {
+            var $port = $('#transportSerialPort');
             var text = '<option value="-" ' + (actualValue ? 'selected' : '') + '>' + _('Use custom Serial port path') + '</option>';
             text += '<option value="" ' + (!actualValue ? 'selected' : '') + '>' + _('Not available') + '</option>';
             $port.html(text);
@@ -294,7 +295,7 @@
         <tr><td colspan="3"><h4 class="translate">heading_TransportSpecificSettings</h4></td></tr>
         <tr class="SerialTransports">
             <td class="translate">field_transportSerialPort</td>
-            <td><select class="value" id="transportSerialPort"></select></td><td></td>
+            <td><select class="value" id="transportSerialPort"><option value="" class="translate">Please wait till port list is loaded ...</option></select></td><td></td>
             <td class="translate">info_transportSerialPort</td>
         </tr>
         <tr class="SerialTransports CustomSerialPort">

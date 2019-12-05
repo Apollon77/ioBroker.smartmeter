@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "smartmeter",
-        "version": "3.0.3",
+        "version": "3.0.4",
         "news": {
+            "3.0.4": {
+                "en": "serial port configuration further optimized",
+                "de": "Konfiguration der seriellen Schnittstelle weiter optimiert",
+                "ru": "конфигурация последовательного порта оптимизирована",
+                "pt": "configuração da porta serial ainda mais otimizada",
+                "nl": "seriële poortconfiguratie verder geoptimaliseerd",
+                "fr": "configuration du port série optimisée",
+                "it": "configurazione della porta seriale ulteriormente ottimizzata",
+                "es": "configuración del puerto serie aún más optimizada",
+                "pl": "dodatkowa optymalizacja konfiguracji portu szeregowego",
+                "zh-cn": "串口配置进一步优化"
+            },
             "3.0.3": {
                 "en": "serial port configuration further optimized",
                 "de": "Konfiguration der seriellen Schnittstelle weiter optimiert",

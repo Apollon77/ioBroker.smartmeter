@@ -403,7 +403,7 @@ function storeObisData(err, obisResult) {
 function processMessage(obj) {
     if (!obj) return;
 
-    adapter.log.info('(Unhandled) Message received = ' + JSON.stringify(obj));
+    adapter.log.debug('Message received = ' + JSON.stringify(obj));
 
     switch (obj.command) {
         case 'listUart':

@@ -83,6 +83,9 @@ Please send me an info on devices where you have used the library successfully a
 
 ## Changelog
 
+### 3.0.4 (2019-12-05)
+* serial port configuration further optimized
+
 ### 3.0.3 (2019-11-30)
 * serial port configuration further optimized
 

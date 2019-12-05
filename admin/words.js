@@ -103,16 +103,16 @@ systemDictionary = {
         "zh-cn": "端口列表不可用"
     },
     "Use custom Serial port path": {
-        "en": "Use custom Serial port path",
-        "de": "Verwenden Sie einen benutzerdefinierten Pfad für den seriellen Anschluss",
-        "ru": "Использовать пользовательский путь последовательного порта",
-        "pt": "Usar caminho de porta serial personalizado",
-        "nl": "Gebruik een aangepast serieel poortpad",
-        "fr": "Utiliser un chemin de port série personnalisé",
-        "it": "Usa percorso porta seriale personalizzato",
-        "es": "Usar ruta de puerto serie personalizada",
-        "pl": "Użyj niestandardowej ścieżki portu szeregowego",
-        "zh-cn": "使用自定义串行端口路径"
+        "en": "Set a custom serial port name",
+        "de": "Lege einen benutzerdefinierten Namen für die serielle Schnittstelle fest",
+        "ru": "Установите пользовательское имя последовательного порта",
+        "pt": "Defina um nome de porta serial personalizado",
+        "nl": "Stel een aangepaste seriële poortnaam in",
+        "fr": "Définir un nom de port série personnalisé",
+        "it": "Imposta un nome di porta seriale personalizzato",
+        "es": "Establecer un nombre de puerto serie personalizado",
+        "pl": "Ustaw niestandardową nazwę portu szeregowego",
+        "zh-cn": "设置自定义串口名称"
     },
     "field_customSerialPort": {
         "en": "Custom serial Port path",
@@ -125,5 +125,17 @@ systemDictionary = {
         "es": "Ruta de puerto serie personalizada",
         "pl": "Niestandardowa ścieżka portu szeregowego",
         "zh-cn": "自定义串行端口路径"
+    },
+    "Please wait till port list is loaded ...": {
+        "en": "Please wait till port list is loaded ...",
+        "de": "Bitte warten bis die Portliste geladen ist ...",
+        "ru": "Пожалуйста, дождитесь загрузки списка портов ...",
+        "pt": "Aguarde até a lista de portas ser carregada ...",
+        "nl": "Even geduld tot de poortlijst is geladen ...",
+        "fr": "Veuillez patienter jusqu'à ce que la liste de ports soit chargée ...",
+        "it": "Attendere il caricamento dell'elenco delle porte ...",
+        "es": "Espere hasta que se cargue la lista de puertos ...",
+        "pl": "Poczekaj, aż lista portów zostanie załadowana ...",
+        "zh-cn": "请等待端口列表加载完毕..."
     }
 };
