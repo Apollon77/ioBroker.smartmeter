@@ -1,6 +1,6 @@
 {
   "name": "iobroker.smartmeter",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "description": "Smartmeter Adapter",
   "author": "Ingo Fischer <ingo@fischer-ka.de>",
   "contributors": [],
@@ -22,8 +22,8 @@
     "smartmeter-obis": "^2.0.1",
     "serialport": "^8.0.5",
     "@iobroker/adapter-core": "^1.0.3",
-    "@sentry/node": "^5.9.0",
-    "@sentry/integrations": "^5.8.0"
+    "@sentry/node": "^5.10.1",
+    "@sentry/integrations": "^5.10.1"
   },
   "devDependencies": {
     "mocha": "^6.2.2",

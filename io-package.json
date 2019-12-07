@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "smartmeter",
-        "version": "3.0.5",
+        "version": "3.0.6",
         "news": {
-            "3.0.5": {
+            "3.0.6": {
                 "en": "serial port configuration further optimized",
                 "de": "Konfiguration der seriellen Schnittstelle weiter optimiert",
                 "ru": "конфигурация последовательного порта оптимизирована",
