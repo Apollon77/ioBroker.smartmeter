@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "smartmeter",
-        "version": "3.0.6",
+        "version": "3.0.7",
         "news": {
+            "3.0.7": {
+                "en": "errors prevented when stopping to process data",
+                "de": "Fehler beim Stoppen der Datenverarbeitung werden verhindert",
+                "ru": "ошибки, предотвращенные при остановке обработки данных",
+                "pt": "erros evitados ao parar para processar dados",
+                "nl": "fouten voorkomen bij het stoppen om gegevens te verwerken",
+                "fr": "erreurs évitées lors de l'arrêt du traitement des données",
+                "it": "errori impediti quando si interrompe l'elaborazione dei dati",
+                "es": "errores prevenidos al detener el procesamiento de datos",
+                "pl": "zapobiega się błędom podczas zatrzymywania przetwarzania danych",
+                "zh-cn": "停止处理数据时避免了错误"
+            },
             "3.0.6": {
                 "en": "serial port configuration further optimized",
                 "de": "Konfiguration der seriellen Schnittstelle weiter optimiert",
