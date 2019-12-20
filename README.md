@@ -83,6 +83,9 @@ Please send me an info on devices where you have used the library successfully a
 
 ## Changelog
 
+### 3.0.8 (2019-12-20)
+* errors prevented when stopping to process data
+
 ### 3.0.7 (2019-12-18)
 * errors prevented when stopping to process data
 
