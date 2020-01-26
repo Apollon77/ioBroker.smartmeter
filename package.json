@@ -26,7 +26,7 @@
     "@sentry/integrations": "^5.10.2"
   },
   "devDependencies": {
-    "mocha": "^6.2.2",
+    "mocha": "^7.0.1",
     "chai": "^4.2.0",
     "nyc": "^15.0.0"
   },
