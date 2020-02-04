@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "smartmeter",
-        "version": "3.0.8",
+        "version": "3.0.9",
         "news": {
+            "3.0.9": {
+                "en": "fixes and optimizations. Switched to iobroker own Sentry instance for reporting of crashes",
+                "de": "Korrekturen und Optimierungen. Zur Meldung von Abstürzen auf die iobroker-eigene Sentry-Instanz umgestellt",
+                "ru": "исправления и оптимизации. Переключен на собственный экземпляр Sentry iobroker для сообщения о сбоях",
+                "pt": "correções e otimizações. Mudou para a instância Sentry do iobroker para relatar falhas",
+                "nl": "fixes en optimalisaties. Overgeschakeld naar iobroker eigen Sentry-instantie voor het melden van crashes",
+                "fr": "corrections et optimisations. Passé à l'instance Sentry d'iobroker pour le signalement des plantages",
+                "it": "correzioni e ottimizzazioni. Passato alla propria istanza Sentry di iobroker per la segnalazione di arresti anomali",
+                "es": "correcciones y optimizaciones. Se cambió a la instancia de Sentry propia de iobroker para informar sobre bloqueos",
+                "pl": "poprawki i optymalizacje. Przełączono na własną instancję Sentry iobroker w celu zgłaszania awarii",
+                "zh-cn": "修复和优化。切换到iobroker自己的Sentry实例以报告崩溃"
+            },
             "3.0.8": {
                 "en": "errors prevented when stopping to process data",
                 "de": "Fehler beim Stoppen der Datenverarbeitung werden verhindert",
@@ -148,7 +160,14 @@
         ],
         "loglevel": "info",
         "enabled": true,
-        "compact": true
+        "compact": true,
+        "plugins": {
+            "sentry": {
+                "dsn": "https://2d8447c1f6514162b912af8d6892797e@sentry.iobroker.net/3",
+                "pathWhitelist": ["@apollon", "smartmeter-obis", "open-sml"],
+                "errorBlacklist": ["SyntaxError"]
+            }
+        }
     },
     "native": {
         "protocol": "SmlProtocol",

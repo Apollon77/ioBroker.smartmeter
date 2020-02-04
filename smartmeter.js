@@ -10,9 +10,6 @@
  * Adapter reading smartmeter data and pushing the values into ioBroker
  *
  */
-const Sentry = require('@sentry/node');
-const SentryIntegrations = require('@sentry/integrations');
-const packageJson = require('./package.json');
 
 const fs = require('fs');
 const utils = require('@iobroker/adapter-core'); // Get common adapter utils
@@ -24,6 +21,104 @@ const smValues = {};
 
 let connected = null;
 let adapter;
+
+let Sentry;
+let SentryIntegrations;
+function initSentry(callback) {
+    if (!adapter.ioPack.common || !adapter.ioPack.common.plugins || !adapter.ioPack.common.plugins.sentry) {
+        return callback && callback();
+    }
+    const sentryConfig = adapter.ioPack.common.plugins.sentry;
+    if (!sentryConfig.dsn) {
+        adapter.log.warn('Invalid Sentry definition, no dsn provided. Disable error reporting');
+        return callback && callback();
+    }
+    // Require needed tooling
+    Sentry = require('@sentry/node');
+    SentryIntegrations = require('@sentry/integrations');
+    // By installing source map support, we get the original source
+    // locations in error messages
+    require('source-map-support').install();
+
+    let sentryPathWhitelist = [];
+    if (sentryConfig.pathWhitelist && Array.isArray(sentryConfig.pathWhitelist)) {
+        sentryPathWhitelist = sentryConfig.pathWhitelist;
+    }
+    if (!sentryPathWhitelist.includes(adapter.pack.name)) {
+        sentryPathWhitelist.push(adapter.pack.name);
+    }
+    let sentryErrorBlacklist = [];
+    if (sentryConfig.errorBlacklist && Array.isArray(sentryConfig.errorBlacklist)) {
+        sentryErrorBlacklist = sentryConfig.errorBlacklist;
+    }
+    if (!sentryErrorBlacklist.includes('SyntaxError')) {
+        sentryErrorBlacklist.push('SyntaxError');
+    }
+
+    Sentry.init({
+        release: adapter.pack.name + '@' + adapter.pack.version,
+        dsn: sentryConfig.dsn,
+        integrations: [
+            new SentryIntegrations.Dedupe()
+        ]
+    });
+    Sentry.configureScope(scope => {
+        scope.setTag('version', adapter.common.installedVersion || adapter.common.version);
+        if (adapter.common.installedFrom) {
+            scope.setTag('installedFrom', adapter.common.installedFrom);
+        }
+        else {
+            scope.setTag('installedFrom', adapter.common.installedVersion || adapter.common.version);
+        }
+        scope.addEventProcessor(function(event, hint) {
+            // Try to filter out some events
+            if (event && event.metadata) {
+                if (event.metadata.function && event.metadata.function.startsWith('Module.')) {
+                    return null;
+                }
+                if (event.metadata.type && sentryErrorBlacklist.includes(event.metadata.type)) {
+                    return null;
+                }
+                if (event.metadata.filename && !sentryPathWhitelist.find(path => event.metadata.filename.includes(path))) {
+                    return null;
+                }
+                if (event.exception && event.exception.values && event.exception.values[0] && event.exception.values[0].stacktrace && event.exception.values[0].stacktrace.frames) {
+                    for (let i = 0; i < (event.exception.values[0].stacktrace.frames.length > 5 ? 5 : event.exception.values[0].stacktrace.frames.length); i++) {
+                        let foundWhitelisted = false;
+                        if (event.exception.values[0].stacktrace.frames[i].filename && sentryPathWhitelist.find(path => event.exception.values[0].stacktrace.frames[i].filename.includes(path))) {
+                            foundWhitelisted = true;
+                            break;
+                        }
+                        if (!foundWhitelisted) {
+                            return null;
+                        }
+                    }
+                }
+            }
+
+            return event;
+        });
+
+        adapter.getForeignObject('system.config', (err, obj) => {
+            if (obj && obj.common && obj.common.diag) {
+                adapter.getForeignObject('system.meta.uuid', (err, obj) => {
+                    // create uuid
+                    if (!err  && obj) {
+                        Sentry.configureScope(scope => {
+                            scope.setUser({
+                                id: obj.native.uuid
+                            });
+                        });
+                    }
+                    callback && callback();
+                });
+            }
+            else {
+                callback && callback();
+            }
+        });
+    });
+}
 
 function stopIt(logMessage) {
     setConnected(false);
@@ -63,41 +158,12 @@ function startAdapter(options) {
             return;
         }
 
-        Sentry.init({
-            release: packageJson.name + '@' + packageJson.version,
-            dsn: 'https://e01aa5e8f38449a880cd61715e1222e1@sentry.io/1834914',
-            integrations: [
-                new SentryIntegrations.Dedupe()
-            ]
-        });
-        Sentry.configureScope(scope => {
-            scope.setTag('version', adapter.common.installedVersion || adapter.common.version);
-            if (adapter.common.installedFrom) {
-                scope.setTag('installedFrom', adapter.common.installedFrom);
-            }
-            else {
-                scope.setTag('installedFrom', adapter.common.installedVersion || adapter.common.version);
-            }
-        });
-
-        adapter.getForeignObject('system.config', (err, obj) => {
-            if (obj && obj.common && obj.common.diag) {
-                adapter.getForeignObject('system.meta.uuid', (err, obj) => {
-                    // create uuid
-                    if (!err  && obj) {
-                        Sentry.configureScope(scope => {
-                            scope.setUser({
-                                id: obj.native.uuid
-                            });
-                        });
-                    }
-                    main();
-                });
-            }
-            else {
-                main();
-            }
-        });
+        if (adapter.supportsFeature && !adapter.supportsFeature('PLUGINS')) {
+            initSentry(main);
+        }
+        else {
+            main();
+        }
     });
 
     adapter.on('message', msg => {
