@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "smartmeter",
-        "version": "3.0.9",
+        "version": "3.0.10",
         "news": {
-            "3.0.9": {
+            "3.0.10": {
                 "en": "fixes and optimizations. Switched to iobroker own Sentry instance for reporting of crashes",
                 "de": "Korrekturen und Optimierungen. Zur Meldung von Abstürzen auf die iobroker-eigene Sentry-Instanz umgestellt",
                 "ru": "исправления и оптимизации. Переключен на собственный экземпляр Sentry iobroker для сообщения о сбоях",

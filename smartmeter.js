@@ -158,11 +158,11 @@ function startAdapter(options) {
             return;
         }
 
-        if (adapter.supportsFeature && !adapter.supportsFeature('PLUGINS')) {
-            initSentry(main);
+        if (adapter.supportsFeature && adapter.supportsFeature('PLUGINS')) {
+            main();
         }
         else {
-            main();
+            initSentry(main);
         }
     });
 
