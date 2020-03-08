@@ -44,7 +44,7 @@ function initSentry(callback) {
     if (sentryConfig.pathWhitelist && Array.isArray(sentryConfig.pathWhitelist)) {
         sentryPathWhitelist = sentryConfig.pathWhitelist;
     }
-    if (!sentryPathWhitelist.includes(adapter.pack.name)) {
+    if (adapter.pack.name && !sentryPathWhitelist.includes(adapter.pack.name)) {
         sentryPathWhitelist.push(adapter.pack.name);
     }
     let sentryErrorBlacklist = [];
@@ -79,13 +79,13 @@ function initSentry(callback) {
                 if (event.metadata.type && sentryErrorBlacklist.includes(event.metadata.type)) {
                     return null;
                 }
-                if (event.metadata.filename && !sentryPathWhitelist.find(path => event.metadata.filename.includes(path))) {
+                if (event.metadata.filename && !sentryPathWhitelist.find(path => path && path.length && event.metadata.filename.includes(path))) {
                     return null;
                 }
                 if (event.exception && event.exception.values && event.exception.values[0] && event.exception.values[0].stacktrace && event.exception.values[0].stacktrace.frames) {
                     for (let i = 0; i < (event.exception.values[0].stacktrace.frames.length > 5 ? 5 : event.exception.values[0].stacktrace.frames.length); i++) {
                         let foundWhitelisted = false;
-                        if (event.exception.values[0].stacktrace.frames[i].filename && sentryPathWhitelist.find(path => event.exception.values[0].stacktrace.frames[i].filename.includes(path))) {
+                        if (event.exception.values[0].stacktrace.frames[i].filename && sentryPathWhitelist.find(path => path && path.length && event.exception.values[0].stacktrace.frames[i].filename.includes(path))) {
                             foundWhitelisted = true;
                             break;
                         }
@@ -296,12 +296,24 @@ function main() {
             smOptions.transportHttpRequestTimeout = adapter.config.transportHttpRequestTimeout;
         }
     }
-    else if (adapter.config.transport === 'LocalFileTransport') { // we have a Serial connection
+    else if (adapter.config.transport === 'LocalFileTransport') { // we have a LocalFile connection
         if (!adapter.config.transportLocalFilePath) {
             adapter.log.error('HTTP Request URL is undefined, check your configuration!');
             return;
         }
         smOptions.transportLocalFilePath = adapter.config.transportLocalFilePath;
+    }
+    else if (adapter.config.transport === 'TCPTransport') { // we have a TCP connection
+        if (!adapter.config.transportTcpHost) {
+            adapter.log.error('TCP Host is undefined, check your configuration!');
+            return;
+        }
+        if (!adapter.config.transportTcpPort) {
+            adapter.log.error('TCP Port is undefined, check your configuration!');
+            return;
+        }
+        smOptions.transportTcpHost = adapter.config.transportTcpHost;
+        smOptions.transportTcpPort = adapter.config.transportTcpPort;
     }
 
     if (adapter.config.protocol === 'D0Protocol') { // we have a Serial connection

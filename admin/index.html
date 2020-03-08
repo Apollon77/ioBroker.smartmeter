@@ -167,19 +167,29 @@
                 $('.HttpRequestTransport').show();
                 $('.LocalFileTransport').hide();
                 $('.SerialTransports').hide();
+                $('.TCPTransport').hide();
             } else if ($(this).val() === 'LocalFileTransport') {
                 $('.HttpRequestTransport').hide();
                 $('.LocalFileTransport').show();
                 $('.SerialTransports').hide();
+                $('.TCPTransport').hide();
             } else if ($(this).val() === 'SerialRequestResponseTransport') {
                 $('.HttpRequestTransport').hide();
                 $('.LocalFileTransport').hide();
                 $('.SerialTransports').show();
+                $('.TCPTransport').hide();
                 $('#transportSerialPort').trigger('change');
             } else if ($(this).val() === 'SerialResponseTransport') {
                 $('.HttpRequestTransport').hide();
                 $('.LocalFileTransport').hide();
                 $('.SerialTransports').show();
+                $('.TCPTransport').hide();
+                $('#transportSerialPort').trigger('change');
+            } else if ($(this).val() === 'TCPTransport') {
+                $('.HttpRequestTransport').hide();
+                $('.LocalFileTransport').hide();
+                $('.SerialTransports').hide();
+                $('.TCPTransport').show();
                 $('#transportSerialPort').trigger('change');
             }
         }).trigger('change');
@@ -258,6 +268,7 @@
                     <option class="translate" value="LocalFileTransport">value_transport_LocalFileTransport</option>
                     <option class="translate" value="SerialRequestResponseTransport">value_transport_SerialRequestResponseTransport</option>
                     <option class="translate" value="SerialResponseTransport">value_transport_SerialResponseTransport</option>
+                    <option class="translate" value="TCPTransport">value_transport_TCPTransport</option>
                 </select>
             </td>
             <td>
@@ -406,6 +417,23 @@
             <td class="translate">field_transportLocalFilePath</td>
             <td><input id="transportLocalFilePath" type="text" class="value"/></td>
             <td class="translate">info_transportLocalFilePath</td>
+        </tr>
+        <tr class="TCPTransport">
+            <td class="translate">field_transportTcpHost</td>
+            <td><input id="transportTcpHost" type="text" class="value"/></td>
+            <td class="translate">info_transportTcpHost</td>
+        </tr>
+        <tr class="TCPTransport">
+            <td class="translate">field_transportTcpPort</td>
+            <td>
+                <div class="tooltip">
+                    <img width="15" height="15" src="./questionmark.png">
+                    <span class="tooltiptext translate">info_transportTcpPort</span>
+                </div>
+                <input id="transportTcpPort" type="text" class="value number"/>
+            </td>
+            <td>
+            </td>
         </tr>
         <tr class="D0Protocol"><td colspan="3"><h4 class="translate">heading_ProtocolSpecificSettings</h4></td></tr>
         <tr class="SmlProtocol"><td colspan="3"><h4 class="translate">heading_ProtocolSpecificSettings</h4></td></tr>

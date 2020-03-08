@@ -19,6 +19,7 @@ systemDictionary = {
     "value_transport_LocalFileTransport":   {"en": "Read Data from a local file", "de": "Daten aus einer lokalen Datei lesen"},
     "value_transport_SerialRequestResponseTransport":   {"en": "Serial Device with Bi-dir. comm.", "de": "Serielles Gerät mit bidir. Komm."},
     "value_transport_SerialResponseTransport":   {"en": "Serial Device reading data only", "de": "Serielles Gerät Daten werden nur gelesen"},
+    "value_transport_TCPTransport":   {"en": "TCP Device reading data only", "de": "Netzwerk-Gerät Daten werden nur gelesen"},
     "info_transport":   {"en": " ", "de": " "},
 
     "field_requestInterval":   {"en": "Data request interval", "de": "Daten Abfrageintervall"},
@@ -50,6 +51,12 @@ systemDictionary = {
 
     "field_transportLocalFilePath":   {"en": "Absolute path to local datafile", "de": "Absoluter Pfad zur Daten-Datei"},
     "info_transportLocalFilePath":   {"en": " ", "de": " "},
+
+    "field_transportTcpHost":   {"en": "TCP Host", "de": "TCP Server"},
+    "info_transportTcpHost":   {"en": " ", "de": " "},
+
+    "field_transportTcpPort":   {"en": "TCP Port", "de": "TCP Port"},
+    "info_transportTcpPort":   {"en": " ", "de": " "},
 
     "field_protocolD0WakeupCharacters":   {"en": "D0: Number of WakeUp-Characters", "de": "D0: Anzahl WakeUp-Character"},
     "info_protocolD0WakeupCharacters":   {"en": "(NULL characters)<br>Default if empty: 0", "de": "(NULL Zeichen) <br>Standard wenn leer: 0"},

@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "smartmeter",
-        "version": "3.0.10",
+        "version": "3.1.0",
         "news": {
+            "3.1.0": {
+                "en": "optimizations and bugfixes, experimental TCP support",
+                "de": "Optimierungen und Bugfixes, experimentelle TCP-Unterstützung",
+                "ru": "оптимизация и исправления, экспериментальная поддержка TCP",
+                "pt": "otimizações e correções de erros, suporte experimental ao TCP",
+                "nl": "optimalisaties en bugfixes, experimentele TCP-ondersteuning",
+                "fr": "optimisations et corrections de bugs, support TCP expérimental",
+                "it": "ottimizzazioni e correzioni di errori, supporto TCP sperimentale",
+                "es": "optimizaciones y correcciones de errores, soporte experimental de TCP",
+                "pl": "optymalizacje i poprawki błędów, eksperymentalna obsługa TCP",
+                "zh-cn": "优化和错误修正，实验性TCP支持"
+            },
             "3.0.10": {
                 "en": "fixes and optimizations. Switched to iobroker own Sentry instance for reporting of crashes",
                 "de": "Korrekturen und Optimierungen. Zur Meldung von Abstürzen auf die iobroker-eigene Sentry-Instanz umgestellt",
@@ -182,6 +194,8 @@
         "transportHttpRequestUrl": "",
         "transportHttpRequestTimeout": 2000,
         "transportLocalFilePath": "",
+        "transportTcpHost": "",
+        "transportTcpPort": "",
         "protocolD0WakeupCharacters": 0,
         "protocolD0DeviceAddress": "",
         "protocolD0SignOnMessage": "",
