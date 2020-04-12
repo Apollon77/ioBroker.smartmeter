@@ -1,6 +1,6 @@
 {
   "name": "iobroker.smartmeter",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "Smartmeter Adapter",
   "author": "Ingo Fischer <ingo@fischer-ka.de>",
   "contributors": [],
@@ -19,17 +19,17 @@
     "url": "https://github.com/Apollon77/ioBroker.smartmeter"
   },
   "dependencies": {
-    "smartmeter-obis": "^2.1.1",
+    "smartmeter-obis": "^2.1.2",
     "serialport": "^8.0.7",
     "@iobroker/adapter-core": "^2.2.1",
-    "@sentry/node": "^5.14.1",
-    "@sentry/integrations": "^5.14.1",
+    "@sentry/node": "^5.15.4",
+    "@sentry/integrations": "^5.15.4",
     "source-map-support": "^0.5.16"
   },
   "devDependencies": {
-    "mocha": "^7.1.0",
+    "mocha": "^7.1.1",
     "chai": "^4.2.0",
-    "nyc": "^15.0.0"
+    "nyc": "^15.0.1"
   },
   "bugs": {
     "url": "https://github.com/Apollon77/ioBroker.smartmeter/issues"

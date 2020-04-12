@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "smartmeter",
-        "version": "3.1.1",
+        "version": "3.1.2",
         "news": {
+            "3.1.2": {
+                "en": "optimizations and bugfixes",
+                "de": "Optimierungen und Bugfixes",
+                "ru": "оптимизация и исправления",
+                "pt": "otimizações e correções de bugs",
+                "nl": "optimalisaties en bugfixes",
+                "fr": "optimisations et corrections de bugs",
+                "it": "ottimizzazioni e correzioni di errori",
+                "es": "optimizaciones y correcciones de errores",
+                "pl": "optymalizacje i poprawki błędów",
+                "zh-cn": "优化和错误修正"
+            },
             "3.1.1": {
                 "en": "optimizations and bugfixes, TCP support",
                 "de": "Optimierungen und Bugfixes, TCP-Unterstützung",
