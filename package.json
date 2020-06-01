@@ -29,7 +29,7 @@
   "devDependencies": {
     "mocha": "^7.1.1",
     "chai": "^4.2.0",
-    "nyc": "^15.0.1"
+    "nyc": "^15.1.0"
   },
   "bugs": {
     "url": "https://github.com/Apollon77/ioBroker.smartmeter/issues"
