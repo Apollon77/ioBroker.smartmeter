@@ -22,7 +22,7 @@
     "smartmeter-obis": "^2.1.2",
     "serialport": "^8.0.7",
     "@iobroker/adapter-core": "^2.2.1",
-    "@sentry/node": "^5.15.4",
+    "@sentry/node": "^5.19.1",
     "@sentry/integrations": "^5.15.4",
     "source-map-support": "^0.5.16"
   },
