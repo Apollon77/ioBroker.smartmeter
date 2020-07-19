@@ -27,6 +27,7 @@
     "source-map-support": "^0.5.16"
   },
   "devDependencies": {
+    "@alcalzone/release-script": "^1.4.1",
     "mocha": "^7.1.1",
     "chai": "^4.2.0",
     "nyc": "^15.1.0"
@@ -36,7 +37,8 @@
   },
   "main": "smartmeter.js",
   "scripts": {
-    "test": "nyc --reporter=lcov node_modules/mocha/bin/mocha --exit"
+    "test": "nyc --reporter=lcov node_modules/mocha/bin/mocha --exit",
+    "release": "release-script"
   },
   "nyc": {
     "exclude": [
