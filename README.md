@@ -92,7 +92,7 @@ When the adapter crashes or an other Code error happens, this error message that
 
 ## Changelog
 
-### __WORK IN PROGRESS__
+### 3.1.3 (2020-07-20)
 * (Apollon77) update dependencies to prevent some crash cases
 
 ### 3.1.2 (2020-04-12)

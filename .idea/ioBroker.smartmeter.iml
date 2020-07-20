@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$/../OpenSML">
+      <sourceFolder url="file://$MODULE_DIR$/../OpenSML/test" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/../OpenSML/coverage" />
+      <excludeFolder url="file://$MODULE_DIR$/../OpenSML/node_modules" />
+    </content>
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/.tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/.vscode" />
+      <excludeFolder url="file://$MODULE_DIR$/temp" />
+      <excludeFolder url="file://$MODULE_DIR$/tmp" />
+    </content>
+    <content url="file://$MODULE_DIR$/../smartmeter-obis">
+      <sourceFolder url="file://$MODULE_DIR$/../smartmeter-obis/test" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/../smartmeter-obis/coverage" />
+      <excludeFolder url="file://$MODULE_DIR$/../smartmeter-obis/node_modules" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

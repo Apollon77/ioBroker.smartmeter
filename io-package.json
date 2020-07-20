@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "smartmeter",
-        "version": "3.1.2",
+        "version": "3.1.3",
         "news": {
+            "3.1.3": {
+                "en": "update dependencies to prevent some crash cases",
+                "de": "Aktualisieren Sie die Abhängigkeiten, um einige Absturzfälle zu vermeiden",
+                "ru": "обновить зависимости, чтобы предотвратить некоторые случаи сбоев",
+                "pt": "atualizar dependências para evitar alguns casos de falha",
+                "nl": "update afhankelijkheden om enkele crashgevallen te voorkomen",
+                "fr": "mettre à jour les dépendances pour éviter certains cas de plantage",
+                "it": "aggiornare le dipendenze per prevenire alcuni casi di crash",
+                "es": "actualizar dependencias para evitar algunos casos de bloqueo",
+                "pl": "Zaktualizuj zależności, aby zapobiec niektórym przypadkom awarii",
+                "zh-cn": "更新依赖项以防止某些崩溃情况"
+            },
             "3.1.2": {
                 "en": "optimizations and bugfixes",
                 "de": "Optimierungen und Bugfixes",
@@ -190,8 +202,14 @@
         "plugins": {
             "sentry": {
                 "dsn": "https://2d8447c1f6514162b912af8d6892797e@sentry.iobroker.net/3",
-                "pathWhitelist": ["@apollon", "smartmeter-obis", "open-sml"],
-                "errorBlacklist": ["SyntaxError"]
+                "pathWhitelist": [
+                    "@apollon",
+                    "smartmeter-obis",
+                    "open-sml"
+                ],
+                "errorBlacklist": [
+                    "SyntaxError"
+                ]
             }
         }
     },
@@ -221,14 +239,15 @@
         "anotherQueryDelay": 1000
     },
     "objects": [],
-    "instanceObjects": [{
-        "_id": "info",
-        "type": "channel",
-        "common": {
-            "name": "Information"
+    "instanceObjects": [
+        {
+            "_id": "info",
+            "type": "channel",
+            "common": {
+                "name": "Information"
+            },
+            "native": {}
         },
-        "native": {}
-    },
         {
             "_id": "info.connection",
             "type": "state",
