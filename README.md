@@ -92,6 +92,9 @@ When the adapter crashes or an other Code error happens, this error message that
 
 ## Changelog
 
+### __WORK IN PROGRESS__
+* (Apollon77) update dependencies to prevent some crash cases
+
 ### 3.1.2 (2020-04-12)
 * (Apollon77) catch errors when no memory is available anymore and stop processing
 
