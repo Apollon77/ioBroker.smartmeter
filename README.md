@@ -69,7 +69,9 @@ The adapter tries to determine the Baudrate for the data messages as defined in 
 * Iskraemeco MT174
 * Iskraemeco MT175
 * Itron EM214 Typ 720
+* Landis & Gyr E220
 * Dutch smart meter using DSRM protocol (use "Serial Device reading data only" and "D0" as protocol)
+* ... and many many more
 
 Please send me an info on devices where you have used the library successfully and I will add it here.
 
