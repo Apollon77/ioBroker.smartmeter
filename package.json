@@ -23,7 +23,7 @@
     "serialport": "^9.0.0",
     "@iobroker/adapter-core": "^2.2.1",
     "@sentry/node": "^5.20.1",
-    "@sentry/integrations": "^5.20.1",
+    "@sentry/integrations": "^5.21.3",
     "source-map-support": "^0.5.19"
   },
   "devDependencies": {
