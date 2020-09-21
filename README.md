@@ -95,7 +95,7 @@ When the adapter crashes or an other Code error happens, this error message that
 
 ## Changelog
 
-### __WORK IN PROGRESS__
+### 3.1.5 (2020-09-21)
 * (Apollon77) update dependencies to prevent some crash cases and optimize tcp mode
 
 ### 3.1.3 (2020-07-20)
