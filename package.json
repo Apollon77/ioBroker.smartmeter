@@ -19,7 +19,7 @@
     "url": "https://github.com/Apollon77/ioBroker.smartmeter"
   },
   "dependencies": {
-    "smartmeter-obis": "^2.1.4",
+    "smartmeter-obis": "^2.1.5",
     "serialport": "^9.0.1",
     "@iobroker/adapter-core": "^2.2.1",
     "@sentry/node": "^5.24.2",
