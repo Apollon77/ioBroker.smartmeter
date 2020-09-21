@@ -11,7 +11,7 @@ systemDictionary = {
     "field_protocol":   {"en": "Data Protocol", "de": "Daten-Protokoll"},
     "value_protocol_D0Protocol":   {"en": "D0 (WakeUp, SignOn, Data)", "de": "D0 (WakeUp, SignOn, Data)"},
     "value_protocol_JsonEfrProtocol":   {"en": "JSON-Format EFR SmartGridHub", "de": "JSON-Format EFR SmartGridHub"},
-    "value_protocol_SmlProtocol":   {"en": "SmartMeterLanguage 1.0.3", "de": "SmartMeterLanguage 1.0.3"},
+    "value_protocol_SmlProtocol":   {"en": "Smart Message Language 1.0.3", "de": "Smart Message Language 1.0.3"},
     "info_protocol":   {"en": " ", "de": " "},
 
     "field_transport":   {"en": "Data Transfer", "de": "Datenübertragung"},
