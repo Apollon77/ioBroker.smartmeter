@@ -26,7 +26,7 @@ ioBroker-Forum-Thread: http://forum.iobroker.net/viewtopic.php?f=23&t=5047&p=549
 
 ### Data Protocol
 Supported Protocols:
-* **Sml**: SML (SmartMeterLanguage) as binary format
+* **Sml**: SML (Smart Message Language) as binary format
 * **D0**: D0 (based on IEC 62056-21:2002/IEC 61107/EN 61107) as ASCII format (binary protocol mode E not supported currently)
 * **Json-Efr**: OBIS data from EFR Smart Grid Hub (JSON format)
 
