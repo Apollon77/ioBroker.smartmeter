@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "smartmeter",
-        "version": "3.1.5",
+        "version": "3.1.6",
         "news": {
+            "3.1.6": {
+                "en": "update OpenSML lib to support Holley DTZ541 wrongly implemented CRC Algorithm",
+                "de": "Aktualisieren Sie die OpenSML-Bibliothek, um den falsch implementierten CRC-Algorithmus Holley DTZ541 zu unterstützen",
+                "ru": "обновить библиотеку OpenSML для поддержки ошибочно реализованного алгоритма CRC Holley DTZ541",
+                "pt": "atualizar OpenSML lib para suportar Holley DTZ541 implementado incorretamente algoritmo CRC",
+                "nl": "update OpenSML-bibliotheek om Holley DTZ541 verkeerd geïmplementeerd CRC-algoritme te ondersteunen",
+                "fr": "mettre à jour la bibliothèque OpenSML pour prendre en charge l'algorithme CRC Holley DTZ541 mal implémenté",
+                "it": "aggiorna la libreria OpenSML per supportare l'algoritmo CRC Holley DTZ541 implementato in modo errato",
+                "es": "actualice OpenSML lib para admitir el algoritmo CRC Holley DTZ541 implementado incorrectamente",
+                "pl": "zaktualizować bibliotekę OpenSML do obsługi błędnie zaimplementowanego algorytmu CRC Holley DTZ541",
+                "zh-cn": "更新OpenSML库以支持Holley DTZ541错误实现的CRC算法"
+            },
             "3.1.5": {
                 "en": "update dependencies to prevent some crash cases and optimize tcp mode",
                 "de": "Aktualisieren Sie die Abhängigkeiten, um einige Absturzfälle zu vermeiden und den TCP-Modus zu optimieren",
