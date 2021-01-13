@@ -95,6 +95,10 @@ When the adapter crashes or an other Code error happens, this error message that
 
 ## Changelog
 
+### __WORK IN PROGRESS__
+* (Apollon77) prevent warnings with js-controller 3.2
+* (Apollon77) update js-controller dependency to at least require js-controller 2.0.0
+
 ### 3.1.6 (2020-11-15)
 * (Apollon77) update OpenSML lib to support Holley DTZ541 wrongly implemented CRC Algorithm
 

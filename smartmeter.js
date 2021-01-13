@@ -362,7 +362,7 @@ function main() {
     smTransport.process();
 }
 
-function storeObisData(err, obisResult) {
+async function storeObisData(err, obisResult) {
     if (err) {
         adapter.log.warn(err.message);
         adapter.log.debug(err);
@@ -381,97 +381,96 @@ function storeObisData(err, obisResult) {
         if (!smValues[obisId]) {
             let ioChannelName = SmartmeterObis.ObisNames.resolveObisName(obisResult[obisId], adapter.config.obisNameLanguage).obisName;
             adapter.log.debug('Create Channel ' + ioChannelId + ' with name ' + ioChannelName);
-            adapter.setObjectNotExists(ioChannelId, {
-                type: 'channel',
-                common: {
-                    name: ioChannelName
-                },
-                native: {}
-            }, err => {
-                if (err) {
-                    adapter.log.error('Error creating Channel: ' + err);
-                }
-            });
+            try {
+                await adapter.setObjectNotExistsAsync(ioChannelId, {
+                    type: 'channel',
+                    common: {
+                        name: ioChannelName
+                    },
+                    native: {}
+                });
+            } catch (err) {
+                adapter.log.error('Error creating Channel: ' + err);
+            }
 
             if (obisResult[obisId].getRawValue() !== undefined) {
                 adapter.log.debug('Create State ' + ioChannelId + '.rawvalue');
-                adapter.setObjectNotExists(ioChannelId + '.rawvalue', {
-                    type: 'state',
-                    common: {
-                        name: ioChannelId + '.rawvalue',
-                        type: 'string',
-                        read: true,
-                        role: 'value',
-                        write: false
-                    },
-                    native: {
-                        id: ioChannelId + '.rawvalue'
-                    }
-                }, err => {
-                    if (err) {
-                        adapter.log.error('Error creating State: ' + err);
-                    }
-                });
-            }
-
-            adapter.log.debug('Create State ' + ioChannelId + '.value');
-            adapter.setObjectNotExists(ioChannelId + '.value', {
-                type: 'state',
-                common: {
-                    name: ioChannelId + '.value',
-                    type: (typeof obisResult[obisId].getValue(0).value),
-                    read: true,
-                    unit: obisResult[obisId].getValue(0).unit,
-                    role: 'value',
-                    write: false
-                },
-                native: {
-                    id: ioChannelId + '.value'
-                }
-            }, err => {
-                if (err) {
-                    adapter.log.error('Error creating State: ' + err);
-                }
-            });
-
-            if (obisResult[obisId].getValueLength() > 1) {
-                for (i = 1; i < obisResult[obisId].getValueLength(); i++) {
-                    adapter.log.debug('Create State ' + ioChannelId + '.value' + (i + 1));
-                    adapter.setObjectNotExists(ioChannelId + '.value' + (i + 1), {
+                try {
+                    await adapter.setObjectNotExistsAsync(ioChannelId + '.rawvalue', {
                         type: 'state',
                         common: {
-                            name: ioChannelId + '.value' + (i + 1),
-                            type: (typeof obisResult[obisId].getValue(i).value),
+                            name: ioChannelId + '.rawvalue',
+                            type: 'string',
                             read: true,
-                            unit: obisResult[obisId].getValue(i).unit,
                             role: 'value',
                             write: false
                         },
                         native: {
-                            id: ioChannelId + '.value' + (i + 1)
-                        }
-                    }, err => {
-                        if (err) {
-                            adapter.log.error('Error creating State: ' + err);
+                            id: ioChannelId + '.rawvalue'
                         }
                     });
+                } catch (err) {
+                    adapter.log.error('Error creating State: ' + err);
+                }
+            }
+
+            adapter.log.debug('Create State ' + ioChannelId + '.value');
+            try {
+                await adapter.setObjectNotExistsAsync(ioChannelId + '.value', {
+                    type: 'state',
+                    common: {
+                        name: ioChannelId + '.value',
+                        type: (typeof obisResult[obisId].getValue(0).value),
+                        read: true,
+                        unit: obisResult[obisId].getValue(0).unit,
+                        role: 'value',
+                        write: false
+                    },
+                    native: {
+                        id: ioChannelId + '.value'
+                    }
+                });
+            } catch (err) {
+                adapter.log.error('Error creating State: ' + err);
+            }
+
+            if (obisResult[obisId].getValueLength() > 1) {
+                for (i = 1; i < obisResult[obisId].getValueLength(); i++) {
+                    adapter.log.debug('Create State ' + ioChannelId + '.value' + (i + 1));
+                    try {
+                        await adapter.setObjectNotExistsAsync(ioChannelId + '.value' + (i + 1), {
+                            type: 'state',
+                            common: {
+                                name: ioChannelId + '.value' + (i + 1),
+                                type: (typeof obisResult[obisId].getValue(i).value),
+                                read: true,
+                                unit: obisResult[obisId].getValue(i).unit,
+                                role: 'value',
+                                write: false
+                            },
+                            native: {
+                                id: ioChannelId + '.value' + (i + 1)
+                            }
+                        });
+                    } catch (err) {
+                        adapter.log.error('Error creating State: ' + err);
+                    }
                 }
             }
         }
         if (!smValues[obisId] || smValues[obisId].valueToString() !== obisResult[obisId].valueToString()) {
             if (obisResult[obisId].getRawValue() !== "") {
                 adapter.log.debug('Set State ' + ioChannelId + '.rawvalue = ' + obisResult[obisId].getRawValue());
-                adapter.setState(ioChannelId + '.rawvalue', {ack: true, val: obisResult[obisId].getRawValue()});
+                await adapter.setStateAsync(ioChannelId + '.rawvalue', {ack: true, val: obisResult[obisId].getRawValue()});
             }
 
             adapter.log.debug('Set State ' + ioChannelId + '.value = ' + obisResult[obisId].getValue(0).value);
-            adapter.setState(ioChannelId + '.value', {ack: true, val: obisResult[obisId].getValue(0).value});
+            await adapter.setStateAsync(ioChannelId + '.value', {ack: true, val: obisResult[obisId].getValue(0).value});
 
             if (obisResult[obisId].getValueLength() > 1) {
                 for (i = 1; i < obisResult[obisId].getValueLength(); i++) {
                     adapter.log.debug('Set State '+ ioChannelId + '.value' + (i + 1) + ' = ' + obisResult[obisId].getValue(i).value);
-                    adapter.setState(ioChannelId + '.value' + (i + 1), {ack: true, val: obisResult[obisId].getValue(i).value});
-
+                    await adapter.setStateAsync(ioChannelId + '.value' + (i + 1), {ack: true, val: obisResult[obisId].getValue(i).value});
                 }
             }
             smValues[obisId] = obisResult[obisId];
