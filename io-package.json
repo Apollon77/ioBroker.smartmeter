@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "smartmeter",
-        "version": "3.1.6",
+        "version": "3.1.7",
         "news": {
+            "3.1.7": {
+                "en": "prevent warnings with js-controller 3.2\nupdate js-controller dependency to at least require js-controller 2.0.0",
+                "de": "Warnungen mit js-controller verhindern 3.2\nAktualisieren Sie die js-controller-Abhängigkeit so, dass mindestens js-controller 2.0.0 erforderlich ist",
+                "ru": "предотвратить предупреждения с помощью js-controller 3.2\nобновить зависимость js-controller, по крайней мере, до требования js-controller 2.0.0",
+                "pt": "evitar avisos com js-controller 3.2\natualize a dependência do js-controller para pelo menos exigir o js-controller 2.0.0",
+                "nl": "waarschuwingen voorkomen met js-controller 3.2\nupdate js-controller afhankelijkheid om minimaal js-controller 2.0.0 te vereisen",
+                "fr": "éviter les avertissements avec js-controller 3.2\nmettre à jour la dépendance js-controller pour au moins exiger js-controller 2.0.0",
+                "it": "prevenire avvisi con js-controller 3.2\naggiorna la dipendenza js-controller per richiedere almeno js-controller 2.0.0",
+                "es": "prevenir advertencias con js-controller 3.2\nactualice la dependencia js-controller para que al menos requiera js-controller 2.0.0",
+                "pl": "zapobiegaj ostrzeżeniom za pomocą js-controller 3.2\nzaktualizuj zależność js-controller, aby przynajmniej wymagać js-controller 2.0.0",
+                "zh-cn": "防止使用js-controller 3.2发出警告\n将js-controller依赖关系更新为至少需要js-controller 2.0.0"
+            },
             "3.1.6": {
                 "en": "update OpenSML lib to support Holley DTZ541 wrongly implemented CRC Algorithm",
                 "de": "Aktualisieren Sie die OpenSML-Bibliothek, um den falsch implementierten CRC-Algorithmus Holley DTZ541 zu unterstützen",

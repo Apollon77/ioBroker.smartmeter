@@ -95,7 +95,7 @@ When the adapter crashes or an other Code error happens, this error message that
 
 ## Changelog
 
-### __WORK IN PROGRESS__
+### 3.1.7 (2021-01-13)
 * (Apollon77) prevent warnings with js-controller 3.2
 * (Apollon77) update js-controller dependency to at least require js-controller 2.0.0
 
