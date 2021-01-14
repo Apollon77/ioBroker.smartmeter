@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "smartmeter",
-        "version": "3.1.7",
+        "version": "3.1.8",
         "news": {
+            "3.1.8": {
+                "en": "prevent last warnings with js-controller 3.2",
+                "de": "Verhindern Sie letzte Warnungen mit js-controller 3.2",
+                "ru": "предотвратить последние предупреждения с помощью js-controller 3.2",
+                "pt": "evita os últimos avisos com js-controller 3.2",
+                "nl": "voorkom laatste waarschuwingen met js-controller 3.2",
+                "fr": "éviter les derniers avertissements avec js-controller 3.2",
+                "it": "prevenire gli ultimi avvisi con js-controller 3.2",
+                "es": "evitar las últimas advertencias con js-controller 3.2",
+                "pl": "zapobiec ostatnim ostrzeżeniom za pomocą js-controller 3.2",
+                "zh-cn": "防止使用js-controller 3.2发出最后警告"
+            },
             "3.1.7": {
                 "en": "prevent warnings with js-controller 3.2\nupdate js-controller dependency to at least require js-controller 2.0.0",
                 "de": "Warnungen mit js-controller verhindern 3.2\nAktualisieren Sie die js-controller-Abhängigkeit so, dass mindestens js-controller 2.0.0 erforderlich ist",
