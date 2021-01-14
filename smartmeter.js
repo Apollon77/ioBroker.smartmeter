@@ -459,7 +459,7 @@ async function storeObisData(err, obisResult) {
             }
         }
         if (!smValues[obisId] || smValues[obisId].valueToString() !== obisResult[obisId].valueToString()) {
-            if (obisResult[obisId].getRawValue() !== "") {
+            if (obisResult[obisId].getRawValue() !== undefined) {
                 adapter.log.debug('Set State ' + ioChannelId + '.rawvalue = ' + obisResult[obisId].getRawValue());
                 await adapter.setStateAsync(ioChannelId + '.rawvalue', {ack: true, val: obisResult[obisId].getRawValue()});
             }
