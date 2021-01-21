@@ -19,6 +19,7 @@ let serialport;
 
 const smValues = {};
 
+let stopInProgress = false;
 let connected = null;
 let adapter;
 
@@ -183,6 +184,7 @@ function startAdapter(options) {
     */
 
     adapter.on('unload', callback => {
+        stopInProgress = true;
         setConnected(false);
         if (smTransport) {
             smTransport.stop(callback);
@@ -363,6 +365,7 @@ function main() {
 }
 
 async function storeObisData(err, obisResult) {
+    if (stopInProgress) return;
     if (err) {
         adapter.log.warn(err.message);
         adapter.log.debug(err);
