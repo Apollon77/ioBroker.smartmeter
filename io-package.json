@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "smartmeter",
-        "version": "3.1.8",
+        "version": "3.1.9",
         "news": {
+            "3.1.9": {
+                "en": "optimize stop handling (Sentry IOBROKER-SMARTMETER-10)",
+                "de": "Optimieren Sie das Stop-Handling (Sentry IOBROKER-SMARTMETER-10).",
+                "ru": "оптимизировать обработку останова (Sentry IOBROKER-SMARTMETER-10)",
+                "pt": "otimizar o manuseio de parada (Sentry IOBROKER-SMARTMETER-10)",
+                "nl": "stopafhandeling optimaliseren (Sentry IOBROKER-SMARTMETER-10)",
+                "fr": "optimiser la gestion des arrêts (Sentry IOBROKER-SMARTMETER-10)",
+                "it": "ottimizzare la gestione delle fermate (Sentry IOBROKER-SMARTMETER-10)",
+                "es": "optimizar el manejo de la parada (Sentry IOBROKER-SMARTMETER-10)",
+                "pl": "optymalizacja obsługi zatrzymań (Sentry IOBROKER-SMARTMETER-10)",
+                "zh-cn": "优化停止处理（Sentry IOBROKER-SMARTMETER-10）"
+            },
             "3.1.8": {
                 "en": "prevent last warnings with js-controller 3.2",
                 "de": "Verhindern Sie letzte Warnungen mit js-controller 3.2",
