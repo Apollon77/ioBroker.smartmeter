@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "smartmeter-obis": "^2.2.0",
-    "serialport": "^9.0.4",
+    "serialport": "^9.0.6",
     "@iobroker/adapter-core": "^2.4.0",
     "@sentry/node": "^6.0.1",
     "@sentry/integrations": "^5.30.0",
