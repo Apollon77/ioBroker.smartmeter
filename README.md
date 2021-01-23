@@ -95,6 +95,9 @@ When the adapter crashes or an other Code error happens, this error message that
 
 ## Changelog
 
+###__WORK IN PROGRESS__
+* (Apollon77) Add new protocolSmlInputEncoding option for SML protocol
+
 ### 3.1.9 (2021-01-22)
 * (Apollon77) optimize stop handling (Sentry IOBROKER-SMARTMETER-10)
 

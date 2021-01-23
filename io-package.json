@@ -311,6 +311,7 @@
         "protocolD0ModeOverwrite": "",
         "protocolD0BaudrateChangeoverOverwrite": "",
         "protocolSmlIgnoreInvalidCRC": false,
+        "protocolSmlInputEncoding": "",
         "obisFallbackMedium": "",
         "obisNameLanguage": "de",
         "anotherQueryDelay": 1000

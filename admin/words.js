@@ -144,5 +144,41 @@ systemDictionary = {
         "es": "Espere hasta que se cargue la lista de puertos ...",
         "pl": "Poczekaj, aż lista portów zostanie załadowana ...",
         "zh-cn": "请等待端口列表加载完毕..."
+    },
+    "field_protocolSmlInputEncoding": {
+        "en": "SML Input Data Encoding",
+        "de": "Kodierung der SML Daten",
+        "ru": "Кодирование входных данных SML",
+        "pt": "Codificação de dados de entrada SML",
+        "nl": "SML-invoergegevenscodering",
+        "fr": "Encodage des données d'entrée SML",
+        "it": "Codifica dei dati di input SML",
+        "es": "Codificación de datos de entrada SML",
+        "pl": "Kodowanie danych wejściowych SML",
+        "zh-cn": "SML输入数据编码"
+    },
+    "info_protocolSmlInputEncoding": {
+        "en": "Definition of an alternative input data encoding of the incoming SML data. Most likely relevant for TCP transport.",
+        "de": "Definition einer alternativen Eingabedatencodierung der eingehenden SML-Daten. Höchstwahrscheinlich relevant für den TCP-Transport.",
+        "ru": "Определение альтернативного кодирования входных данных для входящих данных SML. Скорее всего, актуально для транспорта TCP.",
+        "pt": "Definição de uma codificação de dados de entrada alternativa dos dados SML de entrada. Provavelmente relevante para transporte TCP.",
+        "nl": "Definitie van een alternatieve invoergegevenscodering van de inkomende SML-gegevens. Waarschijnlijk relevant voor TCP-transport.",
+        "fr": "Définition d'un autre codage des données d'entrée des données SML entrantes. Très probablement pertinent pour le transport TCP.",
+        "it": "Definizione di una codifica dei dati di input alternativa dei dati SML in ingresso. Molto probabilmente rilevante per il trasporto TCP.",
+        "es": "Definición de una codificación de datos de entrada alternativa de los datos SML entrantes. Probablemente relevante para el transporte TCP.",
+        "pl": "Definicja alternatywnego kodowania danych wejściowych przychodzących danych SML. Najprawdopodobniej dotyczy transportu TCP.",
+        "zh-cn": "定义输入SML数据的替代输入数据编码。最可能与TCP传输有关。"
+    },
+    "value_protocolSmlInputEncoding_binary": {
+        "en": "Binary Data (Default)",
+        "de": "Binärdaten (Standard)",
+        "ru": "Двоичные данные (по умолчанию)",
+        "pt": "Dados binários (padrão)",
+        "nl": "Binaire gegevens (standaard)",
+        "fr": "Données binaires (par défaut)",
+        "it": "Dati binari (impostazione predefinita)",
+        "es": "Datos binarios (predeterminado)",
+        "pl": "Dane binarne (domyślne)",
+        "zh-cn": "二进制数据（默认）"
     }
 };

@@ -348,6 +348,9 @@ function main() {
     }
     if (adapter.config.protocol === 'SmlProtocol') { // we have a Serial connection
         smOptions.protocolSmlIgnoreInvalidCRC = adapter.config.protocolSmlIgnoreInvalidCRC = adapter.config.protocolSmlIgnoreInvalidCRC === 'true' || adapter.config.protocolSmlIgnoreInvalidCRC === true;
+        if (adapter.config.protocolSmlInputEncoding) {
+            smOptions.protocolSmlInputEncoding = adapter.config.protocolSmlInputEncoding;
+        }
     }
     if (adapter.config.obisFallbackMedium !== null && adapter.config.obisFallbackMedium !== undefined) {
         adapter.config.obisFallbackMedium = parseInt(adapter.config.obisFallbackMedium, 10);
