@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "smartmeter",
-        "version": "3.1.9",
+        "version": "3.2.0",
         "news": {
+            "3.2.0": {
+                "en": "Add new protocolSmlInputEncoding option for SML protocol. With this also ascii or base64 based encodings (e.g. with TCP transports) are possible.",
+                "de": "Fügen Sie die neue Option protocolSmlInputEncoding für das SML-Protokoll hinzu. Damit sind auch auf ASCII oder Base64 basierende Codierungen (z. B. mit TCP-Transporten) möglich.",
+                "ru": "Добавить новую опцию protocolSmlInputEncoding для протокола SML. С этим также возможны кодировки на основе ascii или base64 (например, с транспортом TCP).",
+                "pt": "Adicione a nova opção protocolSmlInputEncoding para o protocolo SML. Com isso, também são possíveis codificações baseadas em ascii ou base64 (por exemplo, com transportes TCP).",
+                "nl": "Nieuwe protocolSmlInputEncoding-optie voor SML-protocol toevoegen. Hiermee zijn ook ascii- of base64-gebaseerde coderingen (bijvoorbeeld met TCP-transporten) mogelijk.",
+                "fr": "Ajoutez une nouvelle option protocolSmlInputEncoding pour le protocole SML. Avec cela, des encodages basés sur ascii ou base64 (par exemple avec les transports TCP) sont également possibles.",
+                "it": "Aggiungere una nuova opzione protocolSmlInputEncoding per il protocollo SML. Con questo sono possibili anche codifiche basate su ascii o base64 (ad es. Con trasporti TCP).",
+                "es": "Agregue la nueva opción protocolSmlInputEncoding para el protocolo SML. Con esto también son posibles codificaciones basadas en ascii o base64 (por ejemplo, con transportes TCP).",
+                "pl": "Dodaj nową opcję protocolSmlInputEncoding dla protokołu SML. Dzięki temu możliwe jest również kodowanie oparte na ascii lub base64 (np. Z transportami TCP).",
+                "zh-cn": "为SML协议添加新的protocolSmlInputEncoding选项。通过这种方式，基于ascii或base64的编码（例如TCP传输）也是可能的。"
+            },
             "3.1.9": {
                 "en": "optimize stop handling (Sentry IOBROKER-SMARTMETER-10)",
                 "de": "Optimieren Sie das Stop-Handling (Sentry IOBROKER-SMARTMETER-10).",
