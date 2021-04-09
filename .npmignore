@@ -19,3 +19,4 @@ package-lock.json
 .vscode/launch.json
 .remote-sync.json
 node_modules
+admin/i18n

@@ -20,16 +20,18 @@
   },
   "dependencies": {
     "smartmeter-obis": "^2.3.0",
-    "serialport": "^9.0.6",
+    "serialport": "^9.0.7",
     "@iobroker/adapter-core": "^2.4.0",
-    "@sentry/node": "^6.0.1",
-    "@sentry/integrations": "^6.0.1",
+    "@sentry/node": "^6.2.5",
+    "@sentry/integrations": "^6.2.5",
     "source-map-support": "^0.5.19"
   },
   "devDependencies": {
     "@alcalzone/release-script": "^1.8.3",
-    "mocha": "^8.3.0",
-    "chai": "^4.3.0",
+    "axios": "^0.21.1",
+    "mocha": "^8.3.2",
+    "chai": "^4.3.4",
+    "gulp": "^4.0.2",
     "nyc": "^15.1.0"
   },
   "bugs": {
