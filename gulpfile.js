@@ -311,20 +311,28 @@ gulp.task('translate', async function (done) {
         if (fs.existsSync('./admin/i18n/en/translations.json')) {
             let enTranslations = require('./admin/i18n/en/translations.json');
             for (let l in languages) {
+                let failure = null;
                 console.log('Translate Text: ' + l);
                 let existing = {};
                 if (fs.existsSync('./admin/i18n/' + l + '/translations.json')) {
                     existing = require('./admin/i18n/' + l + '/translations.json');
                 }
-                for (let t in enTranslations) {
-                    if (!existing[t]) {
-                        existing[t] = await translate(enTranslations[t], l, yandex);
+                try {
+                    for (let t in enTranslations) {
+                        if (!existing[t]) {
+                            existing[t] = await translate(enTranslations[t], l, yandex);
+                        }
                     }
+                } catch (err) {
+                    failure = err;
                 }
                 if (!fs.existsSync('./admin/i18n/' + l + '/')) {
                     fs.mkdirSync('./admin/i18n/' + l + '/');
                 }
                 fs.writeFileSync('./admin/i18n/' + l + '/translations.json', JSON.stringify(existing, null, 4));
+                if (failure) {
+                    throw failure;
+                }
             }
         }
 
