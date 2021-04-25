@@ -69,6 +69,7 @@
     "value_obisFallbackMedium_9": "9: Heet water",
     "value_obisNameLanguage_de": "Duitse",
     "value_obisNameLanguage_en": "Engels",
+    "value_obisNameLanguage_nl": "Nederlands",
     "value_protocolSmlInputEncoding_binary": "Binaire gegevens (standaard)",
     "value_protocol_D0Protocol": "D0 (WakeUp, SignOn, Data)",
     "value_protocol_JsonEfrProtocol": "EFR SmartGridHub in JSON-indeling",

@@ -69,6 +69,7 @@
     "value_obisFallbackMedium_9": "9: Gorąca woda",
     "value_obisNameLanguage_de": "Niemiecki",
     "value_obisNameLanguage_en": "język angielski",
+    "value_obisNameLanguage_nl": "holenderski",
     "value_protocolSmlInputEncoding_binary": "Dane binarne (domyślne)",
     "value_protocol_D0Protocol": "D0 (WakeUp, SignOn, Data)",
     "value_protocol_JsonEfrProtocol": "Format JSON EFR SmartGridHub",

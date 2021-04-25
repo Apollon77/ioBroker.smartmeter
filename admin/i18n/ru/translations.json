@@ -69,6 +69,7 @@
     "value_obisFallbackMedium_9": "9: Горячая вода",
     "value_obisNameLanguage_de": "Немецкий",
     "value_obisNameLanguage_en": "английский",
+    "value_obisNameLanguage_nl": "нидерландский язык",
     "value_protocolSmlInputEncoding_binary": "Двоичные данные (по умолчанию)",
     "value_protocol_D0Protocol": "D0 (пробуждение, вход, данные)",
     "value_protocol_JsonEfrProtocol": "JSON-формат EFR SmartGridHub",
