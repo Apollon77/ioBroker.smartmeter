@@ -1,6 +1,6 @@
 {
-    "Not available": "Portliste nicht verfügbar",
-    "Please wait till port list is loaded ...": "Bitte warten bis die Portliste geladen ist …",
+    "Not available": "Liste der seriellen Schnittstellen ist nicht verfügbar",
+    "Please wait till port list is loaded ...": "Bitte warten bis die Liste der seriellen Schnittstellen geladen wurde …",
     "Use custom Serial port path": "Benutzerdefinierten Namen für die serielle Schnittstelle angeben",
     "field_anotherQueryDelay": "Verzögerung zwischen zwei SignOn-Nachrichten",
     "field_customSerialPort": "Benutzerdefinierter Pfad der seriellen Schnittstelle",
