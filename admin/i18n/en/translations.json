@@ -1,6 +1,6 @@
 {
-    "Not available": "Port list not available",
-    "Please wait till port list is loaded ...": "Please wait till the port list is loaded …",
+    "Not available": "Serial port list not available",
+    "Please wait till port list is loaded ...": "Please wait till the serial port list is loaded …",
     "Use custom Serial port path": "Set a custom serial port name",
     "field_anotherQueryDelay": "Delay between multiple SignOn-Messages",
     "field_customSerialPort": "Custom serial port path",
