@@ -72,7 +72,7 @@
     "value_protocolSmlInputEncoding_binary": "Binaire gegevens (standaard)",
     "value_protocol_D0Protocol": "D0 (WakeUp, SignOn, Data)",
     "value_protocol_JsonEfrProtocol": "EFR SmartGridHub in JSON-indeling",
-    "value_protocol_SmlProtocol": "Smart Message Language 1.0.3",
+    "value_protocol_SmlProtocol": "Smart Message Language 1.0.3/1.0.4",
     "value_protocol_default": "Protocol- / transportstandaard",
     "value_transport_HttpRequestTransport": "Lees gegevens van een HTTP-URL",
     "value_transport_LocalFileTransport": "Lees gegevens uit een lokaal bestand",
