@@ -27,7 +27,7 @@
     "field_transportSerialStopBits": "Serielles Gerät: Stop-Bits",
     "field_transportTcpHost": "TCP Server",
     "field_transportTcpPort": "TCP Port",
-    "heading_GeneralSettings": "Generelle Einstellungen",
+    "heading_GeneralSettings": "Allgemeine Einstellungen",
     "heading_ProtocolSpecificSettings": "Einstellungen Datenprotokoll",
     "heading_TransportSpecificSettings": "Einstellungen Datenübertragung",
     "info_anotherQueryDelay": "Eine Verzögerung kann nötig sein, um dem Gerät genügend Zeit für einen Reset oder zur Initialisierung zu geben.<br>Standardwert wenn leer: 1000",
