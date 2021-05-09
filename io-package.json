@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "smartmeter",
-        "version": "3.2.0",
+        "version": "3.2.1",
         "news": {
+            "3.2.1": {
+                "en": "Optimize for js-controller 3.3",
+                "de": "Optimieren für js-controller 3.3",
+                "ru": "Оптимизировать под js-controller 3.3",
+                "pt": "Otimize para js-controller 3.3",
+                "nl": "Optimaliseren voor js-controller 3.3",
+                "fr": "Optimiser pour js-controller 3.3",
+                "it": "Ottimizza per js-controller 3.3",
+                "es": "Optimizar para js-controller 3.3",
+                "pl": "Optymalizacja pod kątem kontrolera js 3.3",
+                "zh-cn": "针对js-controller 3.3进行优化"
+            },
             "3.2.0": {
                 "en": "Add new protocolSmlInputEncoding option for SML protocol. With this also ascii or base64 based encodings (e.g. with TCP transports) are possible.",
                 "de": "Fügen Sie die neue Option protocolSmlInputEncoding für das SML-Protokoll hinzu. Damit sind auch auf ASCII oder Base64 basierende Codierungen (z. B. mit TCP-Transporten) möglich.",

@@ -91,7 +91,7 @@ When the adapter crashes or an other Code error happens, this error message that
 
 ## Changelog
 
-### __WORK IN PROGRESS__
+### 3.2.1 (2021-05-09)
 * (Apollon77) Optimize for js-controller 3.3
 
 ### 3.2.0 (2021-01-24)
