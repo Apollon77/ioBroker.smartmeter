@@ -283,6 +283,7 @@
         "compact": true,
         "connectionType": "local",
         "dataSource": "push",
+        "tier": 2,
         "plugins": {
             "sentry": {
                 "dsn": "https://2d8447c1f6514162b912af8d6892797e@sentry.iobroker.net/3",

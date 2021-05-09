@@ -1,14 +1,13 @@
 ![Logo](admin/smartmeter.png)
 # ioBroker.smartmeter
 
-![Number of Installations](http://iobroker.live/badges/smartmeter-installed.svg) ![Number of Installations](http://iobroker.live/badges/smartmeter-stable.svg) [![NPM version](http://img.shields.io/npm/v/iobroker.smartmeter.svg)](https://www.npmjs.com/package/iobroker.smartmeter)
+![Number of Installations](http://iobroker.live/badges/smartmeter-installed.svg)
+![Number of Installations](http://iobroker.live/badges/smartmeter-stable.svg)
+[![NPM version](http://img.shields.io/npm/v/iobroker.smartmeter.svg)](https://www.npmjs.com/package/iobroker.smartmeter)
+
+![Test and Release](https://github.com/Apollon77/iobroker.smartmeter/workflows/Test%20and%20Release/badge.svg)
+[![Translation status](https://weblate.iobroker.net/widgets/adapters/-/smartmeter/svg-badge.svg)](https://weblate.iobroker.net/engage/adapters/?utm_source=widget)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.smartmeter.svg)](https://www.npmjs.com/package/iobroker.smartmeter)
-[![Code Climate](https://codeclimate.com/github/Apollon77/ioBroker.smartmeter/badges/gpa.svg)](https://codeclimate.com/github/Apollon77/ioBroker.smartmeter)
-
-**Tests:** Linux/Mac: [![Travis-CI](http://img.shields.io/travis/Apollon77/ioBroker.smartmeter/master.svg)](https://travis-ci.org/Apollon77/ioBroker.smartmeter)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Apollon77/ioBroker.smartmeter?branch=master&svg=true)](https://ci.appveyor.com/project/Apollon77/ioBroker-smartmeter/)
-
-[![NPM](https://nodei.co/npm/iobroker.smartmeter.png?downloads=true)](https://nodei.co/npm/iobroker.smartmeter/)
 
 **This adapter uses Sentry libraries to automatically report exceptions and code errors to me as the developer.** More details see below!
 
@@ -234,7 +233,7 @@ When the adapter crashes or an other Code error happens, this error message that
 
 The MIT License (MIT)
 
-Copyright (c) 2017-2020 Apollon77 <ingo@fischer-ka.de>
+Copyright (c) 2017-2021 Apollon77 <ingo@fischer-ka.de>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
