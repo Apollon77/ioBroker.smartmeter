@@ -30,7 +30,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2.1.4
+        uses: actions/setup-node@v2.1.5
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -56,13 +56,13 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x]
+        node-version: [10.x, 12.x, 14.x, 16.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2.1.4
+        uses: actions/setup-node@v2.1.5
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -100,7 +100,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2.1.4
+        uses: actions/setup-node@v2.1.5
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -147,13 +147,11 @@ jobs:
           export SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }}
           export SENTRY_URL=https://sentry.iobroker.net
           export SENTRY_ORG=iobroker
-          export SENTRY_PROJECT=iobroker-tr-064
-          export SENTRY_VERSION=iobroker.tr-064@${{ steps.extract_release.outputs.VERSION }}
+          export SENTRY_PROJECT=iobroker-smartmeter
+          export SENTRY_VERSION=iobroker.smartmeter@${{ steps.extract_release.outputs.VERSION }}
           sentry-cli releases new $SENTRY_VERSION
+          sentry-cli releases set-commits $SENTRY_VERSION --auto
           sentry-cli releases finalize $SENTRY_VERSION
-
-        # Add the following line BEFORE finalize if repositories are connected in Sentry
-        # sentry-cli releases set-commits $SENTRY_VERSION --auto
 
         # Add the following line BEFORE finalize if sourcemap uploads are needed
         # sentry-cli releases files $SENTRY_VERSION upload-sourcemaps build/

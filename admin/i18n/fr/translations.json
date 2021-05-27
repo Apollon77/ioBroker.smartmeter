@@ -73,7 +73,7 @@
     "value_protocolSmlInputEncoding_binary": "Données binaires (par défaut)",
     "value_protocol_D0Protocol": "D0 (WakeUp, SignOn, données)",
     "value_protocol_JsonEfrProtocol": "SmartGridHub EFR au format JSON",
-    "value_protocol_SmlProtocol": "Langue des messages intelligents 1.0.3",
+    "value_protocol_SmlProtocol": "Smart Message Language 1.0.3/1.0.4",
     "value_protocol_default": "Protocol- / Transport-Default",
     "value_transport_HttpRequestTransport": "Lire les données à partir d'une URL HTTP",
     "value_transport_LocalFileTransport": "Lire les données à partir d'un fichier local",
