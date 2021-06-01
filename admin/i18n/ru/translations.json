@@ -27,7 +27,7 @@
     "field_transportSerialStopBits": "Стоп-биты последовательного устройства",
     "field_transportTcpHost": "TCP Host",
     "field_transportTcpPort": "TCP порт",
-    "heading_GeneralSettings": "общие настройки",
+    "heading_GeneralSettings": "Общие настройки",
     "heading_ProtocolSpecificSettings": "Настройки протокола передачи данных",
     "heading_TransportSpecificSettings": "Настройки передачи данных",
     "info_anotherQueryDelay": "Задержка необходима, потому что адаптер отправит новое сообщение, и устройство необходимо сначала перезагрузить, <br> По умолчанию, если пусто: 1000",
