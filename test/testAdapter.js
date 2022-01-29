@@ -79,7 +79,7 @@ describe('Test ' + adapterShortName + ' adapter', function() {
     before('Test ' + adapterShortName + ' adapter: Start js-controller', function (_done) {
         this.timeout(45*60*60*1000); // because of first install from npm
 
-        setup.setupController(function () {
+        setup.setupController(async function () {
             var config = setup.getAdapterConfig();
             // enable adapter
             config.common.enabled  = true;
@@ -95,7 +95,7 @@ describe('Test ' + adapterShortName + ' adapter', function() {
             fs.writeFileSync(__dirname + '/test.d0', testData);
 
 
-            setup.setAdapterConfig(config.common, config.native);
+            await setup.setAdapterConfig(config.common, config.native);
 
             setup.startController(true, function(id, obj) {}, function (id, state) {
                     if (onStateChanged) onStateChanged(id, state);
