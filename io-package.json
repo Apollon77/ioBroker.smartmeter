@@ -240,7 +240,8 @@
                 "fr": "Mettre à jour la bibliothèque smartmeter, réparer HTTP-JSON-Transport",
                 "it": "Aggiorna la libreria di smartmeter, correggi il trasporto HTTP-JSON",
                 "es": "Actualizar la biblioteca de smartmeter, arreglar HTTP-JSON-Transport",
-                "pl": "Zaktualizuj bibliotekę Smartmeter, napraw HTTP-JSON-Transport"
+                "pl": "Zaktualizuj bibliotekę Smartmeter, napraw HTTP-JSON-Transport",
+                "zh-cn": "更新smartmeter库，修复HTTP-JSON-Transport"
             }
         },
         "authors": [

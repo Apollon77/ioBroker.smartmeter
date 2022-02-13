@@ -69,6 +69,7 @@
     "value_obisFallbackMedium_9": "9：热水",
     "value_obisNameLanguage_de": "德语",
     "value_obisNameLanguage_en": "英语",
+    "value_obisNameLanguage_nl": "荷兰语",
     "value_protocolSmlInputEncoding_binary": "二进制数据（默认）",
     "value_protocol_D0Protocol": "D0（唤醒，登录，数据）",
     "value_protocol_JsonEfrProtocol": "JSON格式的EFR SmartGridHub",
