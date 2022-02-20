@@ -14,22 +14,25 @@
     "eHz",
     "OBIS"
   ],
+  "engines": {
+    "node": ">=12.17.0 <13.0 || >=14.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Apollon77/ioBroker.smartmeter"
   },
   "dependencies": {
     "smartmeter-obis": "^2.3.0",
-    "serialport": "^9.2.8",
+    "serialport": "^10.3.0",
     "@iobroker/adapter-core": "^2.5.1",
-    "@sentry/node": "^6.8.0",
-    "@sentry/integrations": "^6.8.0",
+    "@sentry/node": "^6.17.9",
+    "@sentry/integrations": "^6.17.9",
     "source-map-support": "^0.5.21"
   },
   "devDependencies": {
-    "@alcalzone/release-script": "^2.2.1",
-    "axios": "^0.25.0",
-    "mocha": "^9.2.0",
+    "@alcalzone/release-script": "^2.2.2",
+    "axios": "^0.26.0",
+    "mocha": "^9.2.1",
     "chai": "^4.3.6",
     "gulp": "^4.0.2",
     "nyc": "^15.1.0"
