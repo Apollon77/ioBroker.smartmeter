@@ -3,18 +3,6 @@
         "name": "smartmeter",
         "version": "3.3.0",
         "news": {
-            "3.3.0": {
-                "en": "IMPORTANT: This version requires at least Node.js 12.17+ (excluding non LTS like 13.x)\nPrevent some crash cases",
-                "de": "WICHTIG: Diese Version erfordert mindestens Node.js 12.17+ (außer Nicht-LTS wie 13.x)\nVerhindern Sie einige Absturzfälle",
-                "ru": "ВАЖНО: для этой версии требуется как минимум Node.js 12.17+ (за исключением не LTS, например 13.x).\nПредотвратить некоторые случаи сбоев",
-                "pt": "IMPORTANTE: esta versão requer pelo menos Node.js 12.17+ (excluindo não LTS como 13.x)\nPrevenir alguns casos de travamento",
-                "nl": "BELANGRIJK: deze versie vereist minimaal Node.js 12.17+ (exclusief niet-LTS zoals 13.x)\nVoorkom enkele crashgevallen",
-                "fr": "IMPORTANT : Cette version nécessite au moins Node.js 12.17+ (hors non LTS comme 13.x)\nPrévenir certains cas de crash",
-                "it": "IMPORTANTE: questa versione richiede almeno Node.js 12.17+ (escluso non LTS come 13.x)\nPrevenire alcuni casi di crash",
-                "es": "IMPORTANTE: esta versión requiere al menos Node.js 12.17+ (excluyendo no LTS como 13.x)\nPrevenir algunos casos de accidentes",
-                "pl": "WAŻNE: Ta wersja wymaga co najmniej Node.js 12.17+ (z wyłączeniem innych niż LTS, takich jak 13.x)\nZapobiegaj niektórym przypadkom awarii",
-                "zh-cn": "重要提示：此版本至少需要 Node.js 12.17+（不包括像 13.x 这样的非 LTS）\n防止一些崩溃案例"
-            },
             "3.2.1": {
                 "en": "Optimize for js-controller 3.3",
                 "de": "Optimieren für js-controller 3.3",
