@@ -15,7 +15,7 @@ const fs = require('fs');
 const utils = require('@iobroker/adapter-core'); // Get common adapter utils
 const SmartmeterObis = require('smartmeter-obis');
 let smTransport;
-let Serialport;
+const { Serialport } = require('serialport');
 
 const smValues = {};
 
@@ -158,12 +158,6 @@ function startAdapter(options) {
 
     adapter.on('ready', () => {
         setConnected(false);
-        try {
-            { Serialport } = require('serialport');
-        } catch (err) {
-            stopIt('Cannot load serialport module. Please use "npm rebuild". Stop adapter.');
-            return;
-        }
 
         if (adapter.supportsFeature && adapter.supportsFeature('PLUGINS')) {
             main();
