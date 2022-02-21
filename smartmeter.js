@@ -15,7 +15,7 @@ const fs = require('fs');
 const utils = require('@iobroker/adapter-core'); // Get common adapter utils
 const SmartmeterObis = require('smartmeter-obis');
 let smTransport;
-let serialport;
+let Serialport;
 
 const smValues = {};
 
@@ -159,7 +159,7 @@ function startAdapter(options) {
     adapter.on('ready', () => {
         setConnected(false);
         try {
-            serialport = require('serialport');
+            { Serialport } = require('serialport');
         } catch (err) {
             stopIt('Cannot load serialport module. Please use "npm rebuild". Stop adapter.');
             return;
@@ -497,9 +497,9 @@ function processMessage(obj) {
     switch (obj.command) {
         case 'listUart':
             if (obj.callback) {
-                if (serialport) {
+                if (Serialport) {
                     // read all found serial ports
-                    serialport.list().then(ports => {
+                    Serialport.list().then(ports => {
                         adapter.log.info('List of port: ' + JSON.stringify(ports));
                         if (process.platform !== 'win32') {
                             ports.forEach(port => {
