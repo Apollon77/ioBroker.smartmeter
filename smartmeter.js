@@ -15,7 +15,7 @@ const fs = require('fs');
 const utils = require('@iobroker/adapter-core'); // Get common adapter utils
 const SmartmeterObis = require('smartmeter-obis');
 let smTransport;
-const { Serialport } = require('serialport');
+const { SerialPort } = require('serialport');
 
 const smValues = {};
 
@@ -491,9 +491,9 @@ function processMessage(obj) {
     switch (obj.command) {
         case 'listUart':
             if (obj.callback) {
-                if (Serialport) {
+                if (SerialPort) {
                     // read all found serial ports
-                    Serialport.list().then(ports => {
+                    SerialPort.list().then(ports => {
                         adapter.log.info('List of port: ' + JSON.stringify(ports));
                         if (process.platform !== 'win32') {
                             ports.forEach(port => {

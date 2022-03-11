@@ -90,6 +90,10 @@ Sentry.io is a way for developers to get an overview about errors from their app
 When the adapter crashes or an other Code error happens, this error message that also appears in the ioBroker log is submitted to our own Sentry server hosted in germany. When you allowed iobroker GmbH to collect diagnostic data then also your installation ID (this is just a unique ID **without** any additional infos about you, email, name or such) is included. This allows Sentry to group errors and show how many unique users are affected by such an error. All of this helps me to provide error free adapters that basically never crashs.  
 
 ## Changelog
+
+### __WORK IN PROGRESS__
+* (Apollon77) Restore functionality of Port list in Admin
+
 ### 3.3.3 (2022-02-21)
 * IMPORTANT: This version requires at least Node.js 12.17+ (excluding non LTS like 13.x)
 * (Apollon77) Prevent some crash cases
@@ -176,7 +180,7 @@ When the adapter crashes or an other Code error happens, this error message that
 ### 1.1.0 (31.01.2018)
 * Allow multiple queries for D0 and Serial-Bidirectional communication
 * a lot of bugfixing and Optimizations
-* Switch to Serialport 6.0.4 to hopefully get more stable (less/no SIGSEGV/SIGABRT ...)
+* Switch to SerialPort 6.0.4 to hopefully get more stable (less/no SIGSEGV/SIGABRT ...)
 
 ### 1.0.0 (25.08.2017)
 * Update smartmeter library and fix some timing issues
