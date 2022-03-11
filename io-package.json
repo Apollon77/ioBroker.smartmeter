@@ -1,357 +1,213 @@
 {
-    "common": {
-        "name": "smartmeter",
-        "version": "3.3.3",
-        "news": {
-            "3.3.3": {
-                "en": "IMPORTANT: This version requires at least Node.js 12.17+ (excluding non LTS like 13.x)\nPrevent some crash cases",
-                "de": "WICHTIG: Diese Version erfordert mindestens Node.js 12.17+ (außer Nicht-LTS wie 13.x)\nVerhindern Sie einige Absturzfälle",
-                "ru": "ВАЖНО: для этой версии требуется как минимум Node.js 12.17+ (за исключением не LTS, например 13.x).\nПредотвратить некоторые случаи сбоев",
-                "pt": "IMPORTANTE: esta versão requer pelo menos Node.js 12.17+ (excluindo não LTS como 13.x)\nPrevenir alguns casos de travamento",
-                "nl": "BELANGRIJK: deze versie vereist minimaal Node.js 12.17+ (exclusief niet-LTS zoals 13.x)\nVoorkom enkele crashgevallen",
-                "fr": "IMPORTANT : Cette version nécessite au moins Node.js 12.17+ (hors non LTS comme 13.x)\nPrévenir certains cas de crash",
-                "it": "IMPORTANTE: questa versione richiede almeno Node.js 12.17+ (escluso non LTS come 13.x)\nPrevenire alcuni casi di crash",
-                "es": "IMPORTANTE: esta versión requiere al menos Node.js 12.17+ (excluyendo no LTS como 13.x)\nPrevenir algunos casos de accidentes",
-                "pl": "WAŻNE: Ta wersja wymaga co najmniej Node.js 12.17+ (z wyłączeniem innych niż LTS, takich jak 13.x)\nZapobiegaj niektórym przypadkom awarii",
-                "zh-cn": "重要提示：此版本至少需要 Node.js 12.17+（不包括像 13.x 这样的非 LTS）\n防止一些崩溃案例"
-            },
-            "3.2.1": {
-                "en": "Optimize for js-controller 3.3",
-                "de": "Optimieren für js-controller 3.3",
-                "ru": "Оптимизировать под js-controller 3.3",
-                "pt": "Otimize para js-controller 3.3",
-                "nl": "Optimaliseren voor js-controller 3.3",
-                "fr": "Optimiser pour js-controller 3.3",
-                "it": "Ottimizza per js-controller 3.3",
-                "es": "Optimizar para js-controller 3.3",
-                "pl": "Optymalizacja pod kątem kontrolera js 3.3",
-                "zh-cn": "针对js-controller 3.3进行优化"
-            },
-            "3.2.0": {
-                "en": "Add new protocolSmlInputEncoding option for SML protocol. With this also ascii or base64 based encodings (e.g. with TCP transports) are possible.",
-                "de": "Fügen Sie die neue Option protocolSmlInputEncoding für das SML-Protokoll hinzu. Damit sind auch auf ASCII oder Base64 basierende Codierungen (z. B. mit TCP-Transporten) möglich.",
-                "ru": "Добавить новую опцию protocolSmlInputEncoding для протокола SML. С этим также возможны кодировки на основе ascii или base64 (например, с транспортом TCP).",
-                "pt": "Adicione a nova opção protocolSmlInputEncoding para o protocolo SML. Com isso, também são possíveis codificações baseadas em ascii ou base64 (por exemplo, com transportes TCP).",
-                "nl": "Nieuwe protocolSmlInputEncoding-optie voor SML-protocol toevoegen. Hiermee zijn ook ascii- of base64-gebaseerde coderingen (bijvoorbeeld met TCP-transporten) mogelijk.",
-                "fr": "Ajoutez une nouvelle option protocolSmlInputEncoding pour le protocole SML. Avec cela, des encodages basés sur ascii ou base64 (par exemple avec les transports TCP) sont également possibles.",
-                "it": "Aggiungere una nuova opzione protocolSmlInputEncoding per il protocollo SML. Con questo sono possibili anche codifiche basate su ascii o base64 (ad es. Con trasporti TCP).",
-                "es": "Agregue la nueva opción protocolSmlInputEncoding para el protocolo SML. Con esto también son posibles codificaciones basadas en ascii o base64 (por ejemplo, con transportes TCP).",
-                "pl": "Dodaj nową opcję protocolSmlInputEncoding dla protokołu SML. Dzięki temu możliwe jest również kodowanie oparte na ascii lub base64 (np. Z transportami TCP).",
-                "zh-cn": "为SML协议添加新的protocolSmlInputEncoding选项。通过这种方式，基于ascii或base64的编码（例如TCP传输）也是可能的。"
-            },
-            "3.1.9": {
-                "en": "optimize stop handling (Sentry IOBROKER-SMARTMETER-10)",
-                "de": "Optimieren Sie das Stop-Handling (Sentry IOBROKER-SMARTMETER-10).",
-                "ru": "оптимизировать обработку останова (Sentry IOBROKER-SMARTMETER-10)",
-                "pt": "otimizar o manuseio de parada (Sentry IOBROKER-SMARTMETER-10)",
-                "nl": "stopafhandeling optimaliseren (Sentry IOBROKER-SMARTMETER-10)",
-                "fr": "optimiser la gestion des arrêts (Sentry IOBROKER-SMARTMETER-10)",
-                "it": "ottimizzare la gestione delle fermate (Sentry IOBROKER-SMARTMETER-10)",
-                "es": "optimizar el manejo de la parada (Sentry IOBROKER-SMARTMETER-10)",
-                "pl": "optymalizacja obsługi zatrzymań (Sentry IOBROKER-SMARTMETER-10)",
-                "zh-cn": "优化停止处理（Sentry IOBROKER-SMARTMETER-10）"
-            },
-            "3.1.8": {
-                "en": "prevent last warnings with js-controller 3.2",
-                "de": "Verhindern Sie letzte Warnungen mit js-controller 3.2",
-                "ru": "предотвратить последние предупреждения с помощью js-controller 3.2",
-                "pt": "evita os últimos avisos com js-controller 3.2",
-                "nl": "voorkom laatste waarschuwingen met js-controller 3.2",
-                "fr": "éviter les derniers avertissements avec js-controller 3.2",
-                "it": "prevenire gli ultimi avvisi con js-controller 3.2",
-                "es": "evitar las últimas advertencias con js-controller 3.2",
-                "pl": "zapobiec ostatnim ostrzeżeniom za pomocą js-controller 3.2",
-                "zh-cn": "防止使用js-controller 3.2发出最后警告"
-            },
-            "3.1.7": {
-                "en": "prevent warnings with js-controller 3.2\nupdate js-controller dependency to at least require js-controller 2.0.0",
-                "de": "Warnungen mit js-controller verhindern 3.2\nAktualisieren Sie die js-controller-Abhängigkeit so, dass mindestens js-controller 2.0.0 erforderlich ist",
-                "ru": "предотвратить предупреждения с помощью js-controller 3.2\nобновить зависимость js-controller, по крайней мере, до требования js-controller 2.0.0",
-                "pt": "evitar avisos com js-controller 3.2\natualize a dependência do js-controller para pelo menos exigir o js-controller 2.0.0",
-                "nl": "waarschuwingen voorkomen met js-controller 3.2\nupdate js-controller afhankelijkheid om minimaal js-controller 2.0.0 te vereisen",
-                "fr": "éviter les avertissements avec js-controller 3.2\nmettre à jour la dépendance js-controller pour au moins exiger js-controller 2.0.0",
-                "it": "prevenire avvisi con js-controller 3.2\naggiorna la dipendenza js-controller per richiedere almeno js-controller 2.0.0",
-                "es": "prevenir advertencias con js-controller 3.2\nactualice la dependencia js-controller para que al menos requiera js-controller 2.0.0",
-                "pl": "zapobiegaj ostrzeżeniom za pomocą js-controller 3.2\nzaktualizuj zależność js-controller, aby przynajmniej wymagać js-controller 2.0.0",
-                "zh-cn": "防止使用js-controller 3.2发出警告\n将js-controller依赖关系更新为至少需要js-controller 2.0.0"
-            },
-            "3.1.6": {
-                "en": "update OpenSML lib to support Holley DTZ541 wrongly implemented CRC Algorithm",
-                "de": "Aktualisieren Sie die OpenSML-Bibliothek, um den falsch implementierten CRC-Algorithmus Holley DTZ541 zu unterstützen",
-                "ru": "обновить библиотеку OpenSML для поддержки ошибочно реализованного алгоритма CRC Holley DTZ541",
-                "pt": "atualizar OpenSML lib para suportar Holley DTZ541 implementado incorretamente algoritmo CRC",
-                "nl": "update OpenSML-bibliotheek om Holley DTZ541 verkeerd geïmplementeerd CRC-algoritme te ondersteunen",
-                "fr": "mettre à jour la bibliothèque OpenSML pour prendre en charge l'algorithme CRC Holley DTZ541 mal implémenté",
-                "it": "aggiorna la libreria OpenSML per supportare l'algoritmo CRC Holley DTZ541 implementato in modo errato",
-                "es": "actualice OpenSML lib para admitir el algoritmo CRC Holley DTZ541 implementado incorrectamente",
-                "pl": "zaktualizować bibliotekę OpenSML do obsługi błędnie zaimplementowanego algorytmu CRC Holley DTZ541",
-                "zh-cn": "更新OpenSML库以支持Holley DTZ541错误实现的CRC算法"
-            },
-            "3.1.5": {
-                "en": "update dependencies to prevent some crash cases and optimize tcp mode",
-                "de": "Aktualisieren Sie die Abhängigkeiten, um einige Absturzfälle zu vermeiden und den TCP-Modus zu optimieren",
-                "ru": "обновлять зависимости, чтобы предотвратить некоторые случаи сбоев и оптимизировать режим TCP",
-                "pt": "atualize as dependências para evitar alguns casos de falha e otimizar o modo tcp",
-                "nl": "update afhankelijkheden om enkele crashgevallen te voorkomen en de tcp-modus te optimaliseren",
-                "fr": "mettre à jour les dépendances pour éviter certains cas de crash et optimiser le mode tcp",
-                "it": "aggiorna le dipendenze per prevenire alcuni casi di crash e ottimizzare la modalità tcp",
-                "es": "actualizar las dependencias para prevenir algunos casos de fallas y optimizar el modo tcp",
-                "pl": "zaktualizuj zależności, aby zapobiec niektórym przypadkom awarii i zoptymalizować tryb TCP",
-                "zh-cn": "更新依赖项以防止某些崩溃情况并优化TCP模式"
-            },
-            "3.1.4": {
-                "en": "update dependencies to prevent some crash cases and optimize tcp mode",
-                "de": "Aktualisieren Sie die Abhängigkeiten, um einige Absturzfälle zu vermeiden und den TCP-Modus zu optimieren",
-                "ru": "обновлять зависимости, чтобы предотвратить некоторые случаи сбоев и оптимизировать режим TCP",
-                "pt": "atualize as dependências para evitar alguns casos de falha e otimizar o modo tcp",
-                "nl": "update afhankelijkheden om enkele crashgevallen te voorkomen en de tcp-modus te optimaliseren",
-                "fr": "mettre à jour les dépendances pour éviter certains cas de crash et optimiser le mode tcp",
-                "it": "aggiorna le dipendenze per prevenire alcuni casi di crash e ottimizzare la modalità tcp",
-                "es": "actualizar las dependencias para prevenir algunos casos de fallas y optimizar el modo tcp",
-                "pl": "zaktualizuj zależności, aby zapobiec niektórym przypadkom awarii i zoptymalizować tryb TCP",
-                "zh-cn": "更新依赖项以防止某些崩溃情况并优化TCP模式"
-            },
-            "3.1.3": {
-                "en": "update dependencies to prevent some crash cases",
-                "de": "Aktualisieren Sie die Abhängigkeiten, um einige Absturzfälle zu vermeiden",
-                "ru": "обновить зависимости, чтобы предотвратить некоторые случаи сбоев",
-                "pt": "atualizar dependências para evitar alguns casos de falha",
-                "nl": "update afhankelijkheden om enkele crashgevallen te voorkomen",
-                "fr": "mettre à jour les dépendances pour éviter certains cas de plantage",
-                "it": "aggiornare le dipendenze per prevenire alcuni casi di crash",
-                "es": "actualizar dependencias para evitar algunos casos de bloqueo",
-                "pl": "Zaktualizuj zależności, aby zapobiec niektórym przypadkom awarii",
-                "zh-cn": "更新依赖项以防止某些崩溃情况"
-            },
-            "3.1.2": {
-                "en": "optimizations and bugfixes",
-                "de": "Optimierungen und Bugfixes",
-                "ru": "оптимизация и исправления",
-                "pt": "otimizações e correções de bugs",
-                "nl": "optimalisaties en bugfixes",
-                "fr": "optimisations et corrections de bugs",
-                "it": "ottimizzazioni e correzioni di errori",
-                "es": "optimizaciones y correcciones de errores",
-                "pl": "optymalizacje i poprawki błędów",
-                "zh-cn": "优化和错误修正"
-            },
-            "3.1.1": {
-                "en": "optimizations and bugfixes, TCP support",
-                "de": "Optimierungen und Bugfixes, TCP-Unterstützung",
-                "ru": "оптимизация и исправления, поддержка TCP",
-                "pt": "otimizações e correções de bugs, suporte a TCP",
-                "nl": "optimalisaties en bugfixes, TCP-ondersteuning",
-                "fr": "optimisations et corrections de bugs, prise en charge TCP",
-                "it": "ottimizzazioni e correzioni di errori, supporto TCP",
-                "es": "optimizaciones y correcciones de errores, soporte TCP",
-                "pl": "optymalizacje i poprawki błędów, obsługa TCP",
-                "zh-cn": "优化和错误修正，TCP支持"
-            },
-            "3.0.10": {
-                "en": "fixes and optimizations. Switched to iobroker own Sentry instance for reporting of crashes",
-                "de": "Korrekturen und Optimierungen. Zur Meldung von Abstürzen auf die iobroker-eigene Sentry-Instanz umgestellt",
-                "ru": "исправления и оптимизации. Переключен на собственный экземпляр Sentry iobroker для сообщения о сбоях",
-                "pt": "correções e otimizações. Mudou para a instância Sentry do iobroker para relatar falhas",
-                "nl": "fixes en optimalisaties. Overgeschakeld naar iobroker eigen Sentry-instantie voor het melden van crashes",
-                "fr": "corrections et optimisations. Passé à l'instance Sentry d'iobroker pour le signalement des plantages",
-                "it": "correzioni e ottimizzazioni. Passato alla propria istanza Sentry di iobroker per la segnalazione di arresti anomali",
-                "es": "correcciones y optimizaciones. Se cambió a la instancia de Sentry propia de iobroker para informar sobre bloqueos",
-                "pl": "poprawki i optymalizacje. Przełączono na własną instancję Sentry iobroker w celu zgłaszania awarii",
-                "zh-cn": "修复和优化。切换到iobroker自己的Sentry实例以报告崩溃"
-            },
-            "3.0.8": {
-                "en": "errors prevented when stopping to process data",
-                "de": "Fehler beim Stoppen der Datenverarbeitung werden verhindert",
-                "ru": "ошибки, предотвращенные при остановке обработки данных",
-                "pt": "erros evitados ao parar para processar dados",
-                "nl": "fouten voorkomen bij het stoppen om gegevens te verwerken",
-                "fr": "erreurs évitées lors de l'arrêt du traitement des données",
-                "it": "errori impediti quando si interrompe l'elaborazione dei dati",
-                "es": "errores prevenidos al detener el procesamiento de datos",
-                "pl": "zapobiega się błędom podczas zatrzymywania przetwarzania danych",
-                "zh-cn": "停止处理数据时避免了错误"
-            },
-            "3.0.7": {
-                "en": "errors prevented when stopping to process data",
-                "de": "Fehler beim Stoppen der Datenverarbeitung werden verhindert",
-                "ru": "ошибки, предотвращенные при остановке обработки данных",
-                "pt": "erros evitados ao parar para processar dados",
-                "nl": "fouten voorkomen bij het stoppen om gegevens te verwerken",
-                "fr": "erreurs évitées lors de l'arrêt du traitement des données",
-                "it": "errori impediti quando si interrompe l'elaborazione dei dati",
-                "es": "errores prevenidos al detener el procesamiento de datos",
-                "pl": "zapobiega się błędom podczas zatrzymywania przetwarzania danych",
-                "zh-cn": "停止处理数据时避免了错误"
-            },
-            "3.0.6": {
-                "en": "serial port configuration further optimized",
-                "de": "Konfiguration der seriellen Schnittstelle weiter optimiert",
-                "ru": "конфигурация последовательного порта оптимизирована",
-                "pt": "configuração da porta serial ainda mais otimizada",
-                "nl": "seriële poortconfiguratie verder geoptimaliseerd",
-                "fr": "configuration du port série optimisée",
-                "it": "configurazione della porta seriale ulteriormente ottimizzata",
-                "es": "configuración del puerto serie aún más optimizada",
-                "pl": "dodatkowa optymalizacja konfiguracji portu szeregowego",
-                "zh-cn": "串口配置进一步优化"
-            },
-            "3.0.3": {
-                "en": "serial port configuration further optimized",
-                "de": "Konfiguration der seriellen Schnittstelle weiter optimiert",
-                "ru": "конфигурация последовательного порта оптимизирована",
-                "pt": "configuração da porta serial ainda mais otimizada",
-                "nl": "seriële poortconfiguratie verder geoptimaliseerd",
-                "fr": "configuration du port série optimisée",
-                "it": "configurazione della porta seriale ulteriormente ottimizzata",
-                "es": "configuración del puerto serie aún más optimizada",
-                "pl": "dodatkowa optymalizacja konfiguracji portu szeregowego",
-                "zh-cn": "串口配置进一步优化"
-            },
-            "3.0.2": {
-                "en": "fix that \"by-id\" serial paths are used if possible",
-                "de": "Korrigieren Sie, dass nach Möglichkeit \"by-id\" serielle Pfade verwendet werden",
-                "ru": "исправьте использование последовательных путей \"by-id\", если это возможно",
-                "pt": "corrija que os caminhos seriais \"by-id\" sejam usados, se possível",
-                "nl": "repareer dat \"by-id\" seriële paden worden gebruikt indien mogelijk",
-                "fr": "corrige que les chemins série \"by-id\" sont utilisés si possible",
-                "it": "correggi che i percorsi seriali \"by-id\" siano usati se possibile",
-                "es": "arregla que se usen rutas seriales \"by-id\" si es posible",
-                "pl": "naprawić, że ścieżki szeregowe „by-id” są używane, jeśli to możliwe",
-                "zh-cn": "修复可能的情况下使用“ by-id”串行路径"
-            },
-            "3.0.1": {
-                "en": "BREAKING CHANGE: only supports nodejs 8.x+, compact mode added, add Sentry for error reporting, user \"by-id\" serial paths if possible",
-                "de": "ÄNDERUNG UNTERBRECHEN: Unterstützt nur NodeJS 8.x +, Kompaktmodus hinzugefügt, Sentry für die Fehlerberichterstattung hinzugefügt, Benutzer \"by-id\" serielle Pfade, wenn möglich",
-                "ru": "BREAKING CHANGE: поддерживает только nodejs 8.x +, добавлен компактный режим, добавьте Sentry для отчетов об ошибках, последовательные пути пользователя by-id, если это возможно",
-                "pt": "BREAKING CHANGE: suporta apenas nodejs 8.x +, modo compacto adicionado, adicione Sentry para relatório de erros, caminhos seriais \"por id\" do usuário, se possível",
-                "nl": "BREAKING CHANGE: ondersteunt alleen nodejs 8.x +, compacte modus toegevoegd, voeg Sentry toe voor foutrapportage, gebruiker \"by-id\" seriële paden indien mogelijk",
-                "fr": "BREAKING CHANGE: ne supporte que nodejs 8.x +, mode compact ajouté, ajoutez Sentry pour signaler les erreurs, les chemins série \"by-id\" de l'utilisateur si possible",
-                "it": "CAMBIAMENTO DI ROTTURA: supporta solo nodejs 8.x +, aggiunta la modalità compatta, aggiungere Sentry per la segnalazione degli errori, se possibile percorsi seriali \"by-id\" dell'utente",
-                "es": "CAMBIO DE INTERRUPCIÓN: solo admite nodejs 8.x +, modo compacto agregado, agregue Sentry para informes de errores, rutas seriales \"by-id\" del usuario si es posible",
-                "pl": "ZMIANA ZMIANY: obsługuje tylko nodejs 8.x +, dodano tryb kompaktowy, dodaj Sentry do zgłaszania błędów, jeśli to możliwe, ścieżki szeregowe „by-id” użytkownika",
-                "zh-cn": "突破性变化：仅支持nodejs 8.x +，添加了紧凑模式，添加了Sentry用于错误报告，并在可能的情况下添加了用户“ by-id”串行路径"
-            }
-        },
-        "authors": [
-            "Apollon77 <ingo@fischer-ka.de>"
+  "common": {
+    "name": "smartmeter",
+    "version": "3.3.4",
+    "news": {
+      "3.3.4": {
+        "en": "Restore functionality of Port list in Admin",
+        "de": "Stellen Sie die Funktionalität der Portliste in Admin wieder her",
+        "ru": "Восстановить функциональность списка портов в Admin",
+        "pt": "Restaure a funcionalidade da lista de portas no administrador",
+        "nl": "Herstel functionaliteit van poortlijst in Admin",
+        "fr": "Restaurer la fonctionnalité de la liste des ports dans Admin",
+        "it": "Ripristina la funzionalità dell'elenco delle porte in Admin",
+        "es": "Restaurar la funcionalidad de la lista de puertos en Admin",
+        "pl": "Przywróć funkcjonalność listy portów w Admin",
+        "zh-cn": "在管理员中恢复端口列表的功能"
+      },
+      "3.3.3": {
+        "en": "IMPORTANT: This version requires at least Node.js 12.17+ (excluding non LTS like 13.x)\nPrevent some crash cases",
+        "de": "WICHTIG: Diese Version erfordert mindestens Node.js 12.17+ (außer Nicht-LTS wie 13.x)\nVerhindern Sie einige Absturzfälle",
+        "ru": "ВАЖНО: для этой версии требуется как минимум Node.js 12.17+ (за исключением не LTS, например 13.x).\nПредотвратить некоторые случаи сбоев",
+        "pt": "IMPORTANTE: esta versão requer pelo menos Node.js 12.17+ (excluindo não LTS como 13.x)\nPrevenir alguns casos de travamento",
+        "nl": "BELANGRIJK: deze versie vereist minimaal Node.js 12.17+ (exclusief niet-LTS zoals 13.x)\nVoorkom enkele crashgevallen",
+        "fr": "IMPORTANT : Cette version nécessite au moins Node.js 12.17+ (hors non LTS comme 13.x)\nPrévenir certains cas de crash",
+        "it": "IMPORTANTE: questa versione richiede almeno Node.js 12.17+ (escluso non LTS come 13.x)\nPrevenire alcuni casi di crash",
+        "es": "IMPORTANTE: esta versión requiere al menos Node.js 12.17+ (excluyendo no LTS como 13.x)\nPrevenir algunos casos de accidentes",
+        "pl": "WAŻNE: Ta wersja wymaga co najmniej Node.js 12.17+ (z wyłączeniem innych niż LTS, takich jak 13.x)\nZapobiegaj niektórym przypadkom awarii",
+        "zh-cn": "重要提示：此版本至少需要 Node.js 12.17+（不包括像 13.x 这样的非 LTS）\n防止一些崩溃案例"
+      },
+      "3.2.1": {
+        "en": "Optimize for js-controller 3.3",
+        "de": "Optimieren für js-controller 3.3",
+        "ru": "Оптимизировать под js-controller 3.3",
+        "pt": "Otimize para js-controller 3.3",
+        "nl": "Optimaliseren voor js-controller 3.3",
+        "fr": "Optimiser pour js-controller 3.3",
+        "it": "Ottimizza per js-controller 3.3",
+        "es": "Optimizar para js-controller 3.3",
+        "pl": "Optymalizacja pod kątem kontrolera js 3.3",
+        "zh-cn": "针对js-controller 3.3进行优化"
+      },
+      "3.2.0": {
+        "en": "Add new protocolSmlInputEncoding option for SML protocol. With this also ascii or base64 based encodings (e.g. with TCP transports) are possible.",
+        "de": "Fügen Sie die neue Option protocolSmlInputEncoding für das SML-Protokoll hinzu. Damit sind auch auf ASCII oder Base64 basierende Codierungen (z. B. mit TCP-Transporten) möglich.",
+        "ru": "Добавить новую опцию protocolSmlInputEncoding для протокола SML. С этим также возможны кодировки на основе ascii или base64 (например, с транспортом TCP).",
+        "pt": "Adicione a nova opção protocolSmlInputEncoding para o protocolo SML. Com isso, também são possíveis codificações baseadas em ascii ou base64 (por exemplo, com transportes TCP).",
+        "nl": "Nieuwe protocolSmlInputEncoding-optie voor SML-protocol toevoegen. Hiermee zijn ook ascii- of base64-gebaseerde coderingen (bijvoorbeeld met TCP-transporten) mogelijk.",
+        "fr": "Ajoutez une nouvelle option protocolSmlInputEncoding pour le protocole SML. Avec cela, des encodages basés sur ascii ou base64 (par exemple avec les transports TCP) sont également possibles.",
+        "it": "Aggiungere una nuova opzione protocolSmlInputEncoding per il protocollo SML. Con questo sono possibili anche codifiche basate su ascii o base64 (ad es. Con trasporti TCP).",
+        "es": "Agregue la nueva opción protocolSmlInputEncoding para el protocolo SML. Con esto también son posibles codificaciones basadas en ascii o base64 (por ejemplo, con transportes TCP).",
+        "pl": "Dodaj nową opcję protocolSmlInputEncoding dla protokołu SML. Dzięki temu możliwe jest również kodowanie oparte na ascii lub base64 (np. Z transportami TCP).",
+        "zh-cn": "为SML协议添加新的protocolSmlInputEncoding选项。通过这种方式，基于ascii或base64的编码（例如TCP传输）也是可能的。"
+      },
+      "3.1.9": {
+        "en": "optimize stop handling (Sentry IOBROKER-SMARTMETER-10)",
+        "de": "Optimieren Sie das Stop-Handling (Sentry IOBROKER-SMARTMETER-10).",
+        "ru": "оптимизировать обработку останова (Sentry IOBROKER-SMARTMETER-10)",
+        "pt": "otimizar o manuseio de parada (Sentry IOBROKER-SMARTMETER-10)",
+        "nl": "stopafhandeling optimaliseren (Sentry IOBROKER-SMARTMETER-10)",
+        "fr": "optimiser la gestion des arrêts (Sentry IOBROKER-SMARTMETER-10)",
+        "it": "ottimizzare la gestione delle fermate (Sentry IOBROKER-SMARTMETER-10)",
+        "es": "optimizar el manejo de la parada (Sentry IOBROKER-SMARTMETER-10)",
+        "pl": "optymalizacja obsługi zatrzymań (Sentry IOBROKER-SMARTMETER-10)",
+        "zh-cn": "优化停止处理（Sentry IOBROKER-SMARTMETER-10）"
+      },
+      "3.1.8": {
+        "en": "prevent last warnings with js-controller 3.2",
+        "de": "Verhindern Sie letzte Warnungen mit js-controller 3.2",
+        "ru": "предотвратить последние предупреждения с помощью js-controller 3.2",
+        "pt": "evita os últimos avisos com js-controller 3.2",
+        "nl": "voorkom laatste waarschuwingen met js-controller 3.2",
+        "fr": "éviter les derniers avertissements avec js-controller 3.2",
+        "it": "prevenire gli ultimi avvisi con js-controller 3.2",
+        "es": "evitar las últimas advertencias con js-controller 3.2",
+        "pl": "zapobiec ostatnim ostrzeżeniom za pomocą js-controller 3.2",
+        "zh-cn": "防止使用js-controller 3.2发出最后警告"
+      },
+      "3.1.7": {
+        "en": "prevent warnings with js-controller 3.2\nupdate js-controller dependency to at least require js-controller 2.0.0",
+        "de": "Warnungen mit js-controller verhindern 3.2\nAktualisieren Sie die js-controller-Abhängigkeit so, dass mindestens js-controller 2.0.0 erforderlich ist",
+        "ru": "предотвратить предупреждения с помощью js-controller 3.2\nобновить зависимость js-controller, по крайней мере, до требования js-controller 2.0.0",
+        "pt": "evitar avisos com js-controller 3.2\natualize a dependência do js-controller para pelo menos exigir o js-controller 2.0.0",
+        "nl": "waarschuwingen voorkomen met js-controller 3.2\nupdate js-controller afhankelijkheid om minimaal js-controller 2.0.0 te vereisen",
+        "fr": "éviter les avertissements avec js-controller 3.2\nmettre à jour la dépendance js-controller pour au moins exiger js-controller 2.0.0",
+        "it": "prevenire avvisi con js-controller 3.2\naggiorna la dipendenza js-controller per richiedere almeno js-controller 2.0.0",
+        "es": "prevenir advertencias con js-controller 3.2\nactualice la dependencia js-controller para que al menos requiera js-controller 2.0.0",
+        "pl": "zapobiegaj ostrzeżeniom za pomocą js-controller 3.2\nzaktualizuj zależność js-controller, aby przynajmniej wymagać js-controller 2.0.0",
+        "zh-cn": "防止使用js-controller 3.2发出警告\n将js-controller依赖关系更新为至少需要js-controller 2.0.0"
+      }
+    },
+    "authors": [
+      "Apollon77 <ingo@fischer-ka.de>"
+    ],
+    "title": "Smartmeter devices support",
+    "titleLang": {
+      "en": "Smartmeter devices support",
+      "de": "Unterstützung für Smartmeter-Geräte",
+      "ru": "Поддержка устройств Smartmeter",
+      "pt": "Suporte para dispositivos Smartmeter",
+      "nl": "Ondersteuning voor smartmeter-apparaten",
+      "fr": "Prise en charge des appareils Smartmeter",
+      "it": "Supporto dispositivi Smartmeter",
+      "es": "Soporte de dispositivos Smartmeter",
+      "pl": "Obsługa urządzeń Smartmeter",
+      "zh-cn": "Smartmeter设备支持"
+    },
+    "desc": {
+      "en": "Read data from Smartmeter Devices using various protocols like SML, D0 and others",
+      "de": "Auslesen von Smartmeter-Geräten mit verschiedenen Protokollen wie SML, D0 und anderen",
+      "ru": "Чтение данных с устройств Smartmeter с использованием различных протоколов, таких как SML, D0 и др.",
+      "pt": "Leia dados de dispositivos Smartmeter usando vários protocolos como SML, D0 e outros",
+      "nl": "Lees gegevens van Smartmeter-apparaten met behulp van verschillende protocollen zoals SML, D0 en anderen",
+      "fr": "Lire des données à partir de périphériques Smartmeter en utilisant divers protocoles tels que SML, D0 et autres",
+      "it": "Leggi i dati dai dispositivi Smartmeter utilizzando vari protocolli come SML, D0 e altri",
+      "es": "Lea datos de dispositivos Smartmeter usando varios protocolos como SML, D0 y otros",
+      "pl": "Odczytaj dane z urządzeń Smartmeter przy użyciu różnych protokołów, takich jak SML, D0 i inne",
+      "zh-cn": "使用SML，D0等各种协议从Smartmeter设备读取数据"
+    },
+    "platform": "Javascript/Node.js",
+    "mode": "daemon",
+    "messagebox": true,
+    "subscribe": "messagebox",
+    "stopBeforeUpdate": true,
+    "icon": "smartmeter.png",
+    "extIcon": "https://raw.githubusercontent.com/Apollon77/ioBroker.smartmeter/master/admin/smartmeter.png",
+    "readme": "https://github.com/Apollon77/ioBroker.smartmeter/blob/master/README.md",
+    "license": "MIT",
+    "npmLibs": [],
+    "type": "energy",
+    "keywords": [
+      "iobroker",
+      "smartmeter",
+      "SML",
+      "D0",
+      "eHz",
+      "OBIS"
+    ],
+    "loglevel": "info",
+    "enabled": true,
+    "compact": true,
+    "connectionType": "local",
+    "dataSource": "push",
+    "tier": 2,
+    "plugins": {
+      "sentry": {
+        "dsn": "https://2d8447c1f6514162b912af8d6892797e@sentry.iobroker.net/3",
+        "pathWhitelist": [
+          "@apollon",
+          "smartmeter-obis",
+          "open-sml"
         ],
-        "title": "Smartmeter devices support",
-        "titleLang": {
-            "en": "Smartmeter devices support",
-            "de": "Unterstützung für Smartmeter-Geräte",
-            "ru": "Поддержка устройств Smartmeter",
-            "pt": "Suporte para dispositivos Smartmeter",
-            "nl": "Ondersteuning voor smartmeter-apparaten",
-            "fr": "Prise en charge des appareils Smartmeter",
-            "it": "Supporto dispositivi Smartmeter",
-            "es": "Soporte de dispositivos Smartmeter",
-            "pl": "Obsługa urządzeń Smartmeter",
-            "zh-cn": "Smartmeter设备支持"
-        },
-        "desc": {
-            "en": "Read data from Smartmeter Devices using various protocols like SML, D0 and others",
-            "de": "Auslesen von Smartmeter-Geräten mit verschiedenen Protokollen wie SML, D0 und anderen",
-            "ru": "Чтение данных с устройств Smartmeter с использованием различных протоколов, таких как SML, D0 и др.",
-            "pt": "Leia dados de dispositivos Smartmeter usando vários protocolos como SML, D0 e outros",
-            "nl": "Lees gegevens van Smartmeter-apparaten met behulp van verschillende protocollen zoals SML, D0 en anderen",
-            "fr": "Lire des données à partir de périphériques Smartmeter en utilisant divers protocoles tels que SML, D0 et autres",
-            "it": "Leggi i dati dai dispositivi Smartmeter utilizzando vari protocolli come SML, D0 e altri",
-            "es": "Lea datos de dispositivos Smartmeter usando varios protocolos como SML, D0 y otros",
-            "pl": "Odczytaj dane z urządzeń Smartmeter przy użyciu różnych protokołów, takich jak SML, D0 i inne",
-            "zh-cn": "使用SML，D0等各种协议从Smartmeter设备读取数据"
-        },
-        "platform": "Javascript/Node.js",
-        "mode": "daemon",
-        "messagebox": true,
-        "subscribe": "messagebox",
-        "stopBeforeUpdate": true,
-        "icon": "smartmeter.png",
-        "extIcon": "https://raw.githubusercontent.com/Apollon77/ioBroker.smartmeter/master/admin/smartmeter.png",
-        "readme": "https://github.com/Apollon77/ioBroker.smartmeter/blob/master/README.md",
-        "license": "MIT",
-        "npmLibs": [],
-        "type": "energy",
-        "keywords": [
-            "iobroker",
-            "smartmeter",
-            "SML",
-            "D0",
-            "eHz",
-            "OBIS"
-        ],
-        "loglevel": "info",
-        "enabled": true,
-        "compact": true,
-        "connectionType": "local",
-        "dataSource": "push",
-        "tier": 2,
-        "plugins": {
-            "sentry": {
-                "dsn": "https://2d8447c1f6514162b912af8d6892797e@sentry.iobroker.net/3",
-                "pathWhitelist": [
-                    "@apollon",
-                    "smartmeter-obis",
-                    "open-sml"
-                ],
-                "errorBlacklist": [
-                    "SyntaxError"
-                ]
-            }
-        },
-        "dependencies": [
-            {
-                "js-controller": ">=2.0.0"
-            }
+        "errorBlacklist": [
+          "SyntaxError"
         ]
+      }
     },
-    "native": {
-        "protocol": "SmlProtocol",
-        "transport": "SerialResponseTransport",
-        "requestInterval": 300,
-        "transportSerialPort": "",
-        "transportSerialBaudrate": "",
-        "transportSerialDataBits": "",
-        "transportSerialStopBits": "",
-        "transportSerialParity": "",
-        "transportSerialMessageTimeout": "",
-        "transportHttpRequestUrl": "",
-        "transportHttpRequestTimeout": 2000,
-        "transportLocalFilePath": "",
-        "transportTcpHost": "",
-        "transportTcpPort": "",
-        "protocolD0WakeupCharacters": 0,
-        "protocolD0DeviceAddress": "",
-        "protocolD0SignOnMessage": "",
-        "protocolD0ModeOverwrite": "",
-        "protocolD0BaudrateChangeoverOverwrite": "",
-        "protocolSmlIgnoreInvalidCRC": false,
-        "protocolSmlInputEncoding": "",
-        "obisFallbackMedium": "",
-        "obisNameLanguage": "de",
-        "anotherQueryDelay": 1000
-    },
-    "objects": [],
-    "instanceObjects": [
-        {
-            "_id": "info",
-            "type": "channel",
-            "common": {
-                "name": "Information"
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.connection",
-            "type": "state",
-            "common": {
-                "role": "indicator.connected",
-                "name": "If connected to Smartmeter device",
-                "type": "boolean",
-                "read": true,
-                "write": false,
-                "def": false
-            },
-            "native": {}
-        }
+    "dependencies": [
+      {
+        "js-controller": ">=2.0.0"
+      }
     ]
+  },
+  "native": {
+    "protocol": "SmlProtocol",
+    "transport": "SerialResponseTransport",
+    "requestInterval": 300,
+    "transportSerialPort": "",
+    "transportSerialBaudrate": "",
+    "transportSerialDataBits": "",
+    "transportSerialStopBits": "",
+    "transportSerialParity": "",
+    "transportSerialMessageTimeout": "",
+    "transportHttpRequestUrl": "",
+    "transportHttpRequestTimeout": 2000,
+    "transportLocalFilePath": "",
+    "transportTcpHost": "",
+    "transportTcpPort": "",
+    "protocolD0WakeupCharacters": 0,
+    "protocolD0DeviceAddress": "",
+    "protocolD0SignOnMessage": "",
+    "protocolD0ModeOverwrite": "",
+    "protocolD0BaudrateChangeoverOverwrite": "",
+    "protocolSmlIgnoreInvalidCRC": false,
+    "protocolSmlInputEncoding": "",
+    "obisFallbackMedium": "",
+    "obisNameLanguage": "de",
+    "anotherQueryDelay": 1000
+  },
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "role": "indicator.connected",
+        "name": "If connected to Smartmeter device",
+        "type": "boolean",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    }
+  ]
 }
