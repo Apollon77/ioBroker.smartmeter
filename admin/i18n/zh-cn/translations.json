@@ -1,5 +1,5 @@
 {
-    "Not available": "端口列表不可用",
+    "Not available": "串口列表不可用",
     "Please wait till port list is loaded ...": "请等待端口列表加载完毕...",
     "Use custom Serial port path": "设置自定义串口名称",
     "field_anotherQueryDelay": "多个登录消息之间的延迟",
@@ -27,7 +27,7 @@
     "field_transportSerialStopBits": "串行设备停止位",
     "field_transportTcpHost": "TCP主机",
     "field_transportTcpPort": "TCP端口",
-    "heading_GeneralSettings": "常规设置",
+    "heading_GeneralSettings": "通用设置",
     "heading_ProtocolSpecificSettings": "数据协议设置",
     "heading_TransportSpecificSettings": "数据传输设置",
     "info_anotherQueryDelay": "需要延迟，因为适配器将发送新的消息，并且设备需要先重置，<br>默认为空：1000",
