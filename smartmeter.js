@@ -319,6 +319,7 @@ function main() {
     }
 
     if (adapter.config.protocol === 'D0Protocol') { // we have a Serial connection
+        smOptions.dataCollector = 'Obis';
         if (adapter.config.protocolD0WakeupCharacters !== null && adapter.config.protocolD0WakeupCharacters !== undefined) {
             adapter.config.protocolD0WakeupCharacters = parseInt(adapter.config.protocolD0WakeupCharacters, 10);
             if (adapter.config.protocolD0WakeupCharacters < 0) {
@@ -341,6 +342,7 @@ function main() {
         }
     }
     if (adapter.config.protocol === 'SmlProtocol') { // we have a Serial connection
+        smOptions.dataCollector = 'Obis';
         smOptions.protocolSmlIgnoreInvalidCRC = adapter.config.protocolSmlIgnoreInvalidCRC = adapter.config.protocolSmlIgnoreInvalidCRC === 'true' || adapter.config.protocolSmlIgnoreInvalidCRC === true;
         if (adapter.config.protocolSmlInputEncoding) {
             smOptions.protocolSmlInputEncoding = adapter.config.protocolSmlInputEncoding;
@@ -354,11 +356,22 @@ function main() {
         }
         smOptions.obisFallbackMedium = adapter.config.obisFallbackMedium;
     }
-    adapter.log.debug('SmartmeterObis options: ' + JSON.stringify(smOptions));
+    if (adapter.config.protocol === 'JsonEfrProtocol') {
+        // TODO: Maybe this is captured elsewhere but I CBF to test right now :o)
+        smOptions.dataCollector = 'Obis';
+    } else if (adapter.config.protocol === 'TicProtocol') {
+        smOptions.dataCollector = 'Tic';
+    }
 
-    smTransport = SmartmeterObis.init(smOptions, storeObisData);
+    adapter.log.debug('Smartmeter options: ' + JSON.stringify(smOptions));
 
-    smTransport.process();
+    if (smOptions.dataCollector === 'Obis') {
+        smTransport = SmartmeterObis.init(smOptions, storeObisData);
+
+        smTransport.process();
+    } else if (smOptions.dataCollector === 'Tic') {
+        // TODO: do something with TIC here
+    }
 }
 
 async function storeObisData(err, obisResult) {
@@ -461,23 +474,23 @@ async function storeObisData(err, obisResult) {
         if (!smValues[obisId] || smValues[obisId].valueToString() !== obisResult[obisId].valueToString()) {
             if (obisResult[obisId].getRawValue() !== undefined) {
                 adapter.log.debug('Set State ' + ioChannelId + '.rawvalue = ' + obisResult[obisId].getRawValue());
-                await adapter.setStateAsync(ioChannelId + '.rawvalue', {ack: true, val: obisResult[obisId].getRawValue()});
+                await adapter.setStateAsync(ioChannelId + '.rawvalue', { ack: true, val: obisResult[obisId].getRawValue() });
             }
 
             adapter.log.debug('Set State ' + ioChannelId + '.value = ' + obisResult[obisId].getValue(0).value);
-            await adapter.setStateAsync(ioChannelId + '.value', {ack: true, val: obisResult[obisId].getValue(0).value});
+            await adapter.setStateAsync(ioChannelId + '.value', { ack: true, val: obisResult[obisId].getValue(0).value });
 
             if (obisResult[obisId].getValueLength() > 1) {
                 for (i = 1; i < obisResult[obisId].getValueLength(); i++) {
-                    adapter.log.debug('Set State '+ ioChannelId + '.value' + (i + 1) + ' = ' + obisResult[obisId].getValue(i).value);
-                    await adapter.setStateAsync(ioChannelId + '.value' + (i + 1), {ack: true, val: obisResult[obisId].getValue(i).value});
+                    adapter.log.debug('Set State ' + ioChannelId + '.value' + (i + 1) + ' = ' + obisResult[obisId].getValue(i).value);
+                    await adapter.setStateAsync(ioChannelId + '.value' + (i + 1), { ack: true, val: obisResult[obisId].getValue(i).value });
                 }
             }
             smValues[obisId] = obisResult[obisId];
             updateCount++;
         }
         else {
-            adapter.log.debug('Data for '+ ioChannelId + ' unchanged');
+            adapter.log.debug('Data for ' + ioChannelId + ' unchanged');
         }
     }
     adapter.log.info('Received ' + Object.keys(obisResult).length + ' values, ' + updateCount + ' updated');
@@ -514,11 +527,11 @@ function processMessage(obj) {
                         adapter.sendTo(obj.from, obj.command, ports, obj.callback);
                     }).catch(err => {
                         adapter.log.warn('Can not get Serial port list: ' + err);
-                        adapter.sendTo(obj.from, obj.command, [{path: 'Not available'}], obj.callback);
+                        adapter.sendTo(obj.from, obj.command, [{ path: 'Not available' }], obj.callback);
                     });
                 } else {
                     adapter.log.warn('Module serialport is not available');
-                    adapter.sendTo(obj.from, obj.command, [{path: 'Not available'}], obj.callback);
+                    adapter.sendTo(obj.from, obj.command, [{ path: 'Not available' }], obj.callback);
                 }
             }
             break;
