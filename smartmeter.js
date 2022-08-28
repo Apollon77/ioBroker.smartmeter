@@ -13,6 +13,7 @@
 
 const fs = require('fs');
 const utils = require('@iobroker/adapter-core'); // Get common adapter utils
+// TODO: Move this require to only load if OBIS is in use.
 const SmartmeterObis = require('smartmeter-obis');
 let smTransport;
 const { SerialPort } = require('serialport');
@@ -71,7 +72,7 @@ function initSentry(callback) {
         else {
             scope.setTag('installedFrom', adapter.common.installedVersion || adapter.common.version);
         }
-        scope.addEventProcessor(function(event, hint) {
+        scope.addEventProcessor(function (event, hint) {
             // Try to filter out some events
             if (event.exception && event.exception.values && event.exception.values[0]) {
                 const eventData = event.exception.values[0];
@@ -110,7 +111,7 @@ function initSentry(callback) {
             if (obj && obj.common && obj.common.diag) {
                 adapter.getForeignObject('system.meta.uuid', (err, obj) => {
                     // create uuid
-                    if (!err  && obj) {
+                    if (!err && obj) {
                         Sentry.configureScope(scope => {
                             scope.setUser({
                                 id: obj.native.uuid
@@ -253,7 +254,7 @@ function main() {
             }
             smOptions.transportSerialDataBits = adapter.config.transportSerialDataBits;
         }
-        if (adapter.config.transportSerialStopBits !== null && adapter.config.transportSerialStopBits !== undefined  && adapter.config.transportSerialStopBits !== "") {
+        if (adapter.config.transportSerialStopBits !== null && adapter.config.transportSerialStopBits !== undefined && adapter.config.transportSerialStopBits !== "") {
             adapter.config.transportSerialStopBits = parseInt(adapter.config.transportSerialStopBits, 10);
 
             if ((adapter.config.transportSerialStopBits !== 1) && (adapter.config.transportSerialStopBits !== 2)) {
@@ -262,7 +263,7 @@ function main() {
             }
             smOptions.transportSerialStopBits = adapter.config.transportSerialStopBits;
         }
-        if (adapter.config.transportSerialParity !== null && adapter.config.transportSerialParity !== undefined  && adapter.config.transportSerialParity !== "") {
+        if (adapter.config.transportSerialParity !== null && adapter.config.transportSerialParity !== undefined && adapter.config.transportSerialParity !== "") {
             if ((adapter.config.transportSerialParity !== "none") && (adapter.config.transportSerialParity !== "even") &&
                 (adapter.config.transportSerialParity !== "mark") && (adapter.config.transportSerialParity !== "odd") &&
                 (adapter.config.transportSerialParity !== "space")) {
@@ -273,7 +274,7 @@ function main() {
             smOptions.transportSerialParity = adapter.config.transportSerialParity;
         }
         if (adapter.config.transportSerialMessageTimeout !== null && adapter.config.transportSerialMessageTimeout !== undefined) {
-            adapter.config.transportSerialMessageTimeout = parseInt(adapter.config.transportSerialMessageTimeout, 10)*1000;
+            adapter.config.transportSerialMessageTimeout = parseInt(adapter.config.transportSerialMessageTimeout, 10) * 1000;
             if (adapter.config.transportSerialMessageTimeout < 1000) {
                 adapter.log.error('HTTP Request timeout ' + adapter.config.transportSerialMessageTimeout + ' invalid, check your configuration!');
                 return;
@@ -331,7 +332,7 @@ function main() {
         if (adapter.config.protocolD0DeviceAddress) smOptions.protocolD0DeviceAddress = adapter.config.protocolD0DeviceAddress;
         if (adapter.config.protocolD0SignOnMessage) smOptions.protocolD0SignOnMessage = adapter.config.protocolD0SignOnMessage;
         if (adapter.config.protocolD0SignOnMessage) smOptions.protocolD0SignOnMessage = adapter.config.protocolD0SignOnMessage;
-        if (adapter.config.protocolD0BaudrateChangeoverOverwrite !== null && adapter.config.protocolD0BaudrateChangeoverOverwrite !== undefined  && adapter.config.protocolD0BaudrateChangeoverOverwrite !== "") {
+        if (adapter.config.protocolD0BaudrateChangeoverOverwrite !== null && adapter.config.protocolD0BaudrateChangeoverOverwrite !== undefined && adapter.config.protocolD0BaudrateChangeoverOverwrite !== "") {
             adapter.config.protocolD0BaudrateChangeoverOverwrite = parseInt(adapter.config.protocolD0BaudrateChangeoverOverwrite, 10);
 
             if (adapter.config.protocolD0BaudrateChangeoverOverwrite < 300) {
@@ -350,7 +351,7 @@ function main() {
     }
     if (adapter.config.obisFallbackMedium !== null && adapter.config.obisFallbackMedium !== undefined) {
         adapter.config.obisFallbackMedium = parseInt(adapter.config.obisFallbackMedium, 10);
-        if (adapter.config.obisFallbackMedium < 0 || adapter.config.obisFallbackMedium > 18 ) {
+        if (adapter.config.obisFallbackMedium < 0 || adapter.config.obisFallbackMedium > 18) {
             adapter.log.error('OBIS Fallback medium code ' + adapter.config.obisFallbackMedium + ' invalid, check your configuration!');
             return;
         }
@@ -370,7 +371,7 @@ function main() {
 
         smTransport.process();
     } else if (smOptions.dataCollector === 'Tic') {
-        // TODO: do something with TIC here
+        processTic(smOptions);
     }
 }
 
@@ -536,6 +537,79 @@ function processMessage(obj) {
             }
             break;
     }
+}
+
+function processTic(smOptions) {
+    adapter.log.debug('Starting TIC processing');
+
+    var adco = false;
+
+    const port = new SerialPort({
+        path: smOptions.transportSerialPort,
+        baudRate: smOptions.transportSerialBaudrate,
+        // TODO: there are options to override this which we currently ignore. Maybe handle them?
+        dataBits: 7,
+        parity: 'even'
+    });
+    // TODO: clean up port, etc. on termination
+
+    const { ReadlineParser } = require('@serialport/parser-readline');
+    const parser = port.pipe(new ReadlineParser({ delimiter: '\n' }));
+    var nameValueCache = [];
+    parser.on('data', (data) => {
+        // data is a string
+        adapter.log.debug(data);
+
+        const parts = data.split(/\s+/);
+        const name = parts.shift();
+        const value = parts.shift();
+        const checksum = parts.shift();
+        // TODO: verify checksum;
+
+        if (name === 'ADCO') {
+            adco = value;
+            adapter.log.info('Found ID ' + adco);
+            setConnected(true);
+        }
+
+        if (nameValueCache[name] === value) {
+            // Nothing has changed since the last time, do nothing
+        } else {
+            nameValueCache[name] = value;
+
+            if (adco) {
+                // Only create/set objects if the channel (adco) is known.
+                // TODO: this needs cleaning up
+                adapter.setObjectNotExists(adco, {
+                    typeisSet: 'channel',
+                    common: {
+                        name: adco
+                    },
+                    native: {}
+                }, (err) => {
+                    if (err) {
+                        adapter.log.error('Failed to create channel ' + adco);
+                    } else {
+                        const stateName = adco + '.' + name;
+                        adapter.setObjectNotExists(stateName, {
+                            type: 'state'
+                            // TODO: other attributes?
+                        }, (err) => {
+                            if (err) {
+                                adapter.log.error('Failed to create state ' + stateName);
+                            } else {
+                                adapter.setState(stateName, { ack: true, val: value }, (err) => {
+                                    if (err) {
+                                        adapter.log.error('Failed to set state ' + stateName);
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        }
+    });
 }
 
 // If started as allInOne/compact mode => return function to create instance
