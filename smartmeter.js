@@ -206,6 +206,7 @@ process.on('uncaughtException', err => {
 
 function main() {
     const smOptions = {};
+
     if (adapter.common.loglevel === 'debug') {
         smOptions.debug = 2;
         smOptions.logger = adapter.log.debug;
@@ -320,7 +321,6 @@ function main() {
     }
 
     if (adapter.config.protocol === 'D0Protocol') { // we have a Serial connection
-        smOptions.dataCollector = 'Obis';
         if (adapter.config.protocolD0WakeupCharacters !== null && adapter.config.protocolD0WakeupCharacters !== undefined) {
             adapter.config.protocolD0WakeupCharacters = parseInt(adapter.config.protocolD0WakeupCharacters, 10);
             if (adapter.config.protocolD0WakeupCharacters < 0) {
@@ -343,7 +343,6 @@ function main() {
         }
     }
     if (adapter.config.protocol === 'SmlProtocol') { // we have a Serial connection
-        smOptions.dataCollector = 'Obis';
         smOptions.protocolSmlIgnoreInvalidCRC = adapter.config.protocolSmlIgnoreInvalidCRC = adapter.config.protocolSmlIgnoreInvalidCRC === 'true' || adapter.config.protocolSmlIgnoreInvalidCRC === true;
         if (adapter.config.protocolSmlInputEncoding) {
             smOptions.protocolSmlInputEncoding = adapter.config.protocolSmlInputEncoding;
@@ -357,21 +356,15 @@ function main() {
         }
         smOptions.obisFallbackMedium = adapter.config.obisFallbackMedium;
     }
-    if (adapter.config.protocol === 'JsonEfrProtocol') {
-        // TODO: Maybe this is captured elsewhere but I CBF to test right now :o)
-        smOptions.dataCollector = 'Obis';
-    } else if (adapter.config.protocol === 'TicProtocol') {
-        smOptions.dataCollector = 'Tic';
-    }
-
     adapter.log.debug('Smartmeter options: ' + JSON.stringify(smOptions));
 
-    if (smOptions.dataCollector === 'Obis') {
+    if (smOptions.protocol === 'TicProtocol') {
+        processTic(smOptions);
+    } else {
+        // OBIS by default
         smTransport = SmartmeterObis.init(smOptions, storeObisData);
 
         smTransport.process();
-    } else if (smOptions.dataCollector === 'Tic') {
-        processTic(smOptions);
     }
 }
 
@@ -596,7 +589,7 @@ function processTic(smOptions) {
     var nameValueCache = [];
     parser.on('data', (data) => {
         // data is a string
-        adapter.log.debug(data);
+        adapter.log.silly(data);
 
         const parts = data.split(/\s+/);
         const name = parts.shift();
