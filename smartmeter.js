@@ -13,8 +13,6 @@
 
 const fs = require('fs');
 const utils = require('@iobroker/adapter-core'); // Get common adapter utils
-// TODO: Move this require to only load if OBIS is in use.
-const SmartmeterObis = require('smartmeter-obis');
 let smTransport;
 const { SerialPort } = require('serialport');
 
@@ -359,18 +357,16 @@ function main() {
     adapter.log.debug('Smartmeter options: ' + JSON.stringify(smOptions));
 
     if (smOptions.protocol === 'TicProtocol') {
-        // Add stuff to smOptions that the TIC collector needs.
-        smOptions.adapter = adapter;
-        smOptions.SerialPort = SerialPort;
-        smOptions.setConnected = setConnected;
-        const processTic = require('./lib/ticcollector');
-        processTic(smOptions);
+        const SmartmeterTic = require('./lib/ticcollector');
+        // There's no 'storeTicData' callback because why have that code in here when it can live in the lib?
+        smTransport = SmartmeterTic.init(adapter, setConnected, smOptions);
     } else {
         // OBIS by default
+        const SmartmeterObis = require('smartmeter-obis');
         smTransport = SmartmeterObis.init(smOptions, storeObisData);
-
-        smTransport.process();
     }
+
+    smTransport.process();
 }
 
 async function storeObisData(err, obisResult) {
