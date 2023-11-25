@@ -43,7 +43,7 @@
   },
   "main": "smartmeter.js",
   "scripts": {
-    "test": "nyc --reporter=lcov node_modules/mocha/bin/mocha --exit",
+    "test": "nyc --reporter=lcov mocha --exit",
     "release": "release-script",
     "translate": "translate-adapter"
   },
