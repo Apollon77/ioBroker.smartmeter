@@ -372,6 +372,7 @@ async function storeObisData(err, obisResult) {
     setConnected(true);
     let updateCount = 0;
     for (const obisId in obisResult) {
+        if (stopInProgress) return;
         if (!obisResult.hasOwnProperty(obisId)) continue;
 
         adapter.log.debug(obisResult[obisId].idToString() + ': ' + SmartmeterObis.ObisNames.resolveObisName(obisResult[obisId], adapter.config.obisNameLanguage).obisName + ' = ' + obisResult[obisId].valueToString());
@@ -436,6 +437,7 @@ async function storeObisData(err, obisResult) {
 
             if (obisResult[obisId].getValueLength() > 1) {
                 for (i = 1; i < obisResult[obisId].getValueLength(); i++) {
+                    if (stopInProgress) return;
                     adapter.log.debug('Create State ' + ioChannelId + '.value' + (i + 1));
                     try {
                         await adapter.setObjectNotExistsAsync(ioChannelId + '.value' + (i + 1), {
@@ -469,6 +471,7 @@ async function storeObisData(err, obisResult) {
 
             if (obisResult[obisId].getValueLength() > 1) {
                 for (i = 1; i < obisResult[obisId].getValueLength(); i++) {
+                    if (stopInProgress) return;
                     adapter.log.debug('Set State '+ ioChannelId + '.value' + (i + 1) + ' = ' + obisResult[obisId].getValue(i).value);
                     await adapter.setStateAsync(ioChannelId + '.value' + (i + 1), {ack: true, val: obisResult[obisId].getValue(i).value});
                 }
