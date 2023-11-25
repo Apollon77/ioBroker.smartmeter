@@ -205,7 +205,7 @@ process.on('uncaughtException', err => {
 
 function main() {
     const smOptions = {};
-    if (adapter.common.loglevel === 'debug') {
+    if (adapter.common.loglevel === 'debug' || adapter.common.loglevel === 'silly') {
         smOptions.debug = 2;
         smOptions.logger = adapter.log.debug;
     }
