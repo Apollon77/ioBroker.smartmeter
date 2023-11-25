@@ -92,6 +92,7 @@ When the adapter crashes or an other Code error happens, this error message that
 ## Changelog
 ### __WORK IN PROGRESS__
 * IMPORTANT: This version requires at least Node.js 16+
+* (Apollon77) Prevent some crash cases
 
 ### 3.3.4 (2022-03-11)
 * (Apollon77) Restore functionality of Port list in Admin
