@@ -73,6 +73,7 @@
     "value_protocol_D0Protocol": "D0 (WakeUp, SignOn, Data)",
     "value_protocol_JsonEfrProtocol": "JSON-Format für EFR SmartGridHub",
     "value_protocol_SmlProtocol": "Smart Message Language 1.0.3/1.0.4",
+    "value_protocol_TicProtocol": "Télé-Information Client",
     "value_protocol_default": "Standard Protokoll/Übertragung",
     "value_transport_HttpRequestTransport": "Daten von einer HTTP-URL auslesen",
     "value_transport_LocalFileTransport": "Daten aus einer lokalen Datei lesen",

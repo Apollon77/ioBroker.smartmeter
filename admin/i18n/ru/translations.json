@@ -73,6 +73,7 @@
     "value_protocol_D0Protocol": "D0 (пробуждение, вход, данные)",
     "value_protocol_JsonEfrProtocol": "JSON-формат EFR SmartGridHub",
     "value_protocol_SmlProtocol": "Язык умных сообщений 1.0.3/1.0.4",
+    "value_protocol_TicProtocol": "Télé-Information Client",
     "value_protocol_default": "Протокол / Транспорт по умолчанию",
     "value_transport_HttpRequestTransport": "Чтение данных из URL-адреса HTTP",
     "value_transport_LocalFileTransport": "Чтение данных из локального файла",
