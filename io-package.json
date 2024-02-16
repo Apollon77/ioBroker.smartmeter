@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "smartmeter",
-    "version": "3.3.4",
+    "version": "3.4.0",
     "news": {
+      "3.4.0": {
+        "en": "IMPORTANT: This version requires at least Node.js 16+\nPrevent some crash cases",
+        "de": "WICHTIG: Diese Version erfordert mindestens Node.js 16+\nVerhindern einiger Crash-Fälle",
+        "ru": "ВАЖНО: Эта версия требует по крайней мере Node.js 16+\nПредотвратить некоторые случаи аварии",
+        "pt": "IMPORTANTE: Esta versão requer pelo menos Node.js 16+\nEvite casos de acidente",
+        "nl": "Deze versie vereist minstens Node\nVertaling:",
+        "fr": "IMPORTANT: Cette version nécessite au moins Node.js 16+\nPrévenir des cas de crash",
+        "it": "IMPORTANTE: Questa versione richiede almeno Node.js 16+\nPrevenire alcuni casi di crash",
+        "es": "IMPORTANTE: Esta versión requiere por lo menos Node.js 16+\nEvitar algunos casos de choque",
+        "pl": "IMPORTANT: Wersja ta wymaga co najmniej nr 16+\nPrzygotowania do wypadku",
+        "uk": "ВАЖЛИВО: Ця версія вимагає принаймні Node.js 16+\nЗапобігти виникненню аварійних випадків",
+        "zh-cn": "IMPORTANT:这本版本至少需要第16+。\n预防一些事故"
+      },
       "3.3.4": {
         "en": "Restore functionality of Port list in Admin",
         "de": "Stellen Sie die Funktionalität der Portliste in Admin wieder her",
@@ -74,18 +87,6 @@
         "es": "evitar las últimas advertencias con js-controller 3.2",
         "pl": "zapobiec ostatnim ostrzeżeniom za pomocą js-controller 3.2",
         "zh-cn": "防止使用js-controller 3.2发出最后警告"
-      },
-      "3.1.7": {
-        "en": "prevent warnings with js-controller 3.2\nupdate js-controller dependency to at least require js-controller 2.0.0",
-        "de": "Warnungen mit js-controller verhindern 3.2\nAktualisieren Sie die js-controller-Abhängigkeit so, dass mindestens js-controller 2.0.0 erforderlich ist",
-        "ru": "предотвратить предупреждения с помощью js-controller 3.2\nобновить зависимость js-controller, по крайней мере, до требования js-controller 2.0.0",
-        "pt": "evitar avisos com js-controller 3.2\natualize a dependência do js-controller para pelo menos exigir o js-controller 2.0.0",
-        "nl": "waarschuwingen voorkomen met js-controller 3.2\nupdate js-controller afhankelijkheid om minimaal js-controller 2.0.0 te vereisen",
-        "fr": "éviter les avertissements avec js-controller 3.2\nmettre à jour la dépendance js-controller pour au moins exiger js-controller 2.0.0",
-        "it": "prevenire avvisi con js-controller 3.2\naggiorna la dipendenza js-controller per richiedere almeno js-controller 2.0.0",
-        "es": "prevenir advertencias con js-controller 3.2\nactualice la dependencia js-controller para que al menos requiera js-controller 2.0.0",
-        "pl": "zapobiegaj ostrzeżeniom za pomocą js-controller 3.2\nzaktualizuj zależność js-controller, aby przynajmniej wymagać js-controller 2.0.0",
-        "zh-cn": "防止使用js-controller 3.2发出警告\n将js-controller依赖关系更新为至少需要js-controller 2.0.0"
       }
     },
     "authors": [

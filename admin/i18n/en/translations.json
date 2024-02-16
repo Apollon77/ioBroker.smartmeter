@@ -5,7 +5,7 @@
     "field_anotherQueryDelay": "Delay between multiple SignOn-Messages",
     "field_customSerialPort": "Custom serial port path",
     "field_obisFallbackMedium": "D0: Fallback OBIS-Medium",
-    "field_obisNameLanguage": "Language for datapoint names",
+    "field_obisNameLanguage": "Language for state names",
     "field_protocol": "Data protocol",
     "field_protocolD0BaudrateChangeoverOverwrite": "D0: Baudrate changeover overwrite",
     "field_protocolD0DeviceAddress": "D0: Device address",
