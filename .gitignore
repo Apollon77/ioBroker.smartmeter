@@ -4,3 +4,5 @@
 .remote-sync.json
 node_modules
 .idea
+#ignore .commitinfo created by ioBroker release script
+.commitinfo
