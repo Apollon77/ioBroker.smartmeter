@@ -125,7 +125,10 @@
     "icon": "smartmeter.png",
     "extIcon": "https://raw.githubusercontent.com/Apollon77/ioBroker.smartmeter/master/admin/smartmeter.png",
     "readme": "https://github.com/Apollon77/ioBroker.smartmeter/blob/master/README.md",
-    "license": "MIT",
+    "licenseInformation": {
+      "type": "free",
+      "license": "MIT"
+    },
     "npmLibs": [],
     "type": "energy",
     "keywords": [
