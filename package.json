@@ -36,7 +36,7 @@
     "@iobroker/adapter-dev": "^1.2.0",
     "mocha": "^10.2.0",
     "chai": "^4.3.10",
-    "nyc": "^15.1.0"
+    "nyc": "^17.1.0"
   },
   "bugs": {
     "url": "https://github.com/Apollon77/ioBroker.smartmeter/issues"
