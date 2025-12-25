@@ -73,6 +73,7 @@
     "value_protocol_D0Protocol": "D0（唤醒，登录，数据）",
     "value_protocol_JsonEfrProtocol": "JSON格式的EFR SmartGridHub",
     "value_protocol_SmlProtocol": "智能消息语言1.0.3",
+    "value_protocol_TicProtocol": "客户电话信息",
     "value_protocol_default": "协议/传输默认",
     "value_transport_HttpRequestTransport": "从HTTP URL读取数据",
     "value_transport_LocalFileTransport": "从本地文件读取数据",
