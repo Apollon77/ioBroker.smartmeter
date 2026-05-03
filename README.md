@@ -234,6 +234,8 @@ When the adapter crashes or an other Code error happens, this error message that
 ### 0.0.1
 * Initial version for internal testing
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## License
 
 The MIT License (MIT)
