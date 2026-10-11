@@ -15,7 +15,7 @@
     "OBIS"
   ],
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=22.0.0"
   },
   "repository": {
     "type": "git",
@@ -24,18 +24,20 @@
   "dependencies": {
     "smartmeter-obis": "^4.0.0",
     "serialport": "^12.0.0",
-    "@iobroker/adapter-core": "^3.0.4",
+    "@iobroker/adapter-core": "^3.4.3",
     "@sentry/node": "^7.81.1",
     "@sentry/integrations": "^7.81.1",
     "source-map-support": "^0.5.21"
   },
   "devDependencies": {
-    "@alcalzone/release-script": "^3.6.0",
-    "@alcalzone/release-script-plugin-iobroker": "^3.6.0",
-    "@alcalzone/release-script-plugin-license": "^3.5.9",
-    "@iobroker/adapter-dev": "^1.2.0",
-    "mocha": "^10.2.0",
-    "chai": "^4.3.10",
+    "@alcalzone/release-script": "^5.2.1",
+    "@alcalzone/release-script-plugin-iobroker": "^5.2.0",
+    "@alcalzone/release-script-plugin-license": "^5.2.0",
+    "@alcalzone/release-script-plugin-manual-review": "^5.2.0",
+    "@iobroker/adapter-dev": "^1.5.0",
+    "@iobroker/eslint-config": "^2.2.0",
+    "@iobroker/testing": "^5.3.0",    
+  
     "nyc": "^15.1.0"
   },
   "bugs": {
@@ -45,6 +47,7 @@
   "scripts": {
     "test": "nyc --reporter=lcov mocha --exit",
     "release": "release-script",
+	"lint": "eslint .",
     "translate": "translate-adapter"
   },
   "nyc": {

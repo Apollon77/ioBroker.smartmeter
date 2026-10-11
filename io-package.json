@@ -142,6 +142,9 @@
     "loglevel": "info",
     "enabled": true,
     "compact": true,
+    "adminUI": {
+      "config": "json"
+    },
     "connectionType": "local",
     "dataSource": "push",
     "tier": 2,
@@ -160,7 +163,12 @@
     },
     "dependencies": [
       {
-        "js-controller": ">=2.0.0"
+        "js-controller": ">=6.0.11"
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": ">=7.6.20"
       }
     ]
   },
@@ -169,6 +177,7 @@
     "transport": "SerialResponseTransport",
     "requestInterval": 300,
     "transportSerialPort": "",
+    "customSerialPort": "",
     "transportSerialBaudrate": "",
     "transportSerialDataBits": "",
     "transportSerialStopBits": "",
@@ -179,6 +188,7 @@
     "transportLocalFilePath": "",
     "transportTcpHost": "",
     "transportTcpPort": "",
+    "startDelay": 0,
     "protocolD0WakeupCharacters": 0,
     "protocolD0DeviceAddress": "",
     "protocolD0SignOnMessage": "",

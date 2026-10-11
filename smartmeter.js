@@ -15,6 +15,10 @@ const fs = require('fs');
 const utils = require('@iobroker/adapter-core'); // Get common adapter utils
 const SmartmeterObis = require('smartmeter-obis');
 let smTransport;
+let startTimer = null;
+let recoveryTimer = null;
+let hadError = false;
+const stateTypes = {};
 const { SerialPort } = require('serialport');
 
 const smValues = {};
@@ -57,7 +61,7 @@ function initSentry(callback) {
     }
 
     Sentry.init({
-        release: adapter.pack.name + '@' + adapter.pack.version,
+        release: `${adapter.pack.name  }@${  adapter.pack.version}`,
         dsn: sentryConfig.dsn,
         integrations: [
             new SentryIntegrations.Dedupe()
@@ -67,8 +71,7 @@ function initSentry(callback) {
         scope.setTag('version', adapter.common.installedVersion || adapter.common.version);
         if (adapter.common.installedFrom) {
             scope.setTag('installedFrom', adapter.common.installedFrom);
-        }
-        else {
+        } else {
             scope.setTag('installedFrom', adapter.common.installedVersion || adapter.common.version);
         }
         scope.addEventProcessor(function(event, hint) {
@@ -119,8 +122,7 @@ function initSentry(callback) {
                     }
                     callback && callback();
                 });
-            }
-            else {
+            } else {
                 callback && callback();
             }
         });
@@ -130,7 +132,7 @@ function initSentry(callback) {
 function stopIt(logMessage) {
     setConnected(false);
     adapter.log.error(logMessage);
-    adapter.extendForeignObject('system.adapter.' + adapter.namespace, {
+    adapter.extendForeignObject(`system.adapter.${  adapter.namespace}`, {
         common: {
             enabled: false
         }
@@ -143,8 +145,11 @@ function setConnected(isConnected) {
         connected = isConnected;
         adapter && adapter.setState('info.connection', connected, true, (err) => {
             // analyse if the state could be set (because of permissions)
-            if (err && adapter && adapter.log) adapter.log.error('Can not update connected state: ' + err);
-            else if (adapter && adapter.log) adapter.log.debug('connected set to ' + connected);
+            if (err && adapter && adapter.log) {
+adapter.log.error(`Can not update connected state: ${  err}`);
+} else if (adapter && adapter.log) {
+adapter.log.debug(`connected set to ${  connected}`);
+}
         });
     }
 }
@@ -161,8 +166,7 @@ function startAdapter(options) {
 
         if (adapter.supportsFeature && adapter.supportsFeature('PLUGINS')) {
             main();
-        }
-        else {
+        } else {
             initSentry(main);
         }
     });
@@ -179,6 +183,13 @@ function startAdapter(options) {
 
     adapter.on('unload', callback => {
         stopInProgress = true;
+        if (startTimer) {
+            clearTimeout(startTimer);
+        }
+        if (recoveryTimer) {
+            clearTimeout(recoveryTimer);
+            recoveryTimer = null;
+        }
         setConnected(false);
         if (smTransport) {
             smTransport.stop(callback);
@@ -192,15 +203,19 @@ function startAdapter(options) {
 
 process.on('SIGINT', () => {
     setConnected(false);
-    if (smTransport) smTransport.stop();
+    if (smTransport) {
+smTransport.stop();
+}
 });
 
 process.on('uncaughtException', err => {
     setConnected(false);
     if (adapter && adapter.log) {
-        adapter.log.warn('Exception: ' + err);
+        adapter.log.warn(`Exception: ${  err}`);
     }
-    if (smTransport) smTransport.stop();
+    if (smTransport) {
+smTransport.stop();
+}
 });
 
 function main() {
@@ -208,12 +223,10 @@ function main() {
     if (adapter.common.loglevel === 'debug' || adapter.common.loglevel === 'silly') {
         smOptions.debug = 2;
         smOptions.logger = adapter.log.debug;
-    }
-    else if (adapter.common.loglevel === 'info') {
+    } else if (adapter.common.loglevel === 'info') {
         smOptions.debug = 1;
         smOptions.logger = adapter.log.info;
-    }
-    else {
+    } else {
         smOptions.debug = 0;
         smOptions.logger = adapter.log.warn;
     }
@@ -228,8 +241,13 @@ function main() {
     }
     smOptions.transport = adapter.config.transport;
     smOptions.requestInterval = adapter.config.requestInterval = adapter.config.requestInterval || 300;
-    if (adapter.config.anotherQueryDelay) smOptions.anotherQueryDelay = adapter.config.anotherQueryDelay;
+    if (adapter.config.anotherQueryDelay) {
+smOptions.anotherQueryDelay = adapter.config.anotherQueryDelay;
+}
     if (adapter.config.transport.indexOf('Serial') === 0) { // we have a Serial connection
+        if (adapter.config.transportSerialPort === '-') {
+adapter.config.transportSerialPort = adapter.config.customSerialPort;
+}
         if (!adapter.config.transportSerialPort) {
             adapter.log.error('Serial port device is undefined, check your configuration!');
             return;
@@ -248,7 +266,7 @@ function main() {
             adapter.config.transportSerialDataBits = parseInt(adapter.config.transportSerialDataBits, 10);
 
             if ((adapter.config.transportSerialDataBits < 5) || (adapter.config.transportSerialDataBits > 8)) {
-                adapter.log.error('Serial port data bits ' + adapter.config.transportSerialDataBits + ' invalid, check your configuration!');
+                adapter.log.error(`Serial port data bits ${  adapter.config.transportSerialDataBits  } invalid, check your configuration!`);
                 return;
             }
             smOptions.transportSerialDataBits = adapter.config.transportSerialDataBits;
@@ -257,7 +275,7 @@ function main() {
             adapter.config.transportSerialStopBits = parseInt(adapter.config.transportSerialStopBits, 10);
 
             if ((adapter.config.transportSerialStopBits !== 1) && (adapter.config.transportSerialStopBits !== 2)) {
-                adapter.log.error('Serial port stopbits ' + adapter.config.transportSerialStopBits + ' invalid, check your configuration!');
+                adapter.log.error(`Serial port stopbits ${  adapter.config.transportSerialStopBits  } invalid, check your configuration!`);
                 return;
             }
             smOptions.transportSerialStopBits = adapter.config.transportSerialStopBits;
@@ -267,7 +285,7 @@ function main() {
                 (adapter.config.transportSerialParity !== "mark") && (adapter.config.transportSerialParity !== "odd") &&
                 (adapter.config.transportSerialParity !== "space")) {
 
-                adapter.log.error('Serial port parity ' + adapter.config.transportSerialParity + ' invalid, check your configuration!');
+                adapter.log.error(`Serial port parity ${  adapter.config.transportSerialParity  } invalid, check your configuration!`);
                 return;
             }
             smOptions.transportSerialParity = adapter.config.transportSerialParity;
@@ -275,15 +293,14 @@ function main() {
         if (adapter.config.transportSerialMessageTimeout !== null && adapter.config.transportSerialMessageTimeout !== undefined) {
             adapter.config.transportSerialMessageTimeout = parseInt(adapter.config.transportSerialMessageTimeout, 10)*1000;
             if (adapter.config.transportSerialMessageTimeout < 1000) {
-                adapter.log.error('HTTP Request timeout ' + adapter.config.transportSerialMessageTimeout + ' invalid, check your configuration!');
+                adapter.log.error(`HTTP Request timeout ${  adapter.config.transportSerialMessageTimeout  } invalid, check your configuration!`);
                 return;
             }
             smOptions.transportSerialMessageTimeout = adapter.config.transportSerialMessageTimeout;
         }
 
         //adapter.config.transportSerialMaxBufferSize
-    }
-    else if (adapter.config.transport === 'HttpRequestTransport') { // we have a Serial connection
+    } else if (adapter.config.transport === 'HttpRequestTransport') { // we have a Serial connection
         if (!adapter.config.transportHttpRequestUrl) {
             adapter.log.error('HTTP Request URL is undefined, check your configuration!');
             return;
@@ -292,20 +309,18 @@ function main() {
         if (adapter.config.transportHttpRequestTimeout !== null && adapter.config.transportHttpRequestTimeout !== undefined) {
             adapter.config.transportHttpRequestTimeout = parseInt(adapter.config.transportHttpRequestTimeout, 10);
             if (adapter.config.transportHttpRequestTimeout < 500) {
-                adapter.log.error('HTTP Request timeout ' + adapter.config.transportHttpRequestTimeout + ' invalid, check your configuration!');
+                adapter.log.error(`HTTP Request timeout ${  adapter.config.transportHttpRequestTimeout  } invalid, check your configuration!`);
                 return;
             }
             smOptions.transportHttpRequestTimeout = adapter.config.transportHttpRequestTimeout;
         }
-    }
-    else if (adapter.config.transport === 'LocalFileTransport') { // we have a LocalFile connection
+    } else if (adapter.config.transport === 'LocalFileTransport') { // we have a LocalFile connection
         if (!adapter.config.transportLocalFilePath) {
             adapter.log.error('HTTP Request URL is undefined, check your configuration!');
             return;
         }
         smOptions.transportLocalFilePath = adapter.config.transportLocalFilePath;
-    }
-    else if (adapter.config.transport === 'TCPTransport') { // we have a TCP connection
+    } else if (adapter.config.transport === 'TCPTransport') { // we have a TCP connection
         if (!adapter.config.transportTcpHost) {
             adapter.log.error('TCP Host is undefined, check your configuration!');
             return;
@@ -322,19 +337,25 @@ function main() {
         if (adapter.config.protocolD0WakeupCharacters !== null && adapter.config.protocolD0WakeupCharacters !== undefined) {
             adapter.config.protocolD0WakeupCharacters = parseInt(adapter.config.protocolD0WakeupCharacters, 10);
             if (adapter.config.protocolD0WakeupCharacters < 0) {
-                adapter.log.error('D0 Number of Wakeup NULL characters ' + adapter.config.protocolD0WakeupCharacters + ' invalid, check your configuration!');
+                adapter.log.error(`D0 Number of Wakeup NULL characters ${  adapter.config.protocolD0WakeupCharacters  } invalid, check your configuration!`);
                 return;
             }
             smOptions.protocolD0WakeupCharacters = adapter.config.protocolD0WakeupCharacters;
         }
-        if (adapter.config.protocolD0DeviceAddress) smOptions.protocolD0DeviceAddress = adapter.config.protocolD0DeviceAddress;
-        if (adapter.config.protocolD0SignOnMessage) smOptions.protocolD0SignOnMessage = adapter.config.protocolD0SignOnMessage;
-        if (adapter.config.protocolD0SignOnMessage) smOptions.protocolD0SignOnMessage = adapter.config.protocolD0SignOnMessage;
+        if (adapter.config.protocolD0DeviceAddress) {
+smOptions.protocolD0DeviceAddress = adapter.config.protocolD0DeviceAddress;
+}
+        if (adapter.config.protocolD0SignOnMessage) {
+smOptions.protocolD0SignOnMessage = adapter.config.protocolD0SignOnMessage;
+}
+        if (adapter.config.protocolD0SignOnMessage) {
+smOptions.protocolD0SignOnMessage = adapter.config.protocolD0SignOnMessage;
+}
         if (adapter.config.protocolD0BaudrateChangeoverOverwrite !== null && adapter.config.protocolD0BaudrateChangeoverOverwrite !== undefined  && adapter.config.protocolD0BaudrateChangeoverOverwrite !== "") {
             adapter.config.protocolD0BaudrateChangeoverOverwrite = parseInt(adapter.config.protocolD0BaudrateChangeoverOverwrite, 10);
 
             if (adapter.config.protocolD0BaudrateChangeoverOverwrite < 300) {
-                adapter.log.error('D0 baudrate changeover overwrite ' + adapter.config.protocolD0BaudrateChangeoverOverwrite + ' invalid, check your configuration!');
+                adapter.log.error(`D0 baudrate changeover overwrite ${  adapter.config.protocolD0BaudrateChangeoverOverwrite  } invalid, check your configuration!`);
                 return;
             }
             smOptions.protocolD0BaudrateChangeoverOverwrite = adapter.config.protocolD0BaudrateChangeoverOverwrite;
@@ -349,39 +370,104 @@ function main() {
     if (adapter.config.obisFallbackMedium !== null && adapter.config.obisFallbackMedium !== undefined) {
         adapter.config.obisFallbackMedium = parseInt(adapter.config.obisFallbackMedium, 10);
         if (adapter.config.obisFallbackMedium < 0 || adapter.config.obisFallbackMedium > 18 ) {
-            adapter.log.error('OBIS Fallback medium code ' + adapter.config.obisFallbackMedium + ' invalid, check your configuration!');
+            adapter.log.error(`OBIS Fallback medium code ${  adapter.config.obisFallbackMedium  } invalid, check your configuration!`);
             return;
         }
         smOptions.obisFallbackMedium = adapter.config.obisFallbackMedium;
     }
-    adapter.log.debug('SmartmeterObis options: ' + JSON.stringify(smOptions));
+    adapter.log.debug(`SmartmeterObis options: ${  JSON.stringify(smOptions)}`);
 
-    smTransport = SmartmeterObis.init(smOptions, storeObisData);
+    // Optional delay (seconds): SmartmeterObis.init() already opens the connection, so delay it as a whole
+    const startDelay = Math.max(parseInt(adapter.config.startDelay, 10) || 0, 0) * 1000;
+    if (startDelay > 0) {
+        adapter.log.info(`Waiting ${startDelay / 1000}s before opening the connection`);
+    }
+    startTimer = setTimeout(() => {
+        startTimer = null;
+        if (stopInProgress) {
+            return;
+        }
+        smTransport = SmartmeterObis.init(smOptions, storeObisData);
+        smTransport.process();
+    }, startDelay);
+}
 
-    smTransport.process();
+// Existing objects keep the type from their first creation; convert new values to it
+async function setTypedState(id, val) {
+    if (!(id in stateTypes)) {
+        const obj = await adapter.getObjectAsync(id);
+        stateTypes[id] = obj && obj.common ? obj.common.type : null;
+    }
+    const type = stateTypes[id];
+    if (val !== null && val !== undefined && type && typeof val !== type) {
+        if (type === 'string') {
+            val = String(val);
+        } else if (type === 'number') {
+            const num = Number(val);
+            if (val === '' || Number.isNaN(num)) {
+                adapter.log.warn(`Value "${val}" for ${id} is not a number, state is of type number`);
+                return;
+            }
+            val = num;
+        } else if (type === 'boolean') {
+            val = val === true || val === 'true' || Number(val) === 1;
+        }
+    }
+    await adapter.setStateAsync(id, {ack: true, val});
 }
 
 async function storeObisData(err, obisResult) {
-    if (stopInProgress) return;
+    if (stopInProgress) {
+return;
+}
     if (err) {
         adapter.log.warn(err.message);
         adapter.log.debug(err);
         setConnected(false);
+        hadError = true;
+        // the transport sometimes does not recover after an error -> restart adapter if no valid data arrives again
+        if (!recoveryTimer) {
+            const waitMs = Math.max(60, (parseInt(adapter.config.requestInterval, 10) || 0) * 3) * 1000;
+            recoveryTimer = setTimeout(() => {
+                recoveryTimer = null;
+                if (stopInProgress) {
+                    return;
+                }
+                adapter.log.warn('No valid data received after error, restarting adapter');
+                if (typeof adapter.restart === 'function') {
+                    adapter.restart();
+                } else {
+                    adapter.terminate(156); // START_IMMEDIATELY_AFTER_STOP
+                }
+            }, waitMs);
+        }
         return;
+    }
+    if (recoveryTimer) {
+        clearTimeout(recoveryTimer);
+        recoveryTimer = null;
+    }
+    if (hadError) {
+        hadError = false;
+        adapter.log.info('Connection recovered, valid data received again');
     }
     setConnected(true);
     let updateCount = 0;
     for (const obisId in obisResult) {
-        if (stopInProgress) return;
-        if (!obisResult.hasOwnProperty(obisId)) continue;
+        if (stopInProgress) {
+return;
+}
+        if (!obisResult.hasOwnProperty(obisId)) {
+continue;
+}
 
-        adapter.log.debug(obisResult[obisId].idToString() + ': ' + SmartmeterObis.ObisNames.resolveObisName(obisResult[obisId], adapter.config.obisNameLanguage).obisName + ' = ' + obisResult[obisId].valueToString());
+        adapter.log.debug(`${obisResult[obisId].idToString()  }: ${  SmartmeterObis.ObisNames.resolveObisName(obisResult[obisId], adapter.config.obisNameLanguage).obisName  } = ${  obisResult[obisId].valueToString()}`);
         let i;
         let ioChannelId = obisResult[obisId].idToString().replace(/[\]\[*,;'"`<>\\?]/g, '__');
         ioChannelId = ioChannelId.replace(/\./g, '_');
         if (!smValues[obisId]) {
             let ioChannelName = SmartmeterObis.ObisNames.resolveObisName(obisResult[obisId], adapter.config.obisNameLanguage).obisName;
-            adapter.log.debug('Create Channel ' + ioChannelId + ' with name ' + ioChannelName);
+            adapter.log.debug(`Create Channel ${  ioChannelId  } with name ${  ioChannelName}`);
             try {
                 await adapter.setObjectNotExistsAsync(ioChannelId, {
                     type: 'channel',
@@ -391,36 +477,36 @@ async function storeObisData(err, obisResult) {
                     native: {}
                 });
             } catch (err) {
-                adapter.log.error('Error creating Channel: ' + err);
+                adapter.log.error(`Error creating Channel: ${  err}`);
             }
 
             if (obisResult[obisId].getRawValue() !== undefined) {
-                adapter.log.debug('Create State ' + ioChannelId + '.rawvalue');
+                adapter.log.debug(`Create State ${  ioChannelId  }.rawvalue`);
                 try {
-                    await adapter.setObjectNotExistsAsync(ioChannelId + '.rawvalue', {
+                    await adapter.setObjectNotExistsAsync(`${ioChannelId  }.rawvalue`, {
                         type: 'state',
                         common: {
-                            name: ioChannelId + '.rawvalue',
+                            name: `${ioChannelId  }.rawvalue`,
                             type: 'string',
                             read: true,
                             role: 'value',
                             write: false
                         },
                         native: {
-                            id: ioChannelId + '.rawvalue'
+                            id: `${ioChannelId  }.rawvalue`
                         }
                     });
                 } catch (err) {
-                    adapter.log.error('Error creating State: ' + err);
+                    adapter.log.error(`Error creating State: ${  err}`);
                 }
             }
 
-            adapter.log.debug('Create State ' + ioChannelId + '.value');
+            adapter.log.debug(`Create State ${  ioChannelId  }.value`);
             try {
-                await adapter.setObjectNotExistsAsync(ioChannelId + '.value', {
+                await adapter.setObjectNotExistsAsync(`${ioChannelId  }.value`, {
                     type: 'state',
                     common: {
-                        name: ioChannelId + '.value',
+                        name: `${ioChannelId  }.value`,
                         type: (typeof obisResult[obisId].getValue(0).value),
                         read: true,
                         unit: obisResult[obisId].getValue(0).unit,
@@ -428,22 +514,24 @@ async function storeObisData(err, obisResult) {
                         write: false
                     },
                     native: {
-                        id: ioChannelId + '.value'
+                        id: `${ioChannelId  }.value`
                     }
                 });
             } catch (err) {
-                adapter.log.error('Error creating State: ' + err);
+                adapter.log.error(`Error creating State: ${  err}`);
             }
 
             if (obisResult[obisId].getValueLength() > 1) {
                 for (i = 1; i < obisResult[obisId].getValueLength(); i++) {
-                    if (stopInProgress) return;
-                    adapter.log.debug('Create State ' + ioChannelId + '.value' + (i + 1));
+                    if (stopInProgress) {
+return;
+}
+                    adapter.log.debug(`Create State ${  ioChannelId  }.value${  i + 1}`);
                     try {
-                        await adapter.setObjectNotExistsAsync(ioChannelId + '.value' + (i + 1), {
+                        await adapter.setObjectNotExistsAsync(`${ioChannelId  }.value${  i + 1}`, {
                             type: 'state',
                             common: {
-                                name: ioChannelId + '.value' + (i + 1),
+                                name: `${ioChannelId  }.value${  i + 1}`,
                                 type: (typeof obisResult[obisId].getValue(i).value),
                                 read: true,
                                 unit: obisResult[obisId].getValue(i).unit,
@@ -451,45 +539,48 @@ async function storeObisData(err, obisResult) {
                                 write: false
                             },
                             native: {
-                                id: ioChannelId + '.value' + (i + 1)
+                                id: `${ioChannelId  }.value${  i + 1}`
                             }
                         });
                     } catch (err) {
-                        adapter.log.error('Error creating State: ' + err);
+                        adapter.log.error(`Error creating State: ${  err}`);
                     }
                 }
             }
         }
         if (!smValues[obisId] || smValues[obisId].valueToString() !== obisResult[obisId].valueToString()) {
             if (obisResult[obisId].getRawValue() !== undefined) {
-                adapter.log.debug('Set State ' + ioChannelId + '.rawvalue = ' + obisResult[obisId].getRawValue());
-                await adapter.setStateAsync(ioChannelId + '.rawvalue', {ack: true, val: obisResult[obisId].getRawValue()});
+                adapter.log.debug(`Set State ${  ioChannelId  }.rawvalue = ${  obisResult[obisId].getRawValue()}`);
+                await setTypedState(`${ioChannelId  }.rawvalue`, obisResult[obisId].getRawValue());
             }
 
-            adapter.log.debug('Set State ' + ioChannelId + '.value = ' + obisResult[obisId].getValue(0).value);
-            await adapter.setStateAsync(ioChannelId + '.value', {ack: true, val: obisResult[obisId].getValue(0).value});
+            adapter.log.debug(`Set State ${  ioChannelId  }.value = ${  obisResult[obisId].getValue(0).value}`);
+            await setTypedState(`${ioChannelId  }.value`, obisResult[obisId].getValue(0).value);
 
             if (obisResult[obisId].getValueLength() > 1) {
                 for (i = 1; i < obisResult[obisId].getValueLength(); i++) {
-                    if (stopInProgress) return;
-                    adapter.log.debug('Set State '+ ioChannelId + '.value' + (i + 1) + ' = ' + obisResult[obisId].getValue(i).value);
-                    await adapter.setStateAsync(ioChannelId + '.value' + (i + 1), {ack: true, val: obisResult[obisId].getValue(i).value});
+                    if (stopInProgress) {
+return;
+}
+                    adapter.log.debug(`Set State ${ ioChannelId  }.value${  i + 1  } = ${  obisResult[obisId].getValue(i).value}`);
+                    await setTypedState(`${ioChannelId  }.value${  i + 1}`, obisResult[obisId].getValue(i).value);
                 }
             }
             smValues[obisId] = obisResult[obisId];
             updateCount++;
-        }
-        else {
-            adapter.log.debug('Data for '+ ioChannelId + ' unchanged');
+        } else {
+            adapter.log.debug(`Data for ${ ioChannelId  } unchanged`);
         }
     }
-    adapter.log.info('Received ' + Object.keys(obisResult).length + ' values, ' + updateCount + ' updated');
+    adapter.log.info(`Received ${  Object.keys(obisResult).length  } values, ${  updateCount  } updated`);
 }
 
 function processMessage(obj) {
-    if (!obj) return;
+    if (!obj) {
+return;
+}
 
-    adapter.log.debug('Message received = ' + JSON.stringify(obj));
+    adapter.log.debug(`Message received = ${  JSON.stringify(obj)}`);
 
     switch (obj.command) {
         case 'listUart':
@@ -497,31 +588,31 @@ function processMessage(obj) {
                 if (SerialPort) {
                     // read all found serial ports
                     SerialPort.list().then(ports => {
-                        adapter.log.info('List of port: ' + JSON.stringify(ports));
+                        adapter.log.info(`List of port: ${  JSON.stringify(ports)}`);
                         if (process.platform !== 'win32') {
                             ports.forEach(port => {
                                 if (port.pnpId) {
                                     try {
-                                        const pathById = '/dev/serial/by-id/' + port.pnpId;
+                                        const pathById = `/dev/serial/by-id/${  port.pnpId}`;
                                         if (fs.existsSync(pathById)) {
                                             port.realPath = port.path;
                                             port.path = pathById;
                                         }
                                     } catch (err) {
-                                        adapter.log.debug('pnpId ' + port.pnpId + ' not existing: ' + err);
+                                        adapter.log.debug(`pnpId ${  port.pnpId  } not existing: ${  err}`);
                                     }
                                     return port;
                                 }
                             });
                         }
-                        adapter.sendTo(obj.from, obj.command, ports, obj.callback);
+                        adapter.sendTo(obj.from, obj.command, obj.command === 'listUartOptions' ? ports.map(port => ({value: port.path, label: port.realPath ? `${port.path  } (${  port.realPath  })` : port.path})).concat([{value: '-', label: 'Custom / benutzerdefiniert'}]) : ports, obj.callback);
                     }).catch(err => {
-                        adapter.log.warn('Can not get Serial port list: ' + err);
-                        adapter.sendTo(obj.from, obj.command, [{path: 'Not available'}], obj.callback);
+                        adapter.log.warn(`Can not get Serial port list: ${  err}`);
+                        adapter.sendTo(obj.from, obj.command, obj.command === 'listUartOptions' ? [] : [{path: 'Not available'}], obj.callback);
                     });
                 } else {
                     adapter.log.warn('Module serialport is not available');
-                    adapter.sendTo(obj.from, obj.command, [{path: 'Not available'}], obj.callback);
+                    adapter.sendTo(obj.from, obj.command, obj.command === 'listUartOptions' ? [] : [{path: 'Not available'}], obj.callback);
                 }
             }
             break;

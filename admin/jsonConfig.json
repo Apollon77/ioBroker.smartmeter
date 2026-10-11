@@ -1,0 +1,461 @@
+{
+  "type": "panel",
+  "i18n": true,
+  "items": {
+    "_general": {
+      "type": "header",
+      "text": "heading_GeneralSettings",
+      "size": 3,
+      "newLine": true
+    },
+    "requestInterval": {
+      "type": "number",
+      "label": "field_requestInterval",
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "min": 0,
+      "help": "info_requestInterval"
+    },
+    "transport": {
+      "type": "select",
+      "label": "field_transport",
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "options": [
+        {
+          "label": "value_transport_HttpRequestTransport",
+          "value": "HttpRequestTransport"
+        },
+        {
+          "label": "value_transport_LocalFileTransport",
+          "value": "LocalFileTransport"
+        },
+        {
+          "label": "value_transport_SerialRequestResponseTransport",
+          "value": "SerialRequestResponseTransport"
+        },
+        {
+          "label": "value_transport_SerialResponseTransport",
+          "value": "SerialResponseTransport"
+        },
+        {
+          "label": "value_transport_TCPTransport",
+          "value": "TCPTransport"
+        }
+      ]
+    },
+    "protocol": {
+      "type": "select",
+      "label": "field_protocol",
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "options": [
+        {
+          "label": "value_protocol_D0Protocol",
+          "value": "D0Protocol"
+        },
+        {
+          "label": "value_protocol_JsonEfrProtocol",
+          "value": "JsonEfrProtocol"
+        },
+        {
+          "label": "value_protocol_SmlProtocol",
+          "value": "SmlProtocol"
+        }
+      ]
+    },
+    "obisNameLanguage": {
+      "type": "select",
+      "label": "field_obisNameLanguage",
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "options": [
+        {
+          "label": "value_obisNameLanguage_de",
+          "value": "de"
+        },
+        {
+          "label": "value_obisNameLanguage_en",
+          "value": "en"
+        }
+      ]
+    },
+    "obisFallbackMedium": {
+      "type": "select",
+      "label": "field_obisFallbackMedium",
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "hidden": "data.protocol !== 'D0Protocol'",
+      "options": [
+        {
+          "label": "value_obisFallbackMedium_0",
+          "value": "0"
+        },
+        {
+          "label": "value_obisFallbackMedium_1",
+          "value": "1"
+        },
+        {
+          "label": "value_obisFallbackMedium_4",
+          "value": "4"
+        },
+        {
+          "label": "value_obisFallbackMedium_5",
+          "value": "5"
+        },
+        {
+          "label": "value_obisFallbackMedium_6",
+          "value": "6"
+        },
+        {
+          "label": "value_obisFallbackMedium_7",
+          "value": "7"
+        },
+        {
+          "label": "value_obisFallbackMedium_8",
+          "value": "8"
+        },
+        {
+          "label": "value_obisFallbackMedium_9",
+          "value": "9"
+        },
+        {
+          "label": "value_obisFallbackMedium_16",
+          "value": "16"
+        },
+        {
+          "label": "value_obisFallbackMedium_17",
+          "value": "17"
+        },
+        {
+          "label": "value_obisFallbackMedium_18",
+          "value": "18"
+        }
+      ],
+      "help": "info_obisFallbackMedium"
+    },
+    "_transport": {
+      "type": "header",
+      "text": "heading_TransportSpecificSettings",
+      "size": 3,
+      "newLine": true
+    },
+    "transportSerialPort": {
+      "type": "selectSendTo",
+      "label": "field_transportSerialPort",
+      "command": "listUartOptions",
+      "manual": true,
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "hidden": "data.transport !== 'SerialRequestResponseTransport' && data.transport !== 'SerialResponseTransport'"
+    },
+    "customSerialPort": {
+      "type": "text",
+      "label": "field_customSerialPort",
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "hidden": "(data.transport !== 'SerialRequestResponseTransport' && data.transport !== 'SerialResponseTransport') || data.transportSerialPort !== '-'"
+    },
+    "transportSerialBaudrate": {
+      "type": "number",
+      "label": "field_transportSerialBaudrate",
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "min": 300,
+      "hidden": "data.transport !== 'SerialRequestResponseTransport' && data.transport !== 'SerialResponseTransport'",
+      "help": "info_transportSerialBaudrate",
+      "unit": "baud"
+    },
+    "transportSerialDataBits": {
+      "type": "select",
+      "label": "field_transportSerialDataBits",
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "hidden": "data.transport !== 'SerialRequestResponseTransport' && data.transport !== 'SerialResponseTransport'",
+      "options": [
+        {
+          "label": "value_protocol_default",
+          "value": ""
+        },
+        {
+          "label": "8",
+          "value": "8"
+        },
+        {
+          "label": "7",
+          "value": "7"
+        },
+        {
+          "label": "6",
+          "value": "6"
+        },
+        {
+          "label": "5",
+          "value": "5"
+        }
+      ],
+      "help": "info_transportSerialDataBits"
+    },
+    "transportSerialStopBits": {
+      "type": "select",
+      "label": "field_transportSerialStopBits",
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "hidden": "data.transport !== 'SerialRequestResponseTransport' && data.transport !== 'SerialResponseTransport'",
+      "options": [
+        {
+          "label": "value_protocol_default",
+          "value": ""
+        },
+        {
+          "label": "1",
+          "value": "1"
+        },
+        {
+          "label": "2",
+          "value": "2"
+        }
+      ],
+      "help": "info_transportSerialStopBits"
+    },
+    "transportSerialParity": {
+      "type": "select",
+      "label": "field_transportSerialParity",
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "hidden": "data.transport !== 'SerialRequestResponseTransport' && data.transport !== 'SerialResponseTransport'",
+      "options": [
+        {
+          "label": "value_protocol_default",
+          "value": ""
+        },
+        {
+          "label": "none",
+          "value": "none"
+        },
+        {
+          "label": "even",
+          "value": "even"
+        },
+        {
+          "label": "mark",
+          "value": "mark"
+        },
+        {
+          "label": "odd",
+          "value": "odd"
+        },
+        {
+          "label": "space",
+          "value": "space"
+        }
+      ],
+      "help": "info_transportSerialParity"
+    },
+    "transportSerialMessageTimeout": {
+      "type": "number",
+      "label": "field_transportSerialMessageTimeout",
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "min": 1,
+      "hidden": "data.transport !== 'SerialRequestResponseTransport' && data.transport !== 'SerialResponseTransport'",
+      "unit": "s",
+      "help": "info_transportSerialMessageTimeout"
+    },
+    "transportHttpRequestUrl": {
+      "type": "text",
+      "label": "field_transportHttpRequestUrl",
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "hidden": "data.transport !== 'HttpRequestTransport'"
+    },
+    "transportHttpRequestTimeout": {
+      "type": "number",
+      "label": "field_transportHttpRequestTimeout",
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "min": 500,
+      "unit": "ms",
+      "hidden": "data.transport !== 'HttpRequestTransport'",
+      "help": "info_transportHttpRequestTimeout"
+    },
+    "transportLocalFilePath": {
+      "type": "text",
+      "label": "field_transportLocalFilePath",
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "hidden": "data.transport !== 'LocalFileTransport'"
+    },
+    "transportTcpHost": {
+      "type": "text",
+      "label": "field_transportTcpHost",
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "hidden": "data.transport !== 'TCPTransport'"
+    },
+    "transportTcpPort": {
+      "type": "number",
+      "label": "field_transportTcpPort",
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "min": 1,
+      "max": 65535,
+      "hidden": "data.transport !== 'TCPTransport'"
+    },
+    "startDelay": {
+      "type": "number",
+      "label": "field_startDelay",
+      "help": "info_startDelay",
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "min": 0,
+      "max": 600,
+      "unit": "s",
+      "hidden": "data.transport !== 'TCPTransport'"
+    },
+    "_protocol": {
+      "type": "header",
+      "text": "heading_ProtocolSpecificSettings",
+      "size": 3,
+      "newLine": true
+    },
+    "protocolD0WakeupCharacters": {
+      "type": "number",
+      "label": "field_protocolD0WakeupCharacters",
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "min": 0,
+      "hidden": "data.protocol !== 'D0Protocol'",
+      "help": "info_protocolD0WakeupCharacters"
+    },
+    "protocolD0DeviceAddress": {
+      "type": "text",
+      "label": "field_protocolD0DeviceAddress",
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "hidden": "data.protocol !== 'D0Protocol'",
+      "help": "info_protocolD0DeviceAddress"
+    },
+    "protocolD0SignOnMessage": {
+      "type": "text",
+      "label": "field_protocolD0SignOnMessage",
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "hidden": "data.protocol !== 'D0Protocol'",
+      "help": "info_protocolD0SignOnMessage"
+    },
+    "protocolD0ModeOverwrite": {
+      "type": "select",
+      "label": "field_protocolD0ModeOverwrite",
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "hidden": "data.protocol !== 'D0Protocol'",
+      "options": [
+        {
+          "label": "value_no_overwrite",
+          "value": ""
+        },
+        {
+          "label": "A",
+          "value": "A"
+        },
+        {
+          "label": "B",
+          "value": "B"
+        },
+        {
+          "label": "C",
+          "value": "C"
+        },
+        {
+          "label": "D",
+          "value": "D"
+        },
+        {
+          "label": "E",
+          "value": "E"
+        }
+      ],
+      "help": "info_protocolD0ModeOverwrite"
+    },
+    "protocolD0BaudrateChangeoverOverwrite": {
+      "type": "number",
+      "label": "field_protocolD0BaudrateChangeoverOverwrite",
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "min": 300,
+      "unit": "baud",
+      "hidden": "data.protocol !== 'D0Protocol'",
+      "help": "info_protocolD0BaudrateChangeoverOverwrite"
+    },
+    "anotherQueryDelay": {
+      "type": "number",
+      "label": "field_anotherQueryDelay",
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "min": 0,
+      "unit": "ms",
+      "hidden": "data.protocol !== 'D0Protocol'",
+      "help": "info_anotherQueryDelay"
+    },
+    "protocolSmlIgnoreInvalidCRC": {
+      "type": "checkbox",
+      "label": "field_protocolSmlIgnoreInvalidCRC",
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "hidden": "data.protocol !== 'SmlProtocol'"
+    },
+    "protocolSmlInputEncoding": {
+      "type": "select",
+      "label": "field_protocolSmlInputEncoding",
+      "sm": 12,
+      "md": 6,
+      "lg": 4,
+      "hidden": "data.protocol !== 'SmlProtocol'",
+      "options": [
+        {
+          "label": "value_protocolSmlInputEncoding_binary",
+          "value": ""
+        },
+        {
+          "label": "ascii",
+          "value": "ascii"
+        },
+        {
+          "label": "UTF-8",
+          "value": "utf-8"
+        },
+        {
+          "label": "Base64",
+          "value": "base64"
+        }
+      ],
+      "help": "info_protocolSmlInputEncoding"
+    }
+  }
+}
